@@ -1,0 +1,127 @@
+$color-1: #AF69DB;
+$color-2: #DBCD7F;
+$color-3: #675EDB;
+$color-4: #67DB53;
+$color-5: #DB74BD;
+
+$button-height: 30px;
+$button-width: 210px;
+$button-distance: 15px;
+$border-width: 2px;
+
+$timing: 0.5s;
+
+nav {
+    position: sticky;
+    top: 0;
+}
+
+ul.menu {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    span.fa-house-chimney {
+        opacity: 0;
+    }
+
+    >li {
+        height: $button-height;
+        line-height: $button-height;
+        width: $button-width;
+        margin-left: $button-distance;
+        margin-right: $button-distance;
+    
+        border: $border-width solid $color-3;
+        background-color: $color-5;
+    
+        overflow: hidden;
+
+        ul {
+            transform: scaleY(0);
+            transform-origin: 50% 0%;
+            transition: transform $timing linear;
+        }
+
+        &:hover {
+            overflow: visible;
+
+            ul {
+                transform: scaleY(1);
+            }
+        }
+    }
+
+    div {
+        transition: font-size $timing linear;
+
+        &:hover {
+            font-size: 125%;
+        }
+    }
+
+    ul {
+        padding: 0;
+        background-color: $color-5;
+
+        li {
+            height: $button-height;
+            width: $button-width;
+            margin-left: -2px;
+            
+            border: $border-width solid $color-3;
+            list-style-type: none;
+
+            a {
+                @mixin bars {
+                    display: block;
+                    position: absolute;
+                    content: "";
+                    width: 10%;
+                    height: $button-height;
+
+                    transform: scaleY(0);
+                    transform-origin: 50% 0%;
+                    transition: all $timing ease-in-out;
+                }
+
+                &::before {
+                    @include bars;
+
+                    background: linear-gradient(90deg, $color-1 0%, $color-5 100%);  
+                }
+
+                &::after {
+                    @include bars;
+
+                    left: 90%;
+                    top: 0;
+                    background: linear-gradient(270deg, $color-1 0%, $color-5 100%); 
+                    
+                }
+
+                &:hover {
+                    &::before, &::after {
+                        transform: scaleY(1);
+                    }
+                }
+            }
+
+        }
+    }
+
+    a {
+        display: block;
+        position: relative;
+        height: 100%;
+        text-decoration: none;
+        color: $color-2;
+    }
+}
+
+#burger, #ch-menu {
+    display: none;
+}

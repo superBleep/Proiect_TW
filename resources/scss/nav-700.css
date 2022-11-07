@@ -1,0 +1,185 @@
+nav {
+  display: block;
+  position: fixed;
+  top: 17px;
+  left: 0;
+  right: 0;
+}
+
+div.pat1 {
+  -webkit-animation-name: burger_animation;
+          animation-name: burger_animation;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  -webkit-animation-delay: 75ms;
+          animation-delay: 75ms;
+}
+
+div.pat2 {
+  -webkit-animation-name: burger_animation;
+          animation-name: burger_animation;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+}
+
+div.pat3 {
+  -webkit-animation-name: burger_animation;
+          animation-name: burger_animation;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  -webkit-animation-delay: 225ms;
+          animation-delay: 225ms;
+}
+
+div.patty {
+  border-radius: 25px;
+  background-color: white;
+  height: 4px;
+  width: 25px;
+  margin-bottom: 4px;
+}
+
+ul.menu {
+  display: block;
+  position: absolute;
+  top: 35px;
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 0.5s linear;
+}
+ul.menu > li {
+  width: 100vw;
+  margin: 0;
+}
+ul.menu li > ul {
+  position: relative;
+  z-index: 2;
+}
+ul.menu ul li {
+  width: 100vw;
+}
+
+#burger {
+  display: block;
+  position: fixed;
+  left: 5px;
+}
+#burger:hover {
+  cursor: pointer;
+}
+
+#ch-menu {
+  display: none;
+}
+#ch-menu:checked ~ ul.menu {
+  transform: scaleX(1);
+}
+
+@-webkit-keyframes burger_animation {
+  0% {
+    background-color: red;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  15% {
+    background-color: yellow;
+    opacity: 0.1;
+    transform: rotate(-60deg);
+  }
+  30% {
+    background-color: green;
+    opacity: 0.2;
+    transform: rotate(-120deg);
+  }
+  45% {
+    background-color: blue;
+    opacity: 0.3;
+    transform: rotate(-180deg);
+  }
+  60% {
+    background-color: indigo;
+    opacity: 0.4;
+    transform: rotate(-240deg);
+  }
+  75% {
+    background-color: violet;
+    opacity: 0.5;
+    transform: rotate(-300deg);
+  }
+  90% {
+    background-color: orange;
+    opacity: 0.6;
+    transform: rotate(-360deg);
+  }
+  105% {
+    background-color: white;
+    opacity: 0.7;
+    transform: rotate(-420deg);
+  }
+}
+
+@keyframes burger_animation {
+  0% {
+    background-color: red;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  15% {
+    background-color: yellow;
+    opacity: 0.1;
+    transform: rotate(-60deg);
+  }
+  30% {
+    background-color: green;
+    opacity: 0.2;
+    transform: rotate(-120deg);
+  }
+  45% {
+    background-color: blue;
+    opacity: 0.3;
+    transform: rotate(-180deg);
+  }
+  60% {
+    background-color: indigo;
+    opacity: 0.4;
+    transform: rotate(-240deg);
+  }
+  75% {
+    background-color: violet;
+    opacity: 0.5;
+    transform: rotate(-300deg);
+  }
+  90% {
+    background-color: orange;
+    opacity: 0.6;
+    transform: rotate(-360deg);
+  }
+  105% {
+    background-color: white;
+    opacity: 0.7;
+    transform: rotate(-420deg);
+  }
+}/*# sourceMappingURL=nav-700.css.map */

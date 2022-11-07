@@ -1,0 +1,131 @@
+html {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 18px;
+}
+
+body {
+    --color-1: #AF69DB;
+    --color-2: #DBCD7F;
+    --color-3: #675EDB;
+    --color-4: #67DB53;
+    --color-5: #DB74BD;
+
+    --lr-margin: 30px;
+    --td-margin: 10px;
+
+    background-color: var(--color-1);
+    color: var(--color-2);
+    transition: font-size 0.5s linear;
+}
+
+body a {
+    color: var(--color-4);
+}
+
+main span {
+    position: relative;
+    z-index: -1;
+}
+
+main {
+    margin-left: var(--lr-margin);
+    margin-right: var(--lr-margin);
+    margin-top: var(--td-margin);
+    margin-bottom: var(--td-margin);
+}
+
+header, footer {
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas: "f-desc f-desc f-desc f-desc"
+                        "z-oferte z-oferte f-calendar f-calendar"
+                        "z-oferte z-oferte f-anunturi f-anunturi"
+                        "f-users f-stats f-stats f-data"
+                        "f-other f-other f-other f-other";
+}
+
+#grid > * {
+    border: 3px solid var(--color-3);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#desc {
+    grid-area: f-desc;
+}
+
+#desc>figure {
+    float: right;
+}
+
+#oferte {
+    grid-area: z-oferte;
+}
+
+#calendar {
+    grid-area: f-calendar;
+}
+
+#anunturi {
+    grid-area: f-anunturi;
+}
+
+#users {
+    grid-area: f-users;
+}
+
+#stats {
+    grid-area: f-stats;
+}
+
+#data {
+    grid-area: f-data;
+}
+
+#other {
+    grid-area: f-other;
+}
+
+@media screen and (max-width: 1300px) {
+    body {
+        font-size: 90%;
+        transition: font-size 0.5s linear;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-areas: "f-desc f-desc f-desc"
+                            "z-oferte z-oferte f-calendar"
+                            "f-anunturi f-anunturi f-anunturi"
+                            "f-users f-stats f-data"
+                            "f-other f-other f-other";
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 80%;
+        transition: font-size 0.5s linear;
+        animation: none;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "f-desc"
+                            "z-oferte"
+                            "f-calendar"
+                            "f-anunturi"
+                            "f-users"
+                            "f-stats"
+                            "f-data"
+                            "f-other";
+    }
+}
+
+

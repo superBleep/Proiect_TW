@@ -1,0 +1,42 @@
+@media screen and (max-width: 1648px) {
+  #oferte div {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+#oferte div {
+  height: 99%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+#tabel_oferte {
+  width: 100%;
+  caption-side: bottom;
+  border: 5px inset #675EDB;
+  border-spacing: 0;
+  text-align: center;
+}
+#tabel_oferte tbody > tr {
+  outline: rgba(103, 94, 219, 0);
+}
+#tabel_oferte tbody > tr:first-child td {
+  border-top: 1px solid #675EDB;
+}
+#tabel_oferte tbody > tr:nth-child(even) td {
+  border-bottom: 1px solid #675EDB;
+}
+#tabel_oferte tbody > tr:nth-child(odd) td {
+  border-bottom: 1px solid #67DB53;
+}
+#tabel_oferte tbody > tr:hover {
+  outline: 5px inset rgba(103, 94, 219, 0.7);
+  transition: outline 0.5s ease-in-out;
+}
+#tabel_oferte tbody > tr:hover > td {
+  border: 0;
+}
+#tabel_oferte tbody > td figure {
+  padding: 0;
+  margin: 0;
+}/*# sourceMappingURL=tabel_oferte.css.map */

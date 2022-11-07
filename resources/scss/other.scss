@@ -1,0 +1,93 @@
+$color-1: #AF69DB;
+$color-2: #DBCD7F;
+$color-3: #675EDB;
+$color-4: #67DB53;
+$color-5: #DB74BD;
+
+$timing: 0.2s;
+
+#faq {
+    summary {
+        list-style-type: none;
+        border: 2px solid $color-3;
+        display: inline-block;
+        padding: 0.3em;
+        margin: 0.2em;
+        background-color: $color-5;
+        transition: margin-left $timing ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            margin-left: 0.8em;
+        }
+    }
+
+    details {
+        p {
+            position: relative;
+            padding-left: 2em;
+        }
+
+        &[open] {
+            p {
+                animation-name: details_animation;
+                animation-duration: $timing;
+                animation-fill-mode: forwards;
+                animation-iteration-count: 1;
+                animation-timing-function: linear;
+            }
+        }
+    }
+}
+
+#galerie {
+    div {
+        display: flex;
+        flex-direction: row;
+
+        iframe {
+            border: 5px inset $color-3
+        }
+
+        div {
+            flex-direction: column;
+        }
+
+        margin-bottom: 1em;
+    }
+}
+
+.tablink {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: $color-2;
+    background-color: $color-5;
+
+    padding: 1em;
+    margin-bottom: 0.2em;
+    
+    border-top-left-radius: 9%;
+    border-bottom-left-radius: 9%;
+    border-left: 7px solid $color-3;
+    border-top: 2.5px solid $color-3;
+    border-bottom: 2.5px solid $color-3;
+
+    transition: color $timing*5 ease-in-out;
+    transition: background-color $timing*5 ease-in-out;
+
+    &:hover {
+        color: $color-5;
+        background-color: $color-3;
+    }
+}
+
+@keyframes details_animation{
+    0% {
+        transform: translateX(-30%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+

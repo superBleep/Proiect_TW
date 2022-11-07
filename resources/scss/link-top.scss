@@ -1,0 +1,45 @@
+$color-1: #AF69DB;
+$color-2: #DBCD7F;
+$color-3: #675EDB;
+$color-4: #67DB53;
+$color-5: #DB74BD;
+
+#link-top {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    width: 2.8rem;
+    line-height: 2.2rem;
+    text-align: center;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 5px solid;
+    border-right: 5px solid;
+    border-radius: 35%;
+    border-color: $color-4;
+
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+        transition: all 0.5s linear;
+
+        >#triangle {
+            transform: translateY(-30%);
+            border-bottom-color: $color-2;
+        }
+    }
+
+    >#triangle {
+        transform: translateY(0%);
+        border-bottom-color: $color-4;
+        transition: all 0.5s linear;
+
+        display: inline-block;
+        border-top: 0.4rem solid transparent;
+        border-bottom: 1rem solid $color-4;
+        border-left: 0.5rem solid transparent;
+        border-right: 0.5rem solid transparent;
+        vertical-align: top;
+    }
+}
