@@ -1,0 +1,86 @@
+@media print {
+  img, figure, iframe, video, #galerie, #galerie-foto, #link-top {
+    display: none;
+  }
+  footer {
+    all: initial;
+    page-break-before: always;
+  }
+  #grid {
+    all: initial;
+  }
+  #grid > * {
+    all: initial;
+  }
+  #tabel_oferte {
+    all: initial;
+  }
+  #faq summary {
+    all: initial;
+  }
+  h1 {
+    color: black;
+  }
+  ul.menu {
+    all: initial;
+    page-break-after: always;
+  }
+  ul.menu span.fa-house-chimney {
+    display: none;
+  }
+  ul.menu > li {
+    all: initial;
+  }
+  ul.menu > li ul {
+    display: none;
+  }
+  ul.menu > li a {
+    all: initial;
+  }
+  ul.menu ul, ul.menu a {
+    all: initial;
+  }
+  body a {
+    text-decoration: none;
+    color: black;
+  }
+  #watermark {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 40vw;
+    height: 10vh;
+  }
+  #watermark::after {
+    display: block;
+    border: 3px solid black;
+    border-radius: 7em;
+    color: initial;
+    content: "Florian \aLuca-Paul";
+    white-space: pre;
+    font-weight: bold;
+    opacity: 0.4;
+    text-align: center;
+  }
+  #banner {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 13%;
+    justify-content: center;
+    width: 70%;
+    border: 4px inset black;
+    color: initial;
+    text-align: center;
+    padding: 1em;
+  }
+  @page :left {
+    margin-left: 3cm;
+    margin-right: 1cm;
+  }
+  @page :right {
+    margin-left: 1cm;
+    margin-right: 3cm;
+  }
+}/*# sourceMappingURL=print.css.map */

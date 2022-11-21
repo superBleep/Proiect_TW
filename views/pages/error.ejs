@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragments/head.ejs");  %> 
+
+        <meta name="description" content="Eroare aparuta la o anumita cerere">
+        <meta name="keywords" content="eroare, 403, 403">
+        <title>Eroare</title>
+        <link rel="stylesheet" href="resources/scss/error.css">
+    </head>
+    
+    <body>
+        <%- include("../fragments/header.ejs");  %> 
+
+        <main>
+            <div id="err-columns">
+                <img src="<%- locals.img %>">
+                <section>
+                    <h2><%- locals.title %></h2>
+                    <p><%- locals.text %></p>
+                </section>
+            </div>
+        </main>
+        
+        <%- include("../fragments/footer.ejs");  %> 
+    </body>
+</html>

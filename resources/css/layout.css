@@ -90,6 +90,13 @@ header, footer {
     grid-area: f-other;
 }
 
+#watermark {
+    display: none;
+}
+#banner {
+    display: none;
+}
+
 @media screen and (max-width: 1300px) {
     body {
         font-size: 90%;

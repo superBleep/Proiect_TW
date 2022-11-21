@@ -1,0 +1,27 @@
+#galerie-foto{
+  padding-left:var(--padding-intern);
+  padding-right:var(--padding-intern);
+}
+
+#galery-grid {
+ display:grid;
+ grid-template-columns: repeat(3,1fr);
+ grid-row-gap:0.5em;
+ grid-column-gap:0.5em;
+ counter-reset: nr_img 3;
+}
+#galery-grid img{
+  width: 100%;
+}
+#galery-grid figcaption{
+  text-align:center;
+  counter-increment: nr_img 2;
+}
+#galery-grid figcaption::before {
+  content: counter(nr_img, upper-alpha) ")";
+}
+@media screen and (max-width:500px){
+  #galery-grid {
+      display:block;
+  }
+}

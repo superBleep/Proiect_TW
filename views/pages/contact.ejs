@@ -2,6 +2,7 @@
 <html lang="ro">
     <head>
         <%- include("../fragments/head.ejs") %>
+        <link rel="stylesheet" href="resources/scss/contact.css" type="text/css">
 
         <title>Contact</title>
         <meta name="keywords" content="contact, adresă, telefon, discord">
@@ -11,8 +12,26 @@
     <body>
         <%- include("../fragments/header.ejs") %>
 
-        <main>
-            <p>Testinggggggggg</p>
+        <main id="contact-grid">
+            <section id="vid">
+                <video controls poster="../../resources/img/index/poster.jpg" preload="metadata">
+                    <source src="../../resources/vid/dancing.mp4" type="video/mp4">
+                    <source src="../../resources/vid/dancing.webm" type="video/webm">
+                    <track src="../../resources/vid/track/dancing_ro.vtt" kind="subtitles" scrlang="ro" label="Română">
+                    <track src="../../resources/vid/track/dancing_en.vtt" kind="subtitles" scrlang="en" label="English">
+                </video>
+            </section>
+
+            <section id="date-contact">
+                <h2>Contact</h2>
+                <p>Ne poți contacta la orice oră din orice zi (cu excepția sărbătorilor legale) prin următoarele mijloace:</p>
+
+                <address>Adresa: </address>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8842997291954!2d26.0995867!3d44.4355355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFaculty%20of%20Mathematics%20and%20Informatics!5e0!3m2!1sen!2sro!4v1668269427497!5m2!1sen!2sro" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <address>Telefon: <a href="tel:+40683504391">+40683504391</a></address>
+                <address>Email: <a href="mailto:allmuzica@email.com">allmuzica@email.com</a></address>
+                <address>Discord: <a href="discord:discord.gg/allmuzica2909">discord.gg/allmuzica2909</a></address>
+            </section>
         </main>
 
         <%- include("../fragments/footer.ejs")  %> 

@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "ejs": "^3.1.8",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sharp": "^0.31.2"
   },
   "name": "allmuzica",
   "version": "1.0.0",
   "description": "Site magazin de muzica",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
