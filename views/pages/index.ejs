@@ -15,14 +15,16 @@
             <div id="grid">
                 <section id="desc">
                     <h2><span class="fa-solid fa-volume-high fa-shake"></span> AllMuzica - magazin de muzică</h2>
+
                     <figure>
                         <picture>
-                            <source srcset="resources/img/index/jukebox_small.jpg" media="(max-width: 700px)">
-                            <source srcset="resources/img/index/jukebox_med.jpg" media="(max-width: 1300px)"> 
-                            <img src="resources/img/index/jukebox_max.jpg" alt="Imagine cu vinyl">
+                            <source srcset="/resources/img/index/jukebox_small.jpg" media="(max-width: 700px)">
+                            <source srcset="/resources/img/index/jukebox_med.jpg" media="(max-width: 1300px)">
+                            <img src="/resources/img/index/jukebox_max.jpg" alt="Imagine cu vynil">
                         </picture>
-                        <figcaption>Un pick-up cu vinyl-uri.</figcaption>
+                        <figcaption>Pick-up cu vinyl-uri</figcaption>
                     </figure>
+
                     <p><em>Bine ai venit pe AllMuzica</em>, magazinul online de muzică numărul 1 <s>(cel puțin după noi)</s> din România! Aici poți găsi foarte ușor răspunsul la trei mari întrebări legate de domenul muzicii: <em>ce ascult</em>, <em>cum ascult</em> și <em>cum fac să vadă toată lumea că ascult ce am zis că ascult?</em></p>
                     <p>Pentru a putea să-ți răspundem la aceste întrebări, ți-am pregătit o gamă largă de produse la un preț avantajos (<i>mostly</i>), ce abia așteatpă să fie cumpărate de tine:</p>
                     
@@ -226,7 +228,7 @@
                         <h2>Întrebări (mai mult sau mai puțin) frecvente</h2>
                         <details>
                             <summary>De unde a apărut magazinul ăsta?</summary>
-                            <p>Vezi pe <a href="istorie">pagina noastră de istorie</a>.</p>
+                            <p>Vezi pe <a href="history">pagina noastră de istorie</a>.</p>
                         </details>
                         <details>
                             <summary>Ce mă oprește să cumpăr de la alt magazin de genul?</summary>
@@ -242,7 +244,7 @@
                         </details>
                     </section>
                     
-                    <section id="galerie">
+                    <section id="vids">
                         <h2>Videoclipuri reprezentative</h2>
                         <p>Dacă ar fi să alegem câte un videoclip care să reprezinte <i>vibe</i>-ul chestiilor pe care le poți cumpăra de la noi, iată ce am alege:</p>
                         <div>
@@ -255,29 +257,11 @@
                         </div>
                     </section>
 
-                    <section id="galerie-foto">
-                        <h2>Galerie foto</h2>
-                        <div id="galery-grid">
-                            <% for (let imag of locals.images) { 
-                                var d = new Date();
-                                var v_months = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
-                                var month_ro = v_months[d.getMonth()];
-                                if(imag.months && imag.months.includes(month_ro)) { %>
-                                    <figure>
-                                        <picture>
-                                            <source srcset="<%- imag.med_file %>">
-                                            <img src="<%- imag.file %>" alt="imagine">
-                                        </picture>
-                                        <figcaption><%- imag.description %></figcaption>
-                                    </figure>
-                            <% }
-                            } %>   
-                        </div>
-                    </section>
+                    <%- include("../fragments/galery.ejs") %>
                 </section>
             </div>
         </main>
 
-        <%- include("../fragments/footer.ejs")  %> 
+        <%- include("../fragments/footer.ejs") %> 
     </body>
 </html>

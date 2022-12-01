@@ -1,138 +1,108 @@
 html {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 18px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+}
+html a:hover {
+  color: #675EDB;
 }
 
 body {
-    --color-1: #AF69DB;
-    --color-2: #DBCD7F;
-    --color-3: #675EDB;
-    --color-4: #67DB53;
-    --color-5: #DB74BD;
-
-    --lr-margin: 30px;
-    --td-margin: 10px;
-
-    background-color: var(--color-1);
-    color: var(--color-2);
-    transition: font-size 0.5s linear;
+  background-color: #AF69DB;
+  color: #DBCD7F;
+  transition: font-size 0.5s linear;
 }
-
 body a {
-    color: var(--color-4);
+  color: #67DB53;
 }
-
-main span {
-    position: relative;
-    z-index: -1;
+body p::selection, body td::selection, body th::selection, body figcaption::selection, body address::selection, body i::selection, body s::selection, body em::selection, body strong::selection, body h1::selection, body h2::selection, body h3::selection, body h4::selection, body h5::selection {
+  background-color: #DB74BD;
+  color: #675EDB;
+  text-shadow: -1px -2px 1px #DBCD7F;
 }
 
 main {
-    margin-left: var(--lr-margin);
-    margin-right: var(--lr-margin);
-    margin-top: var(--td-margin);
-    margin-bottom: var(--td-margin);
+  margin: 2em;
+}
+main span {
+  position: relative;
+  z-index: -1;
 }
 
 header, footer {
-    text-align: center;
+  text-align: center;
 }
 
 #grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-areas: "f-desc f-desc f-desc f-desc"
-                        "z-oferte z-oferte f-calendar f-calendar"
-                        "z-oferte z-oferte f-anunturi f-anunturi"
-                        "f-users f-stats f-stats f-data"
-                        "f-other f-other f-other f-other";
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 0.5em;
+  grid-template-areas: "f-desc f-desc f-desc f-desc" "z-oferte z-oferte f-calendar f-calendar" "z-oferte z-oferte f-anunturi f-anunturi" "f-users f-stats f-stats f-data" "f-other f-other f-other f-other";
 }
-
 #grid > * {
-    border: 3px solid var(--color-3);
-    padding-left: 20px;
-    padding-right: 20px;
+  border: 5px dotted #675EDB;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 #desc {
-    grid-area: f-desc;
+  grid-area: f-desc;
 }
-
-#desc>figure {
-    float: right;
+#desc > figure {
+  float: right;
 }
 
 #oferte {
-    grid-area: z-oferte;
+  grid-area: z-oferte;
 }
 
 #calendar {
-    grid-area: f-calendar;
+  grid-area: f-calendar;
 }
 
 #anunturi {
-    grid-area: f-anunturi;
+  grid-area: f-anunturi;
 }
 
 #users {
-    grid-area: f-users;
+  grid-area: f-users;
 }
 
 #stats {
-    grid-area: f-stats;
+  grid-area: f-stats;
 }
 
 #data {
-    grid-area: f-data;
+  grid-area: f-data;
 }
 
 #other {
-    grid-area: f-other;
+  grid-area: f-other;
 }
 
-#watermark {
-    display: none;
-}
-#banner {
-    display: none;
+#watermark, #banner {
+  display: none;
 }
 
 @media screen and (max-width: 1300px) {
-    body {
-        font-size: 90%;
-        transition: font-size 0.5s linear;
-    }
-
-    #grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-template-areas: "f-desc f-desc f-desc"
-                            "z-oferte z-oferte f-calendar"
-                            "f-anunturi f-anunturi f-anunturi"
-                            "f-users f-stats f-data"
-                            "f-other f-other f-other";
-    }
+  body {
+    font-size: 90%;
+    transition: font-size 0.5s linear;
+  }
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas: "f-desc f-desc f-desc" "z-oferte z-oferte f-calendar" "f-anunturi f-anunturi f-anunturi" "f-users f-stats f-data" "f-other f-other f-other";
+  }
 }
-
 @media screen and (max-width: 700px) {
-    body {
-        font-size: 80%;
-        transition: font-size 0.5s linear;
-        animation: none;
-    }
-
-    #grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas: "f-desc"
-                            "z-oferte"
-                            "f-calendar"
-                            "f-anunturi"
-                            "f-users"
-                            "f-stats"
-                            "f-data"
-                            "f-other";
-    }
+  body {
+    font-size: 80%;
+    transition: font-size 0.5s linear;
+    animation: none;
+  }
+  #grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "f-desc" "z-oferte" "f-calendar" "f-anunturi" "f-users" "f-stats" "f-data" "f-other";
+  }
 }
-
-

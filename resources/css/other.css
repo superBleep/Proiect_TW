@@ -1,0 +1,66 @@
+#faq summary {
+  list-style-type: none;
+  border: 2px solid #675EDB;
+  display: inline-block;
+  padding: 0.3em;
+  margin: 0.2em;
+  background-color: #DB74BD;
+  transition: margin-left 0.2s ease-in-out;
+}
+#faq summary:hover {
+  cursor: pointer;
+  margin-left: 0.8em;
+}
+#faq details p {
+  position: relative;
+  padding-left: 2em;
+}
+#faq details[open] p {
+  animation-name: details_animation;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+#vids div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+#vids div iframe {
+  border: 5px inset #675EDB;
+}
+#vids div div {
+  flex-direction: column;
+}
+
+.tablink {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #DBCD7F;
+  background-color: #DB74BD;
+  padding: 1em;
+  margin-bottom: 0.2em;
+  border-top-left-radius: 9%;
+  border-bottom-left-radius: 9%;
+  border-left: 7px solid #675EDB;
+  border-top: 2.5px solid #675EDB;
+  border-bottom: 2.5px solid #675EDB;
+  transition: color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
+}
+.tablink:hover {
+  color: #DB74BD;
+  background-color: #675EDB;
+}
+
+@keyframes details_animation {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}

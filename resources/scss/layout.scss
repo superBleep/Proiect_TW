@@ -1,0 +1,138 @@
+@import "_vars.scss";
+
+html {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 18px;
+
+    a {
+        &:hover {
+            color: $color-3;
+        }
+    }
+}
+
+body {
+    background-color: $color-1;
+    color: $color-2;
+    transition: font-size 0.5s linear;
+
+    a {
+        color: $color-4;
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-5;
+            color: $color-3;
+            text-shadow: -1px -2px 1px $color-2;
+        }
+    }
+}
+
+main {
+    margin: 2em;
+
+    span {
+        position: relative;
+        z-index: -1;
+    }
+}
+
+header, footer {
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-gap: 0.5em;
+    grid-template-areas: "f-desc f-desc f-desc f-desc"
+                        "z-oferte z-oferte f-calendar f-calendar"
+                        "z-oferte z-oferte f-anunturi f-anunturi"
+                        "f-users f-stats f-stats f-data"
+                        "f-other f-other f-other f-other";
+
+    > * {
+        border: 5px dotted $color-3;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+#desc {
+    grid-area: f-desc;
+
+    >figure {
+        float: right;
+    }
+}
+
+#oferte {
+    grid-area: z-oferte;
+}
+
+#calendar {
+    grid-area: f-calendar;
+}
+
+#anunturi {
+    grid-area: f-anunturi;
+}
+
+#users {
+    grid-area: f-users;
+}
+
+#stats {
+    grid-area: f-stats;
+}
+
+#data {
+    grid-area: f-data;
+}
+
+#other {
+    grid-area: f-other;
+}
+
+#watermark, #banner {
+    display: none;
+}
+
+@media screen and (max-width: 1300px) {
+    body {
+        font-size: 90%;
+        transition: font-size 0.5s linear;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-areas: "f-desc f-desc f-desc"
+                            "z-oferte z-oferte f-calendar"
+                            "f-anunturi f-anunturi f-anunturi"
+                            "f-users f-stats f-data"
+                            "f-other f-other f-other";
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 80%;
+        transition: font-size 0.5s linear;
+        animation: none;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "f-desc"
+                            "z-oferte"
+                            "f-calendar"
+                            "f-anunturi"
+                            "f-users"
+                            "f-stats"
+                            "f-data"
+                            "f-other";
+    }
+}

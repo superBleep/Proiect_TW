@@ -1,0 +1,84 @@
+{
+	"galery_path": "resources/img/galery",
+	"CC_BY": "<a href=\"https://www.freepik.com/free-photo/caucasian-woman-s-portrait-isolated-blue-background-multicolored-neon-light_13636129.htm#query=music&position=12&from_view=search&track=sph\">Image by master1305</a> on Freepik",
+	"images": [
+		{
+			"file_path":"casette.jpg",
+			"title": "Casetă",
+			"description": "Un format audio uitat de lume, dar nu și de pasionați!",
+			"season": "winter"
+		},
+		{
+			"file_path":"cd.jpg",
+			"title": "CD",
+			"description": "Începutul erei muzicii digitale...",
+			"season": "summer"
+		},
+		{
+			"file_path":"vinyl_1.jpg",
+			"title": "Vinyl",
+			"description": "Never obsolete!",
+			"season": "winter"
+		},
+		{
+			"file_path":"vinyl_2.jpg",
+			"title": "Mai multe vinyl-uri",
+			"description": "Surprinzător, majoritatea albumelor scoase în zilele de azi apar și pe vinyl.",
+			"season": "winter"
+		},
+		{
+			"file_path":"earbuds.jpg",
+			"title": "Căști in-ear",
+			"description": "Portabile și ușor de folosit.",
+			"season": "winter"
+		},
+		{
+			"file_path":"headphones_1.jpg",
+			"title": "Căști over-ear wireless",
+			"description": "Ascultă ce vrei fără riscul de a te încurca în cabluri.",
+			"season": "winter"
+		},
+		{
+			"file_path":"headphones_2.jpg",
+			"title": "Căști over-ear",
+			"description": "Căști ce îți oferă cea mai înaltă calitate audio disponibilă!",
+			"season": "winter"
+		},
+		{
+			"file_path":"headphones_3.jpg",
+			"title": "Căști over-ear",
+			"description": "Un client mulțumit de căștile sale!",
+			"season": "winter"
+		},
+		{
+			"file_path":"boombox.jpg",
+			"title": "Boombox",
+			"description": "Pentru cazul în care vrei să împărtășești muzica cu cei dragi (și nu numai...).",
+			"season": "winter"
+		},
+		{
+			"file_path":"male_1.jpg",
+			"title": "Îmbrăcăminte bărbați",
+			"description": "Dă tonul în modă!",
+			"season": "winter"
+		},
+		{
+			"file_path":"female_1.jpg",
+			"title": "Îmbrăcăminte femei",
+			"description": "Fii tu însuți!",
+			"season": "winter"
+		},
+		{
+			"file_path":"male_2.jpg",
+			"title": "Îmbrăcăminte bărbați",
+			"description": "Fă-ți propriile reguli! (în limitele legale)",
+			"season": "spring"
+		},
+		{
+			"file_path":"female_2.jpg",
+			"title": "Îmbrăcăminte femei",
+			"description": "Arată cool!",
+			"season": "autumn"
+		}
+	]
+}

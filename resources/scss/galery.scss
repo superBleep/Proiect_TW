@@ -1,0 +1,63 @@
+#galery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas: "fig-1 fig-2 fig-3"
+                        "fig-4 . fig-5"
+                        "fig-6 fig-7 fig-8"
+                        "fig-9 . fig-10"
+                        "fig-11 fig-12 fig-13";
+    counter-reset: nr_img 0;
+
+    @for $i from 1 through 13 {
+        figure:nth-child(#{$i}) {
+            grid-area: fig-#{$i};
+        }
+    }
+
+    img {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+
+        transform: scale(1, 1);
+        transform-origin: 50% 0%;
+        transition: all 0.125s linear;
+
+        &:hover {
+            transform: scale(140%, 140%);
+            transform-origin: 50% 0%;
+            opacity: 0.5;
+            border-radius: 15px;
+            z-index: 3;
+        }
+    }
+
+    figcaption {
+        text-align: center;
+        counter-increment: nr_img 1;
+        
+        &::before {
+            content: counter(nr_img, lower-roman) ") ";
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #galery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas: "fig-1 fig-2"
+                            "fig-3 fig-4"
+                            "fig-5 fig-6"
+                            "fig-7 fig-8"
+                            "fig-9 fig-10"
+                            "fig-11 fig-12"
+                            "fig-13 .";
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #galery-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "fig-1" "fig-2" "fig-3" "fig-4" "fig-5" "fig-6" "fig-7" "fig-8" "fig-9" "fig-10" "fig-11" "fig-12" "fig-13";
+    }
+}

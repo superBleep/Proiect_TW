@@ -1,0 +1,40 @@
+<section id="photo-galery">
+    <h2>Galerie foto</h2>
+    <div id="galery-grid">
+        <%  var img_cnt = 0;
+        for (let img of locals.images) {
+            img_cnt += 1;
+            if(img_cnt > 13) 
+                break;
+
+            var d = new Date();
+            var season_months = [
+                [11, 0, 1],
+                [2, 3, 4],
+                [5, 6, 7],
+                [8, 9, 10]
+            ];
+            var season2months = {
+                winter: 0,
+                spring: 1,
+                summer: 2,
+                autumn: 3
+            };
+
+            if(season_months[season2months[img.season]].includes(d.getMonth())) {
+                [fileName, extension] = img.file_path.split(".");
+                var med_path = locals.galery_path + "/med/" + fileName + ".webp";
+                var small_path = locals.galery_path + "/small/" + fileName + ".webp";
+                %>
+                <figure>
+                    <picture>
+                        <source srcset="<%- med_path %>" media="(max-width: 1300px)">
+                        <source srcset="<%- small_path %>" media="(max-width: 700px)">
+                        <img src="<%- locals.galery_path + "/" + img.file_path %>" alt="<%- img.title %>">
+                    </picture>
+                    <figcaption><%- img.description %></figcaption>
+                </figure>
+        <% }
+        } %>   
+    </div>
+</section>

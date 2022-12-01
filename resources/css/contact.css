@@ -1,0 +1,46 @@
+main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+
+#contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 1em;
+  grid-template-areas: "z-video f-date";
+}
+
+#vid {
+  grid-area: z-video;
+}
+#vid video {
+  width: 100%;
+  height: 100%;
+}
+#vid video::cue {
+  background-color: white;
+  color: #675EDB;
+}
+
+#date-contact {
+  grid-area: f-date;
+  height: 100%;
+}
+#date-contact h2 {
+  margin-top: 0;
+}
+#date-contact address {
+  padding-bottom: 1em;
+}
+#date-contact iframe {
+  width: 100%;
+  height: 50%;
+}
+
+@media screen and (max-width: 700px) {
+  #contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-gap: 4em;
+    grid-template-areas: "f-date" "z-video";
+  }
+}

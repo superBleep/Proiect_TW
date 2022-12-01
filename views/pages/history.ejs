@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <link rel="stylesheet" href="resources/css/custom-bootstrap.css" type="text/css">
+        <%- include("../fragments/head.ejs") %>
+
+        <title>Istoria magazinului</title>
+        <meta name="keywords" content="istorie, an, muzică">
+        <meta name="description" content="Istoria magazinului AllMuzica.">
+    </head>
+
+    <body>
+        <%- include("../fragments/header.ejs") %>
+
+        <main>
+            <video playsinline autoplay muted loop poster="resources\img\index\poster_2.png" id="bgvid">
+                <source src="resources\vid\record_shop.mp4" type="video/mp4">
+            </video>
+
+            <div class="mt-4 py-3 px-4 bg-primary rounded text-center"> <% var text = "Istoria magazinului AllMuzica" %> 
+                <h2 class="mb-0 reflex-text">
+                    <%- text %>
+                    <div class="reflex-text-shadow">
+                        <%- text %>
+                    </div>
+                </h2>
+                <p>Câteva idei despre cum magazinul nostru a devenit realitate...</p>
+            </div>
+            
+            <div class="mt-4 row text-center">
+                <div class="col-4">
+                    <div class="card border-0">
+                        <div class="card-img-top duotone-img">
+                        </div>
+                        <div class="card-body bg-primary">
+                            <h3 class="card-title">Titlu</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum. Cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Ac turpis egestas integer eget aliquet. At tellus at urna condimentum mattis. Fames ac turpis egestas integer eget aliquet nibh praesent tristique. Neque vitae tempus quam pellentesque. Sodales ut etiam sit amet nisl purus in. Cursus turpis massa tincidunt dui ut ornare lectus sit amet. Neque sodales ut etiam sit amet nisl purus in. Fermentum leo vel orci porta non pulvinar neque. Rhoncus aenean vel elit scelerisque. Facilisis sed odio morbi quis commodo. Metus dictum at tempor commodo. Lectus sit amet est placerat in egestas erat. Nunc sed id semper risus in hendrerit gravida rutrum. Facilisi nullam vehicula ipsum a. Mattis nunc sed blandit libero volutpat sed cras ornare. Sagittis nisl rhoncus mattis rhoncus urna.</p>
+                        </div>
+                    </div>
+                </div>
+        </main>
+
+        <%- include("../fragments/footer.ejs")  %> 
+    </body>
+</html>

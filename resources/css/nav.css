@@ -1,102 +1,93 @@
-body {
-    --color-1: #AF69DB;
-    --color-2: #DBCD7F;
-    --color-3: #675EDB;
-    --color-4: #67DB53;
-    --color-5: #DB74BD;
-    
-    --button-height: 30px;
-    --button-width: 200px;
-    --button-distance: 15px;
-    --border-width: 2px;
-
-    --timing: 0.5s;
-}
-
 nav {
-    position: sticky;
-    top: 0;
-}
-
-ul.menu span.fa-house-chimney {
-    opacity: 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 ul.menu {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
-
-ul.menu>li {
-    height: var(--button-height);
-    line-height: var(--button-height);
-    width: var(--button-width);
-    margin-left: var(--button-distance);
-    margin-right: var(--button-distance);
-
-    border: var(--border-width) solid var(--color-3);
-    background-color: var(--color-5);
-
-    overflow: hidden;
+ul.menu span.fa-house-chimney {
+  opacity: 0;
 }
-
-ul.menu>li:hover {
-    overflow: visible;
+ul.menu > li {
+  height: 30px;
+  line-height: 30px;
+  width: 210px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 2px solid #675EDB;
+  background-color: #DB74BD;
+  overflow: hidden;
 }
-
-ul.menu>li:hover ul{
-    animation-name: submenu_animation;
-    animation-duration: var(--timing);
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-direction: reverse;
-    transform-origin: 50% 0%;
+ul.menu > li ul {
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  transition: transform 0.5s linear;
 }
-
+ul.menu > li:hover {
+  overflow: visible;
+}
+ul.menu > li:hover ul {
+  transform: scaleY(1);
+}
 ul.menu div {
-    transition: font-size var(--timing) linear;
+  transition: font-size 0.5s linear;
 }
 ul.menu div:hover {
-    font-size: 125%;
-    transition: font-size var(--timing) linear;
+  font-size: 125%;
 }
-
 ul.menu ul {
-    padding: 0;
-    background-color: var(--color-5);
+  padding: 0;
+  background-color: #DB74BD;
 }
-
-ul.menu a {
-    display: block;
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    text-decoration: none;
-    color: var(--color-2);
-}
-
 ul.menu ul li {
-    height: var(--button-height);
-    width: var(--button-width);
-    margin-left: -2px;
-    
-    border: var(--border-width) solid var(--color-3);
-    list-style-type: none;
+  height: 30px;
+  width: 210px;
+  margin-left: -2px;
+  border: 2px solid #675EDB;
+  list-style-type: none;
+}
+ul.menu ul li a::before {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 10%;
+  height: 30px;
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  transition: all 0.5s ease-in-out;
+  background: linear-gradient(90deg, #AF69DB 0%, #DB74BD 100%);
+}
+ul.menu ul li a::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 10%;
+  height: 30px;
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  transition: all 0.5s ease-in-out;
+  left: 90%;
+  top: 0;
+  background: linear-gradient(270deg, #AF69DB 0%, #DB74BD 100%);
+}
+ul.menu ul li a:hover::before, ul.menu ul li a:hover::after {
+  transform: scaleY(1);
+}
+ul.menu a {
+  display: block;
+  position: relative;
+  height: 100%;
+  text-decoration: none;
+  color: #DBCD7F;
 }
 
 #burger, #ch-menu {
-    display: none;
-}
-
-@keyframes submenu_animation {
-    0% {
-        transform: scaleY(1);
-    }
-    100% {
-        transform: scaleY(0);
-    }
+  display: none;
 }
