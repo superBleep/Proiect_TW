@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragments/head.ejs") %>
+
+        <title>Produse</title>
+        <meta name="keywords" content="produse, albume, merchandise, device-uri">
+        <meta name="description" content="Produsele magazinului AllMuzica">
+
+        <script type="text/javascript" src="/resources/js/products.js"></script>
+    </head>
+
+    <body>
+        <%- include("../fragments/header.ejs") %>
+
+        <main>
+            <p id="filter-error"></p>
+            <section id="filters">
+                <label>Nume: <input type="text" id="inp-name" placeholder="Numele produsului..."></label>
+                <label>Preț minim: 
+                    <span id="min-price-min"></span>
+                    <input type="range" id="inp-min-range">
+                    <span id="min-price-max"></span>
+                    <span id="min-price-value"></span>
+                </label>
+                <label>Preț maxim: 
+                    <span id="max-price-min"></span>
+                    <input type="range" id="inp-max-range">
+                    <span id="max-price-max"></span>
+                    <span id="max-price-value"></span>
+                </label>
+                <label>Data adăugării:
+                    <input list="datalist" id="inp-date" placeholder="Introdu data...">
+                    <datalist id="datalist">
+                        <% for (let data of locals.distinctVals["dates"]) { %>
+                            <option value="<%-data%>"><%-data%></option>
+                        <% } %> 
+                    </datalist>
+                </label>
+                <div id="inp-exp-node">Tip expediere:
+                    <p><label>Orice tip
+                        <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio">
+                    </label></p>
+                    <p><label>Prin curier
+                        <input id="inp-r2" name="inp-exp" value="Curier" unchecked type="radio">
+                    </label></p>
+                    <p><label>Prin poștă
+                        <input id="inp-r3" name="inp-exp" value="Poștă" unchecked type="radio">
+                    </label></p>
+                    <p><label>De la centrul de distribuție
+                        <input id="inp-r4" name="inp-exp" value="De la centrul de distribuție" unchecked type="radio">
+                    </label></p>
+                </div>
+                <label>Admite voucher? <input type="checkbox" id="inp-voucher" checked></label>
+                <label>Descriere:
+                    <textarea id="inp-descr" rows="4" cols="50" placeholder="Introdu (o parte din) descrierea produsului..."></textarea>
+                </label>
+                <label>Culoare:
+                    <select id="inp-color">
+                        <option id="sel-all" selected value="Toate">Toate</option>
+                        <% for (let color of locals.distinctVals["colors"]) { %>
+                            <option value="<%- color %>"><%- color %></option>    
+                        <% } %>
+                    </select>
+                </label>
+                <label>Categorie gramaj:
+                    <select id="inp-weight" multiple>
+                        <option value="0:99">Mic (gramaj &lt; 100g)</option>
+                        <option value="100:200">Mediu (100g &le; gramaj &le; 200g)</option>
+                        <option value="201:100000">Mare (gramaj &gt; 200g)</option>
+                    </select>
+                </label>
+            </section>
+
+            <section id="buttons">
+                <button type="button" id="filter">Filtrează</button>
+                <button type="button" id="sort1">Sortează crescător</button>
+                <button type="button" id="sort-1">Sortează descrescător</button>
+                <button type="button" id="sum">Suma prețurilor</button>
+                <button type="button" id="reset">Restează filtrele</button>
+            </section>
+
+            <section id="prods">
+                <h2>Produse</h2>
+                <div id="prods-grid">
+                    <%  var i = -1
+                        for (let prod of locals.products) {
+                            i += 1 %>
+                        <article class="prod" id = <%- "art" + prod.id %> >
+                            <h3><a href="/product/<%- prod.id %>">
+                                <span class="val-name"><%- prod.name %></span>
+                            </a></h3>
+                            <div id="prod-grid">
+                                <img src= <%- prod.img_path %>>
+                                <table>
+                                    <tr>
+                                        <td>Pret</td>
+                                        <td id= <%- "prod-price-" + i %> ><span class="val-price"><%- prod.price %></span> RON</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Culoare</td>
+                                        <td><span class="val-color"><%- prod.color %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detalii</td>
+                                        <td>
+                                            <% 
+                                                switch (prod.category) { 
+                                                case 'Albume': %>
+                                                    An lansare: <%- prod.prod_details[0] %> <br>
+                                                    Format: <%- prod.prod_details[1] %> <br>
+                                                    Gen: <%- prod.prod_details[2] %> <br>
+                                                <% break; 
+                                                case 'Merchandise': %>
+                                                    Gen: <%- prod.prod_details[0] %> <br>
+                                                    Mărime: <%- prod.prod_details[1] %> <br>
+                                                    Material: <%- prod.prod_details[2] %> <br>
+                                                <% break;
+                                                case 'Device-uri': %>
+                                                    Conectivitate: <%- prod.prod_details[0] %> <br>
+                                                    Tip: <%- prod.prod_details[1] %> <br>
+                                                    Microfon: <%- prod.prod_details[2] %> <br>
+                                                <% break; %>
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data adăugarii</td>
+                                        <td>
+                                            <time datetime = <%- prod.add_date %>>
+                                                <%  let d = new Date(prod.add_date)
+                                                    let months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+                                                    let days = ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+                                                    let full_date = d.getDate() + "/" + months[d.getMonth()] + "/" + d.getFullYear() + " (" + days[d.getDay()] + ")"
+                                                %>
+                                                <span class="val-date"><%- full_date %></span>
+                                            </time>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Voucher aplicabil</td>
+                                        <td>
+                                            <span class="val-vouch">
+                                            <% if (prod.voucher) { %>
+                                                Da
+                                            <% } else { %>
+                                                Nu
+                                            <% } %>
+                                            </span>  
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <span style="display:none" class="val-exp"><%- prod.exp_type%></span>
+                            <span style="display:none" class="val-weight"><%- prod.weight %></span>
+                            <p>Categorie: <%- prod.category %></p>
+                            <p class="val-descr"><%- prod.description %></p>
+                        </article>
+                    <% } %>
+                </div>
+            </section>
+        </main>
+
+        <%- include("../fragments/footer.ejs") %>
+    </body>
+</html>

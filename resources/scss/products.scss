@@ -1,0 +1,68 @@
+@import "_vars.scss";
+
+#filter-error {
+    display: none;
+    color: $filter-error;
+}
+
+#prods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 2em;
+    
+    article {
+        padding: 0 1em;
+        border: 5px dotted $color-3;
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    #prod-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-gap: 2em;
+
+        img {
+            width: 100%;
+            border: 5px inset $color-3;
+        }
+
+        table {
+            border: 5px inset $color-3;
+            border-spacing: 0;
+    
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3;
+    
+                    &:nth-child(1) {
+                        font-weight: bold;
+                        padding-left: 0.2em;
+                        padding-right: 0.5em;
+                    }
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3;
+                        padding-left: 0.5em;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #prods-grid {
+        #prod-grid {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #prods-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}

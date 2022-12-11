@@ -1,0 +1,130 @@
+@import "_vars.scss";
+
+body.dark {
+    background-color: $color-1-dark;
+    color: $color-2-dark;
+    
+    a {
+        color: $color-4-dark;
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-2-dark;
+            color: $color-3-dark;
+            text-shadow: -1px -2px 1px $color-5-dark;
+        }
+    }
+
+    #grid {
+        > * {
+            border: 5px dotted $color-3-dark;
+        }
+    }
+
+    #faq {
+        summary {
+            border: 2px solid $color-3-dark;
+            background-color: $color-5-dark;
+        }
+    }
+    
+    #vids {
+        iframe {
+            border: 5px inset $color-3-dark;
+        }
+    }
+    
+    .tablink {
+        color: $color-2-dark;
+        background-color: $color-5-dark;
+
+        border-left: 7px solid $color-3-dark;
+        border-top: 2.5px solid $color-3-dark;
+        border-bottom: 2.5px solid $color-3-dark;
+
+        transition: color $timing*5 ease-in-out;
+        transition: background-color $timing*5 ease-in-out;
+
+        &:hover {
+            color: $color-5-dark;
+            background-color: $color-3-dark;
+        }
+    }
+
+    #filter-error {
+        color: $filter-error-dark;
+    }
+
+    #prods-grid {
+        article {
+            border: 5px dotted $color-3-dark;
+        }
+
+        #prod-grid {
+            img {
+                border: 5px inset $color-3-dark;
+            }
+
+            table {
+                border: 5px inset $color-3-dark;
+            }
+
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3-dark;
+
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3-dark;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav.dark {
+    ul.menu {
+        >li {
+            border: $border-width solid $color-3-dark;
+            background-color: $color-5-dark;
+        }
+    
+        ul {
+            background-color: $color-5-dark;
+    
+            li {
+                border: $border-width solid $color-3-dark;
+    
+                a {
+                    &::before {
+                        background: linear-gradient(90deg, $color-1-dark 0%, $color-5-dark 100%);  
+                    }
+    
+                    &::after {
+                        background: linear-gradient(270deg, $color-1-dark 0%, $color-5-dark 100%);  
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $color-2-dark;
+        }
+    }
+}
+
+#link-top.dark {
+    border-color: $color-4-dark;
+
+    &:hover {
+        >#triangle {
+            border-bottom-color: $color-2-dark;
+        }
+    }
+
+    >#triangle {
+        border-bottom-color: $color-4-dark;
+        border-bottom: 1rem solid $color-4-dark;
+    }
+}

@@ -3,6 +3,7 @@
         <span class="fa-solid fa-compact-disc"></span> 
         AllMuzica 
         <span class="fa-solid fa-compact-disc"></span>
+        <button id="theme"><span id="theme-ico" class="fa-solid fa-moon"></span></button>
     </h1>
 </header>
 
@@ -32,9 +33,14 @@
                 <li><a href="index#other">Altele</a></li>
             </ul>
         </li>
-        <li><div><a href="albume">Albume</a></div></li>
-        <li><div><a href="merchandise">Merchandise</a></div></li>
-        <li><div><a href="device">Device-uri</a></div></li>
+        <li><div>Produse</div>
+            <ul>
+                <li><a href="products">Toate</a></li>
+                <% for (let categ of locals.prod_categs) { %>
+                    <li><a href=<%- "products?t=" + categ.toLowerCase() %>><%- categ %></a></li> 
+                <% } %>
+            </ul>
+        </li>
         <li><div>Despre noi</div>
             <ul>
                 <li><a href="galery_pg">Galerie</a></li>

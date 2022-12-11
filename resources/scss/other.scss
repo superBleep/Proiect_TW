@@ -1,10 +1,4 @@
-$color-1: #AF69DB;
-$color-2: #DBCD7F;
-$color-3: #675EDB;
-$color-4: #67DB53;
-$color-5: #DB74BD;
-
-$timing: 0.2s;
+@import "_vars.scss";
 
 #faq {
     summary {
@@ -46,7 +40,7 @@ $timing: 0.2s;
         flex-direction: row;
 
         iframe {
-            border: 5px inset $color-3
+            border: 5px inset $color-3;
         }
 
         div {

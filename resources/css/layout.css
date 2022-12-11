@@ -1,9 +1,91 @@
+body.dark {
+  background-color: rgb(29, 29, 29);
+  color: #158A5C;
+}
+body.dark a {
+  color: #8A650E;
+}
+body.dark p::selection, body.dark td::selection, body.dark th::selection, body.dark figcaption::selection, body.dark address::selection, body.dark i::selection, body.dark s::selection, body.dark em::selection, body.dark strong::selection, body.dark h1::selection, body.dark h2::selection, body.dark h3::selection, body.dark h4::selection, body.dark h5::selection {
+  background-color: #158A5C;
+  color: #8A3A29;
+  text-shadow: -1px -2px 1px #22428A;
+}
+body.dark #grid > * {
+  border: 5px dotted #8A3A29;
+}
+body.dark #faq summary {
+  border: 2px solid #8A3A29;
+  background-color: #22428A;
+}
+body.dark #vids iframe {
+  border: 5px inset #8A3A29;
+}
+body.dark .tablink {
+  color: #158A5C;
+  background-color: #22428A;
+  border-left: 7px solid #8A3A29;
+  border-top: 2.5px solid #8A3A29;
+  border-bottom: 2.5px solid #8A3A29;
+  transition: color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
+}
+body.dark .tablink:hover {
+  color: #22428A;
+  background-color: #8A3A29;
+}
+body.dark #filter-error {
+  color: orange;
+}
+body.dark #prods-grid article {
+  border: 5px dotted #8A3A29;
+}
+body.dark #prods-grid #prod-grid img {
+  border: 5px inset #8A3A29;
+}
+body.dark #prods-grid #prod-grid table {
+  border: 5px inset #8A3A29;
+}
+body.dark #prods-grid #prod-grid tr td {
+  border-bottom: 5px inset #8A3A29;
+}
+body.dark #prods-grid #prod-grid tr td:nth-child(2) {
+  border-left: 5px inset #8A3A29;
+}
+
+nav.dark ul.menu > li {
+  border: 2px solid #8A3A29;
+  background-color: #22428A;
+}
+nav.dark ul.menu ul {
+  background-color: #22428A;
+}
+nav.dark ul.menu ul li {
+  border: 2px solid #8A3A29;
+}
+nav.dark ul.menu ul li a::before {
+  background: linear-gradient(90deg, rgb(29, 29, 29) 0%, #22428A 100%);
+}
+nav.dark ul.menu ul li a::after {
+  background: linear-gradient(270deg, rgb(29, 29, 29) 0%, #22428A 100%);
+}
+nav.dark ul.menu a {
+  color: #158A5C;
+}
+
+#link-top.dark {
+  border-color: #8A650E;
+}
+#link-top.dark:hover > #triangle {
+  border-bottom-color: #158A5C;
+}
+#link-top.dark > #triangle {
+  border-bottom-color: #8A650E;
+  border-bottom: 1rem solid #8A650E;
+}
+
 html {
   font-family: "Noto Sans", sans-serif;
   font-size: 18px;
-}
-html a:hover {
-  color: #675EDB;
 }
 
 body {
@@ -13,6 +95,9 @@ body {
 }
 body a {
   color: #67DB53;
+}
+body a:hover {
+  color: #675EDB;
 }
 body p::selection, body td::selection, body th::selection, body figcaption::selection, body address::selection, body i::selection, body s::selection, body em::selection, body strong::selection, body h1::selection, body h2::selection, body h3::selection, body h4::selection, body h5::selection {
   background-color: #DB74BD;

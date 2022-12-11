@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragments/head.ejs") %>
+
+        <title>Produs</title>
+        <meta name="keywords" content="produs, albume, merchandise, device-uri">
+        <meta name="description" content="Produs al magazinului AllMuzica">
+    </head>
+
+    <body>
+        <%- include("../fragments/header.ejs") %>
+
+        <main>
+            <section>
+                <h2><%- locals.prod.name %></h2>
+                <p><%- locals.prod.description %></p>
+                <img src="<%- locals.prod.img_path %>">
+                <p><%- locals.prod.category %></p>
+                <p><%- locals.prod.exp_type %></p>
+                <p><%- locals.prod.price %> RON</p>
+                <p><%- locals.prod.weight %></p>
+                <p><%- locals.prod.add_date %></p>
+                <p><%- locals.prod.color %></p>
+                <p><%- locals.prod.prod_details %></p>
+                <p><%- locals.prod.voucher %></p>
+            </section>
+        </main>
+
+        <%- include("../fragments/footer.ejs") %>
+    </body>
+</html>

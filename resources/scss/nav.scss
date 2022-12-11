@@ -1,13 +1,5 @@
-$color-1: #AF69DB;
-$color-2: #DBCD7F;
-$color-3: #675EDB;
-$color-4: #67DB53;
-$color-5: #DB74BD;
-
-$button-height: 30px;
-$button-width: 210px;
-$button-distance: 15px;
-$border-width: 2px;
+@import "themes.scss";
+@import "_vars.scss";
 
 $timing: 0.5s;
 

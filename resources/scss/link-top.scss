@@ -1,8 +1,4 @@
-$color-1: #AF69DB;
-$color-2: #DBCD7F;
-$color-3: #675EDB;
-$color-4: #67DB53;
-$color-5: #DB74BD;
+@import "_vars.scss";
 
 #link-top {
     position: fixed;
