@@ -2,23 +2,42 @@ const express = require("express");
 const fs = require("fs");
 const sharp = require("sharp");
 const sass = require("sass");
+const formidable = require("formidable");
 const {Client} = require("pg");
+const {Utilizator} = require("./modules/utilizator.js");
+const {AccesBD} = require("./modules/accesbd.js");
+const session = require(`express-session`);
 
-var client = new Client({
+/* var client = new Client({
     database: "allmuzica",
     user: "client_allmuzica",
     password: "#281products",
     host: "localhost",
     port: 5432
 });
-client.connect();
+client.connect();*/
+var instantaBD = AccesBD.getInstanta({init: "local"});
+var client = instantaBD.getClient();
+
+/*instantaBD.select({campuri: ["name", "price"], tabel: ["products"]}, function(err, rez) {
+    if(err)
+        console.log(err);
+    console.log(rez);
+})*/
 
 app = express();
+
+app.use(session({
+    secret: 'abcdef',
+    resave: true,
+    saveUninitialized: false
+}))
 
 app.set("view engine", "ejs");
 console.log("Path: " + __dirname);
 app.use("/resources", express.static(__dirname + "/resources"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
+
 
 globalObj = {
     scss_files: null,
@@ -28,6 +47,16 @@ globalObj = {
     errors: null,
     prod_categs: null
 }
+
+var vedeToataLumea = "ceva!";
+app.use("/*", function(req, res, next) {
+    res.locals.vede = vedeToataLumea;
+    res.locals.utilizator = req.session.utilizator;
+    res.locals.galery_path = globalObj.galery_path
+    res.locals.prod_categs = globalObj.prod_categs
+
+    next();
+})
 
 function generateSCSS() {
     console.log("Compiling SCSS files...")
@@ -102,7 +131,7 @@ function renderError(res, id, title, text, img) {
     }
 }
 
-app.get(["/", "/index", "/home"], function(req, res) {
+app.get(["/", "/index", "/home", "/login"], function(req, res) {
     console.log("Requesting homepage...");
     res.render("pages/index", {ip: req.ip, images: globalObj.images, galery_path: globalObj.galery_path, CC_BY: globalObj.CC_BY, prod_categs: globalObj.prod_categs});
 });
@@ -159,6 +188,78 @@ app.get("/*.ejs", function(req, res) {
     renderError(res, 403);
 });
 
+app.post("/inregistrare", function(req, res) {
+    var username;
+    console.log("ceva");
+    var formular = new formidable.IncomingForm();
+    formular.parse(req, function(err, campuriText, campuriFisier ) { //4
+        console.log(campuriText);
+ 
+        var eroare="";
+ 
+        var utilizNou = new Utilizator();
+        try{
+            utilizNou.setareNume = campuriText.nume;
+            utilizNou.setareUsernume = campuriText.username;
+            utilizNou.email = campuriText.email;
+            utilizNou.prenume = campuriText.prenume;
+            utilizNou.culoare_chat = campuriText.culoare_chat;
+            utilizNou.parola = campuriText.parola;
+
+            utilizNou.salvareUtilizator();
+        } catch(e) {eroare += e.message; console.log(123, eroare)}
+
+        if(!eroare){
+            res.render("pages/inregistrare", {raspuns: "Inregistrare cu succes!", prod_categs: globalObj.prod_categs})
+        }
+        else
+            res.render("pages/inregistrare", {err: "Eroare: "+eroare, prod_categs: globalObj.prod_categs});
+    });
+    formular.on("field", function(nume,val) {  //1
+   
+        console.log(`--- ${nume}=${val}`);
+       
+        if(nume == "username")
+            username = val;
+    })
+    formular.on("fileBegin", function(nume,fisier) { //2
+        console.log("fileBegin");
+       
+        console.log(nume,fisier);
+        //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
+ 
+    })    
+    formular.on("file", function(nume,fisier) {//3
+        console.log("file");
+        console.log(nume,fisier);
+    });
+});
+
+app.get("/cod/:username/:token", function(req, res) {
+    console.log(req.params);
+    try {
+        Utilizator.getUtilizDupaUsername(req.params.username, {res: res, token: req.params.token}, function(u, obparam) {
+            AccesBD.getInstanta().update({
+                tabel: "utilizatori", 
+                campuri: ["confirmat_mail"], 
+                valori: ["true"], 
+                comditiiAnd: [`'cod=${obparam.token}'`]},
+                function (err, rezUpdate) {
+                    if (err || rezUpdate.rowCount == 0) {
+                        console.log("Cod:", err);
+                        renderError(res, 3);
+                    }
+                    else {
+                        res.render("pages/confirmare.ejs", {prod_categs: globalObj.prod_categs});
+                    }
+                })
+        })
+    } catch (e) {
+        console.log("index:", e)
+        renderError(res, 1);
+    }
+})
+
 app.get("/*", function(req, res) {
     console.log("Requesting", req.url, "...");
     res.render("pages" + req.url, {prod_categs: globalObj.prod_categs}, function(err=null, render_res) {
@@ -173,6 +274,36 @@ app.get("/*", function(req, res) {
             res.send(render_res);
         }
     });
+});
+
+app.post("/login", function(req, res) {
+    var username;
+    console.log("ceva");
+    var formular = new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campurtiFisier) {
+        Utilizator.getUtilizDupaUsername (campuriText.username, {
+            req: req,
+            res: res,
+            parola: campuriText.parola
+        }, function(u, obparam) {
+            let parolaCriptata = Utilizator.criptareParola(obparam.parola);
+            console.log(obparam.parola, parolaCriptata)
+            if (u.parola == parolaCriptata) {
+                obparam.req.session.utilizator = u;
+                obparam.res.redirect("/index");
+                // obparam.res.render("/login");
+            }
+            else {
+                obparam.res.render("pages/index", {eroareLogin: "Date de logare incorecte!"})
+            }
+        })
+    })
+})
+
+app.get("/logout", function(req, res){
+    req.session.destroy();
+    res.locals.utilizator=null;
+    res.render("pagini/logout");
 });
 
 app.listen(8080);

@@ -1,0 +1,38 @@
+#banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+  z-index: 99;
+  background: #DBCD7F;
+  border: 4px inset #675EDB;
+  animation-name: banner_animation;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes banner_animation {
+  0% {
+    transform: translateX(-100vw);
+    background: #DBCD7F;
+    border: 4px inset #675EDB;
+  }
+  50% {
+    background: #675EDB;
+    border: 4px inset #DBCD7F;
+  }
+  100% {
+    transform: translateX(0);
+    background: #DBCD7F;
+    border: 4px inset #675EDB;
+  }
+}
+@media screen and (max-width: 1300px) {
+  #banner {
+    animation: none;
+  }
+}

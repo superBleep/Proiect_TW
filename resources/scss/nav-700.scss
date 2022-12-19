@@ -48,6 +48,10 @@ ul.menu {
     >li {
         width: 100vw;
         margin: 0;
+
+        &:hover {
+            height: auto;
+        }
     }
 
     li>ul {

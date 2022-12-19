@@ -56,6 +56,9 @@ ul.menu > li {
   width: 100vw;
   margin: 0;
 }
+ul.menu > li:hover {
+  height: auto;
+}
 ul.menu li > ul {
   position: relative;
   z-index: 2;

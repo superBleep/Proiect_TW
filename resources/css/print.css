@@ -75,6 +75,9 @@
     text-align: center;
     padding: 1em;
   }
+  #banner #cookies {
+    display: none;
+  }
   @page :left {
     margin-left: 3cm;
     margin-right: 1cm;

@@ -1,5 +1,6 @@
 #link-top {
   position: fixed;
+  z-index: 99;
   bottom: 2em;
   right: 2em;
   width: 2.8rem;
@@ -10,7 +11,7 @@
   border-left: 5px solid;
   border-right: 5px solid;
   border-radius: 35%;
-  border-color: #67DB53;
+  border-color: #5ac048;
   opacity: 0.5;
 }
 #link-top:hover {
@@ -23,11 +24,11 @@
 }
 #link-top > #triangle {
   transform: translateY(0%);
-  border-bottom-color: #67DB53;
+  border-bottom-color: #5ac048;
   transition: all 0.5s linear;
   display: inline-block;
   border-top: 0.4rem solid transparent;
-  border-bottom: 1rem solid #67DB53;
+  border-bottom: 1rem solid #5ac048;
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
   vertical-align: top;

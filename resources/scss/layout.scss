@@ -15,7 +15,7 @@ body {
         color: $color-4;
 
         &:hover {
-            color: $color-3;
+            color: $color-6;
         }
     }
 
@@ -94,7 +94,7 @@ header, footer {
     grid-area: f-other;
 }
 
-#watermark, #banner {
+#watermark {
     display: none;
 }
 

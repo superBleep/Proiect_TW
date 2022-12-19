@@ -269,6 +269,8 @@ function resetInputs() {
     }
 
     document.getElementById("inp-voucher").checked = true;
+    document.getElementById("voucher-button").classList.replace("btn-outline-primary", "btn-primary");
+    document.getElementById("voucher-button").classList.add("active");
 
     document.getElementById("inp-descr").value = "";
 
@@ -335,4 +337,15 @@ window.addEventListener("DOMContentLoaded", function() {
     document.getElementById("sort-1").addEventListener("click", function() {psort(-1)});
     document.getElementById("sum").addEventListener("click", getSum);
     document.getElementById("reset").addEventListener("click", resetInputs);
+
+    document.getElementById("inp-voucher").addEventListener("click", function() {
+        if (document.getElementById("inp-voucher").checked) {
+            document.getElementById("voucher-button").classList.replace("btn-primary", "btn-outline-primary");
+            document.getElementById("voucher-button").classList.remove("active");
+        }
+        else {
+            document.getElementById("voucher-button").classList.replace("btn-outline-primary", "btn-primary");
+            document.getElementById("voucher-button").classList.add("active");
+        }
+    })
 })

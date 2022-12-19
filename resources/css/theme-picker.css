@@ -1,0 +1,64 @@
+.expandPicker {
+  left: 0 !important;
+  transition: left 0.5s linear;
+}
+
+.collapsePicker {
+  left: -10.5em !important;
+  transition: left 0.5s linear;
+}
+
+#theme-picker {
+  position: fixed;
+  bottom: 1.7em;
+  left: -10.5em;
+  z-index: 99;
+}
+#theme-picker ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #675EDB;
+  background: #DB74BD;
+  border-left: 0;
+}
+#theme-picker ul > li {
+  opacity: 0.3;
+  font-size: 125% !important;
+  margin: 0.2em;
+  margin-left: 0.5em;
+  border-radius: 100%;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #675EDB;
+  cursor: pointer;
+}
+#theme-picker ul > li:last-child, #theme-picker ul > li:first-child {
+  background: none;
+  border-radius: 120%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#theme-picker ul > li:last-child {
+  opacity: 1;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+#theme-picker ul > li:last-child span {
+  user-select: none;
+  transform: scale(1);
+  transition: transform 0.5s linear;
+}
+#theme-picker ul > li:last-child span:hover {
+  transform: scale(1.3);
+}
+#theme-picker ul > li:nth-child(2) {
+  background: linear-gradient(150deg, #F0CF91 0%, #A38752 25%, #416CA3 50%, #ebffb3 75%, #90BAF0 100%);
+}
+#theme-picker ul > li:nth-child(3) {
+  background: linear-gradient(150deg, #C26D29 0%, #F5B21B 25%, #5C4F33 50%, #1BF59C 75%, #5a948c 100%);
+}
+#theme-picker ul > li:nth-child(4) {
+  background: linear-gradient(150deg, black 0%, #792020 25%, #490349 50%, #c1c424 75%, #2a42ad 100%);
+}

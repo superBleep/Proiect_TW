@@ -96,6 +96,10 @@ $color-5: #DB74BD;
         color: initial;
         text-align: center;
         padding: 1em;
+
+        #cookies {
+            display: none;
+        }
     }
 
     @page:left {

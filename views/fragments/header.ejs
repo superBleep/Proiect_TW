@@ -3,7 +3,6 @@
         <span class="fa-solid fa-compact-disc"></span> 
         AllMuzica 
         <span class="fa-solid fa-compact-disc"></span>
-        <button id="theme"><span id="theme-ico" class="fa-solid fa-moon"></span></button>
     </h1>
 </header>
 
@@ -46,15 +45,44 @@
                 <li><a href="galery_pg">Galerie</a></li>
                 <li><a href="history">Istoria magazinului</a></li>
                 <li><a href="contact">Contact</a></li>
+                <% if(locals.utilizator && locals.utilizator.rol=="admin") { %>
+                    <li><a href="/useri">Useri</a></li>
+                <% } %>
+                <% if(locals.utilizator) { %>
+                    <li><div><%- locals.utilizator.username %></div>
+                        <ul>
+                            <li><a href="/profil">Profil</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                <% } %>
+    
             </ul>
         </li>
+        <li><a href="inregistrare">Inregistrare</a></li>
     </ul>
 </nav>
 
-<p id="banner">Acesta este un proiect scolar!</p>
+<p id="banner">
+    Acesta este un proiect scolar!
+    <span id="cookies">
+        Acceptați cookie-uri?
+        <button id="banner-cookie">Ok</button>
+    </span>
+</p>
 
 <a href="#" id="link-top">
     <div id="triangle" title="Înapoi la începutul paginii"></div>
 </a>
+
+<div id="theme-picker">
+    <ul>
+        <li id="dark"><span id="darkmode-ico" class="fa-regular fa-moon" title="Darkmode/lightmode"></span></li>
+        <li id="pastel" title="Pastel"></li>
+        <li id="fire" title="Fire"></li>
+        <li id="metal" title="Metal"></li>
+        <li id="theme-picker-ico"><span class="fa-solid fa-palette" title="Schimbă tema"></span></li>
+    </ul>
+</div>
 
 <p id="watermark"></p>

@@ -1,11 +1,24 @@
 @import "_vars.scss";
 
+#theme {
+    position: fixed;
+    bottom: 0.9em;
+    left: 1em;
+    cursor: pointer;
+    color: $color-4;
+    width: 0;
+}
+
 body.dark {
     background-color: $color-1-dark;
     color: $color-2-dark;
     
     a {
         color: $color-4-dark;
+
+        &:hover {
+            color: $color-6-dark;
+        }
     }
 
     p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
@@ -114,6 +127,36 @@ nav.dark {
     }
 }
 
+#tabel_oferte.dark {
+    border: 5px inset $color-3-dark;
+
+    tbody {
+        >tr {
+            outline: rgba($color-3-dark, 0);
+
+            &:first-child td {
+                border-top: 1px solid $color-3-dark;
+            }
+        
+            &:nth-child(even) td {
+                border-bottom: 1px solid $color-3-dark;
+            }
+        
+            &:nth-child(odd) td {
+                border-bottom: 1px solid $color-4-dark;
+            }
+
+            &:hover {
+                &>td {
+                    border: 0;
+                }
+
+                outline: 5px inset rgba($color-3-dark, 0.7);
+            }
+        }
+    }
+}
+
 #link-top.dark {
     border-color: $color-4-dark;
 
@@ -126,5 +169,559 @@ nav.dark {
     >#triangle {
         border-bottom-color: $color-4-dark;
         border-bottom: 1rem solid $color-4-dark;
+    }
+}
+
+#theme-picker.dark {
+    ul {
+        border: 2px solid $color-3-dark;
+        background: $color-5-dark;
+
+        >li {
+            border: 2px solid $color-3-dark;
+
+            &:first-child {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+body.pastel {
+    background-color: $color-1-pastel;
+    color: $color-2-pastel;
+    
+    a {
+        color: $color-4-pastel;
+
+        &:hover {
+            color: $color-3-pastel;
+        }
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-2-pastel;
+            color: $color-3-pastel;
+            text-shadow: -1px -2px 1px $color-5-pastel;
+        }
+    }
+
+    #grid {
+        > * {
+            border: 5px dotted $color-3-pastel;
+        }
+    }
+
+    #faq {
+        summary {
+            border: 2px solid $color-3-pastel;
+            background-color: $color-5-pastel;
+        }
+    }
+    
+    #vids {
+        iframe {
+            border: 5px inset $color-3-pastel;
+        }
+    }
+    
+    .tablink {
+        color: $color-2-pastel;
+        background-color: $color-5-pastel;
+
+        border-left: 7px solid $color-3-pastel;
+        border-top: 2.5px solid $color-3-pastel;
+        border-bottom: 2.5px solid $color-3-pastel;
+
+        transition: color $timing*5 ease-in-out;
+        transition: background-color $timing*5 ease-in-out;
+
+        &:hover {
+            color: $color-5-pastel;
+            background-color: $color-3-pastel;
+        }
+    }
+
+    #filter-error {
+        color: $filter-error-pastel;
+    }
+
+    #prods-grid {
+        article {
+            border: 5px dotted $color-3-pastel;
+        }
+
+        #prod-grid {
+            img {
+                border: 5px inset $color-3-pastel;
+            }
+
+            table {
+                border: 5px inset $color-3-pastel;
+            }
+
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3-pastel;
+
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3-pastel;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav.pastel {
+    ul.menu {
+        >li {
+            border: $border-width solid $color-3-pastel;
+            background-color: $color-5-pastel;
+        }
+    
+        ul {
+            background-color: $color-5-pastel;
+    
+            li {
+                border: $border-width solid $color-3-pastel;
+    
+                a {
+                    &::before {
+                        background: linear-gradient(90deg, $color-1-pastel 0%, $color-5-pastel 100%);  
+                    }
+    
+                    &::after {
+                        background: linear-gradient(270deg, $color-1-pastel 0%, $color-5-pastel 100%);  
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $color-2-pastel;
+        }
+    }
+}
+
+#tabel_oferte.pastel {
+    border: 5px inset $color-3-pastel;
+
+    tbody {
+        >tr {
+            outline: rgba($color-3-pastel, 0);
+
+            &:first-child td {
+                border-top: 1px solid $color-3-pastel;
+            }
+        
+            &:nth-child(even) td {
+                border-bottom: 1px solid $color-3-pastel;
+            }
+        
+            &:nth-child(odd) td {
+                border-bottom: 1px solid $color-4-pastel;
+            }
+
+            &:hover {
+                &>td {
+                    border: 0;
+                }
+
+                outline: 5px inset rgba($color-3-pastel, 0.7);
+            }
+        }
+    }
+}
+
+#link-top.pastel {
+    border-color: $color-4-pastel;
+
+    &:hover {
+        >#triangle {
+            border-bottom-color: $color-2-pastel;
+        }
+    }
+
+    >#triangle {
+        border-bottom-color: $color-4-pastel;
+        border-bottom: 1rem solid $color-4-pastel;
+    }
+}
+
+#theme-picker.pastel {
+    ul {
+        border: 2px solid $color-3-pastel;
+        background: $color-5-pastel;
+
+        >li {
+            border: 2px solid $color-3-pastel;
+
+            &:nth-child(2) {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+
+body.fire {
+    background-color: $color-1-fire;
+    color: $color-2-fire;
+    
+    a {
+        color: $color-4-fire;
+
+        &:hover {
+            color: $color-3-fire;
+        }
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-2-fire;
+            color: $color-3-fire;
+            text-shadow: -1px -2px 1px $color-5-fire;
+        }
+    }
+
+    #grid {
+        > * {
+            border: 5px dotted $color-3-fire;
+        }
+    }
+
+    #faq {
+        summary {
+            border: 2px solid $color-3-fire;
+            background-color: $color-5-fire;
+        }
+    }
+    
+    #vids {
+        iframe {
+            border: 5px inset $color-3-fire;
+        }
+    }
+    
+    .tablink {
+        color: $color-2-fire;
+        background-color: $color-5-fire;
+
+        border-left: 7px solid $color-3-fire;
+        border-top: 2.5px solid $color-3-fire;
+        border-bottom: 2.5px solid $color-3-fire;
+
+        transition: color $timing*5 ease-in-out;
+        transition: background-color $timing*5 ease-in-out;
+
+        &:hover {
+            color: $color-5-fire;
+            background-color: $color-3-fire;
+        }
+    }
+
+    #filter-error {
+        color: $filter-error-fire;
+    }
+
+    #prods-grid {
+        article {
+            border: 5px dotted $color-3-fire;
+        }
+
+        #prod-grid {
+            img {
+                border: 5px inset $color-3-fire;
+            }
+
+            table {
+                border: 5px inset $color-3-fire;
+            }
+
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3-fire;
+
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3-fire;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav.fire {
+    ul.menu {
+        >li {
+            border: $border-width solid $color-3-fire;
+            background-color: $color-5-fire;
+        }
+    
+        ul {
+            background-color: $color-5-fire;
+    
+            li {
+                border: $border-width solid $color-3-fire;
+    
+                a {
+                    &::before {
+                        background: linear-gradient(90deg, $color-1-fire 0%, $color-5-fire 100%);  
+                    }
+    
+                    &::after {
+                        background: linear-gradient(270deg, $color-1-fire 0%, $color-5-fire 100%);  
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $color-2-fire;
+        }
+    }
+}
+
+#tabel_oferte.fire {
+    border: 5px inset $color-3-fire;
+
+    tbody {
+        >tr {
+            outline: rgba($color-3-fire, 0);
+
+            &:first-child td {
+                border-top: 1px solid $color-3-fire;
+            }
+        
+            &:nth-child(even) td {
+                border-bottom: 1px solid $color-3-fire;
+            }
+        
+            &:nth-child(odd) td {
+                border-bottom: 1px solid $color-4-fire;
+            }
+
+            &:hover {
+                &>td {
+                    border: 0;
+                }
+
+                outline: 5px inset rgba($color-3-fire, 0.7);
+            }
+        }
+    }
+}
+
+#link-top.fire {
+    border-color: $color-4-fire;
+
+    &:hover {
+        >#triangle {
+            border-bottom-color: $color-2-fire;
+        }
+    }
+
+    >#triangle {
+        border-bottom-color: $color-4-fire;
+        border-bottom: 1rem solid $color-4-fire;
+    }
+}
+
+#theme-picker.fire {
+    ul {
+        border: 2px solid $color-3-fire;
+        background: $color-5-fire;
+
+        >li {
+            border: 2px solid $color-3-fire;
+
+            &:nth-child(3) {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+
+body.metal {
+    background-color: $color-1-metal;
+    color: $color-2-metal;
+    
+    a {
+        color: $color-4-metal;
+
+        &:hover {
+            color: $color-6-metal;
+        }
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-2-metal;
+            color: $color-3-metal;
+            text-shadow: -1px -2px 1px $color-5-metal;
+        }
+    }
+
+    #grid {
+        > * {
+            border: 5px dotted $color-3-metal;
+        }
+    }
+
+    #faq {
+        summary {
+            border: 2px solid $color-3-metal;
+            background-color: $color-5-metal;
+        }
+    }
+    
+    #vids {
+        iframe {
+            border: 5px inset $color-3-metal;
+        }
+    }
+    
+    .tablink {
+        color: $color-2-metal;
+        background-color: $color-5-metal;
+
+        border-left: 7px solid $color-3-metal;
+        border-top: 2.5px solid $color-3-metal;
+        border-bottom: 2.5px solid $color-3-metal;
+
+        transition: color $timing*5 ease-in-out;
+        transition: background-color $timing*5 ease-in-out;
+
+        &:hover {
+            color: $color-5-metal;
+            background-color: $color-3-metal;
+        }
+    }
+
+    #filter-error {
+        color: $filter-error-metal;
+    }
+
+    #prods-grid {
+        article {
+            border: 5px dotted $color-3-metal;
+        }
+
+        #prod-grid {
+            img {
+                border: 5px inset $color-3-metal;
+            }
+
+            table {
+                border: 5px inset $color-3-metal;
+            }
+
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3-metal;
+
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3-metal;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav.metal {
+    ul.menu {
+        >li {
+            border: $border-width solid $color-3-metal;
+            background-color: $color-5-metal;
+        }
+    
+        ul {
+            background-color: $color-5-metal;
+    
+            li {
+                border: $border-width solid $color-3-metal;
+    
+                a {
+                    &::before {
+                        background: linear-gradient(90deg, $color-1-metal 0%, $color-5-metal 100%);  
+                    }
+    
+                    &::after {
+                        background: linear-gradient(270deg, $color-1-metal 0%, $color-5-metal 100%);  
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $color-2-metal;
+        }
+    }
+}
+
+#tabel_oferte.metal {
+    border: 5px inset $color-3-metal;
+
+    tbody {
+        >tr {
+            outline: rgba($color-3-metal, 0);
+
+            &:first-child td {
+                border-top: 1px solid $color-3-metal;
+            }
+        
+            &:nth-child(even) td {
+                border-bottom: 1px solid $color-3-metal;
+            }
+        
+            &:nth-child(odd) td {
+                border-bottom: 1px solid $color-4-metal;
+            }
+
+            &:hover {
+                &>td {
+                    border: 0;
+                }
+
+                outline: 5px inset rgba($color-3-metal, 0.7);
+            }
+        }
+    }
+}
+
+#link-top.metal {
+    border-color: $color-4-metal;
+
+    &:hover {
+        >#triangle {
+            border-bottom-color: $color-2-metal;
+        }
+    }
+
+    >#triangle {
+        border-bottom-color: $color-4-metal;
+        border-bottom: 1rem solid $color-4-metal;
+    }
+}
+
+#theme-picker.metal {
+    ul {
+        border: 2px solid $color-3-metal;
+        background: $color-5-metal;
+
+        >li {
+            border: 2px solid $color-3-metal;
+
+            &:nth-child(4) {
+                opacity: 1;
+            }
+        }
     }
 }

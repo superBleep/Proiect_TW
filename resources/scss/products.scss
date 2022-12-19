@@ -1,5 +1,13 @@
 @import "_vars.scss";
 
+#filters {
+    margin-bottom: 1em;
+}
+
+#buttons > button > span {
+    z-index: 99;
+}
+
 #filter-error {
     display: none;
     color: $filter-error;
@@ -64,5 +72,13 @@
 @media screen and (max-width: 700px) {
     #prods-grid {
         grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    #buttons > button {
+        &>span {
+            font-size: initial;
+        }
+
+        font-size: 0;
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ro">
     <head>
+        <link rel="stylesheet" href="resources/css/custom-bootstrap.css" type="text/css">
         <%- include("../fragments/head.ejs") %>
 
         <title>Produse</title>
@@ -14,70 +15,108 @@
         <%- include("../fragments/header.ejs") %>
 
         <main>
-            <p id="filter-error"></p>
+            <p class="text-center" id="filter-error"></p>
             <section id="filters">
-                <label>Nume: <input type="text" id="inp-name" placeholder="Numele produsului..."></label>
-                <label>Preț minim: 
-                    <span id="min-price-min"></span>
-                    <input type="range" id="inp-min-range">
-                    <span id="min-price-max"></span>
-                    <span id="min-price-value"></span>
-                </label>
-                <label>Preț maxim: 
-                    <span id="max-price-min"></span>
-                    <input type="range" id="inp-max-range">
-                    <span id="max-price-max"></span>
-                    <span id="max-price-value"></span>
-                </label>
-                <label>Data adăugării:
-                    <input list="datalist" id="inp-date" placeholder="Introdu data...">
-                    <datalist id="datalist">
-                        <% for (let data of locals.distinctVals["dates"]) { %>
-                            <option value="<%-data%>"><%-data%></option>
-                        <% } %> 
-                    </datalist>
-                </label>
-                <div id="inp-exp-node">Tip expediere:
-                    <p><label>Orice tip
-                        <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio">
-                    </label></p>
-                    <p><label>Prin curier
-                        <input id="inp-r2" name="inp-exp" value="Curier" unchecked type="radio">
-                    </label></p>
-                    <p><label>Prin poștă
-                        <input id="inp-r3" name="inp-exp" value="Poștă" unchecked type="radio">
-                    </label></p>
-                    <p><label>De la centrul de distribuție
-                        <input id="inp-r4" name="inp-exp" value="De la centrul de distribuție" unchecked type="radio">
-                    </label></p>
+                <div class="row justify-content-center">
+                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                        <label>Nume: <input type="text" id="inp-name" placeholder="Numele produsului..."></label>
+                    </div>
+                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                        <label>Data adăugării:
+                            <input class="w-75" list="datalist" id="inp-date" placeholder="zi/Luna/an">
+                            <datalist id="datalist">
+                                <% for (let data of locals.distinctVals["dates"]) { %>
+                                    <option value="<%-data%>"><%-data%></option>
+                                <% } %> 
+                            </datalist>
+                        </label>
+                    </div>  
+                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                        <label>Preț minim: 
+                            <span id="min-price-min"></span>
+                            <input class="form-range" type="range" id="inp-min-range">
+                            <span id="min-price-max"></span>
+                            <span id="min-price-value"></span>
+                        </label>
+                        <label>Preț maxim: 
+                            <span id="max-price-min"></span>
+                            <input class="form-range" type="range" id="inp-max-range">
+                            <span id="max-price-max"></span>
+                            <span id="max-price-value"></span>
+                        </label>
+                    </div>
+                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                        <div class="form-floating">
+                            <textarea id="inp-descr" class="form-control bg-white w-75 text-dark" placeholder="Introdu (o parte din) descrierea produsului..."></textarea>
+                            <label for="inp-desc">Descriere: </label>
+                        </div>
+                    </div>
                 </div>
-                <label>Admite voucher? <input type="checkbox" id="inp-voucher" checked></label>
-                <label>Descriere:
-                    <textarea id="inp-descr" rows="4" cols="50" placeholder="Introdu (o parte din) descrierea produsului..."></textarea>
-                </label>
-                <label>Culoare:
-                    <select id="inp-color">
-                        <option id="sel-all" selected value="Toate">Toate</option>
-                        <% for (let color of locals.distinctVals["colors"]) { %>
-                            <option value="<%- color %>"><%- color %></option>    
-                        <% } %>
-                    </select>
-                </label>
-                <label>Categorie gramaj:
-                    <select id="inp-weight" multiple>
-                        <option value="0:99">Mic (gramaj &lt; 100g)</option>
-                        <option value="100:200">Mediu (100g &le; gramaj &le; 200g)</option>
-                        <option value="201:100000">Mare (gramaj &gt; 200g)</option>
-                    </select>
-                </label>
+                <div class="row justify-content-center">
+                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                        <div id="inp-exp-node">Tip expediere:
+                            <p><label>Orice tip
+                                <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio">
+                            </label></p>
+                            <p><label>Prin curier
+                                <input id="inp-r2" name="inp-exp" value="Curier" unchecked type="radio">
+                            </label></p>
+                            <p><label>Prin poștă
+                                <input id="inp-r3" name="inp-exp" value="Poștă" unchecked type="radio">
+                            </label></p>
+                            <p><label>De la centrul de distribuție
+                                <input id="inp-r4" name="inp-exp" value="De la centrul de distribuție" unchecked type="radio">
+                            </label></p>
+                        </div>
+                    </div>
+                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                        <label id="voucher-button" class="btn btn-primary active">
+                            <input type="checkbox" id="inp-voucher" style="display: none" checked> Admite voucher? 
+                        </label>
+                    </div>
+                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                        <label>Culoare:
+                            <select id="inp-color">
+                                <option id="sel-all" selected value="Toate">Toate</option>
+                                <% for (let color of locals.distinctVals["colors"]) { %>
+                                    <option value="<%- color %>"><%- color %></option>    
+                                <% } %>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                        <label>Categorie gramaj:
+                            <select id="inp-weight" multiple>
+                                <option value="0:99">Mic (gramaj &lt; 100g)</option>
+                                <option value="100:200">Mediu (100g &le; gramaj &le; 200g)</option>
+                                <option value="201:100000">Mare (gramaj &gt; 200g)</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
             </section>
 
-            <section id="buttons">
-                <button type="button" id="filter">Filtrează</button>
-                <button type="button" id="sort1">Sortează crescător</button>
-                <button type="button" id="sort-1">Sortează descrescător</button>
-                <button type="button" id="sum">Suma prețurilor</button>
-                <button type="button" id="reset">Restează filtrele</button>
+            <section class="text-center" id="buttons">
+                <button type="button" id="filter" class="btn btn-primary">
+                    <span name="test" class="bi bi-filter"></span>
+                    Filtrează
+                </button>
+                <button type="button" id="sort1" class="btn btn-primary">
+                    <span class="bi bi-arrow-up"></span>
+                    Sortează crescător
+                </button>
+                <button type="button" id="sort-1" class="btn btn-primary">
+                    <span class="bi bi-arrow-down"></span>
+                    Sortează descrescător
+                </button>
+                <button type="button" id="sum" class="btn btn-primary">
+                    <span class="bi bi-coin"></span>
+                    Suma prețurilor
+                </button>
+                <button type="button" id="reset" class="btn btn-primary">
+                    <span class="bi bi-arrow-repeat"></span>
+                    Restează filtrele
+                </button>
             </section>
 
             <section id="prods">
@@ -154,7 +193,18 @@
                             <span style="display:none" class="val-exp"><%- prod.exp_type%></span>
                             <span style="display:none" class="val-weight"><%- prod.weight %></span>
                             <p>Categorie: <%- prod.category %></p>
-                            <p class="val-descr"><%- prod.description %></p>
+                            <div class="accordion" id="accordionExample-<%- prod.id %>">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne-<%- prod.id %>">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-<%- prod.id %>" aria-expanded="true" aria-controls="collapseOne-<%- prod.id %>">
+                                            Descriere
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne-<%- prod.id %>" class="accordion-collapse collapse" aria-labelledby="headingOne-<%- prod.id %>" data-bs-parent="#accordionExample-<%- prod.id %>">
+                                        <p class="accordion-body val-descr"><%- prod.description %></p>
+                                    </div>
+                                </div>    
+                            </div>
                         </article>
                     <% } %>
                 </div>
