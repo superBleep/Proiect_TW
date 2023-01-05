@@ -9,17 +9,18 @@
     padding: 1em;
     z-index: 99;
 
+    color: $color-3;
     background: $color-2;
     border: 4px inset $color-3;
 
-    animation-name: banner_animation;
+    animation-name: banner_animation_light;
     animation-duration: 5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
-@keyframes banner_animation {
+@keyframes banner_animation_light {
     0% {
         transform: translateX(-100vw);
         background: $color-2;
@@ -33,6 +34,70 @@
         transform: translateX(0);
         background: $color-2;
         border: 4px inset $color-3;
+    }
+}
+@keyframes banner_animation_dark {
+    0% {
+        transform: translateX(-100vw);
+        background: $color-2-dark;
+        border: 4px inset $color-3-dark;
+    }
+    50% {
+        background: $color-3-dark;
+        border: 4px inset $color-2-dark;
+    }
+    100% {
+        transform: translateX(0);
+        background: $color-2-dark;
+        border: 4px inset $color-3-dark;
+    }
+}
+@keyframes banner_animation_pastel {
+    0% {
+        transform: translateX(-100vw);
+        background: $color-2-pastel;
+        border: 4px inset $color-3-pastel;
+    }
+    50% {
+        background: $color-3-pastel;
+        border: 4px inset $color-2-pastel;
+    }
+    100% {
+        transform: translateX(0);
+        background: $color-2-pastel;
+        border: 4px inset $color-3-pastel;
+    }
+}
+@keyframes banner_animation_fire {
+    0% {
+        transform: translateX(-100vw);
+        background: $color-2-fire;
+        border: 4px inset $color-3-fire;
+    }
+    50% {
+        background: $color-3-fire;
+        border: 4px inset $color-2-fire;
+    }
+    100% {
+        transform: translateX(0);
+        background: $color-2-fire;
+        border: 4px inset $color-3-fire;
+    }
+}
+@keyframes banner_animation_metal {
+    0% {
+        transform: translateX(-100vw);
+        background: $color-2-metal;
+        border: 4px inset $color-3-metal;
+    }
+    50% {
+        background: $color-3-metal;
+        border: 4px inset $color-2-metal;
+    }
+    100% {
+        transform: translateX(0);
+        background: $color-2-metal;
+        border: 4px inset $color-3-metal;
     }
 }
 

@@ -8112,6 +8112,14 @@ nav * {
   box-sizing: initial;
 }
 
+*, *::before, *::after {
+  box-sizing: unset;
+}
+
+.accordion-button {
+  box-sizing: border-box;
+}
+
 h1:not(.accordion-header), .h1:not(.accordion-header), h2:not(.accordion-header), .h2:not(.accordion-header), h3:not(.accordion-header), .h3:not(.accordion-header), h4:not(.accordion-header), .h4:not(.accordion-header), h5:not(.accordion-header), .h5:not(.accordion-header), h6:not(.accordion-header), .h6:not(.accordion-header) {
   margin-top: 0.67em;
   margin-bottom: 0.67em;

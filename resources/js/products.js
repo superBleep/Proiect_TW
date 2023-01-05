@@ -338,7 +338,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.getElementById("sum").addEventListener("click", getSum);
     document.getElementById("reset").addEventListener("click", resetInputs);
 
-    document.getElementById("inp-voucher").addEventListener("click", function() {
+    document.getElementById("inp-voucher").addEventListener("change", function() {
         if (document.getElementById("inp-voucher").checked) {
             document.getElementById("voucher-button").classList.replace("btn-primary", "btn-outline-primary");
             document.getElementById("voucher-button").classList.remove("active");

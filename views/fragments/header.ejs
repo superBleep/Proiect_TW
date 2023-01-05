@@ -17,24 +17,24 @@
     <input id="ch-menu" type="checkbox">
     <ul class="menu">
         <li>
-            <a href="index">
+            <a href="/index">
                 <div class="home">Acasă</div>
                 <span class="fa-solid fa-house-chimney"></span>
             </a>
             <ul>
-                <li><a href="index#desc">Descriere</a></li>
-                <li><a href="index#oferte">Oferte</a></li>
-                <li><a href="index#calendar">Calendar</a></li>
-                <li><a href="index#anunturi">Anunturi</a></li>
-                <li><a href="index#users">Utilizatori online</a></li>
-                <li><a href="index#stats">Statistici site</a></li>
-                <li><a href="index#data">Date despre site</a></li>
-                <li><a href="index#other">Altele</a></li>
+                <li><a href="/index#desc">Descriere</a></li>
+                <li><a href="/index#oferte">Oferte</a></li>
+                <li><a href="/index#calendar">Calendar</a></li>
+                <li><a href="/index#anunturi">Anunturi</a></li>
+                <li><a href="/index#users">Utilizatori online</a></li>
+                <li><a href="/index#stats">Statistici site</a></li>
+                <li><a href="/index#data">Date despre site</a></li>
+                <li><a href="/index#other">Altele</a></li>
             </ul>
         </li>
         <li><div>Produse</div>
             <ul>
-                <li><a href="products">Toate</a></li>
+                <li><a href="/products">Toate</a></li>
                 <% for (let categ of locals.prod_categs) { %>
                     <li><a href=<%- "products?t=" + categ.toLowerCase() %>><%- categ %></a></li> 
                 <% } %>
@@ -42,9 +42,9 @@
         </li>
         <li><div>Despre noi</div>
             <ul>
-                <li><a href="galery_pg">Galerie</a></li>
-                <li><a href="history">Istoria magazinului</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="/galery_pg">Galerie</a></li>
+                <li><a href="/history">Istoria magazinului</a></li>
+                <li><a href="/contact">Contact</a></li>
                 <% if(locals.utilizator && locals.utilizator.rol=="admin") { %>
                     <li><a href="/useri">Useri</a></li>
                 <% } %>

@@ -17,11 +17,11 @@
         <main>
             <p class="text-center" id="filter-error"></p>
             <section id="filters">
-                <div class="row justify-content-center">
-                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-4 col-xl-3 text-center">
                         <label>Nume: <input type="text" id="inp-name" placeholder="Numele produsului..."></label>
                     </div>
-                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                    <div class="col-md-4 col-xl-2 text-center">
                         <label>Data adăugării:
                             <input class="w-75" list="datalist" id="inp-date" placeholder="zi/Luna/an">
                             <datalist id="datalist">
@@ -31,7 +31,7 @@
                             </datalist>
                         </label>
                     </div>  
-                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                    <div class="col-md-4 col-xl-2 text-center">
                         <label>Preț minim: 
                             <span id="min-price-min"></span>
                             <input class="form-range" type="range" id="inp-min-range">
@@ -45,15 +45,15 @@
                             <span id="max-price-value"></span>
                         </label>
                     </div>
-                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                    <div class="col-md-4 col-xl-3 text-center">
                         <div class="form-floating">
                             <textarea id="inp-descr" class="form-control bg-white w-75 text-dark" placeholder="Introdu (o parte din) descrierea produsului..."></textarea>
                             <label for="inp-desc">Descriere: </label>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-4 col-xl-3 text-center">
                         <div id="inp-exp-node">Tip expediere:
                             <p><label>Orice tip
                                 <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio">
@@ -69,12 +69,12 @@
                             </label></p>
                         </div>
                     </div>
-                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                    <div class="col-md-4 col-xl-2 text-center">
                         <label id="voucher-button" class="btn btn-primary active">
                             <input type="checkbox" id="inp-voucher" style="display: none" checked> Admite voucher? 
                         </label>
                     </div>
-                    <div class="border border-primary col-md-4 col-xl-2 text-center">
+                    <div class="col-md-4 col-xl-2 text-center">
                         <label>Culoare:
                             <select id="inp-color">
                                 <option id="sel-all" selected value="Toate">Toate</option>
@@ -84,7 +84,7 @@
                             </select>
                         </label>
                     </div>
-                    <div class="border border-primary col-md-4 col-xl-3 text-center">
+                    <div class="col-md-4 col-xl-3 text-center">
                         <label>Categorie gramaj:
                             <select id="inp-weight" multiple>
                                 <option value="0:99">Mic (gramaj &lt; 100g)</option>
@@ -193,10 +193,10 @@
                             <span style="display:none" class="val-exp"><%- prod.exp_type%></span>
                             <span style="display:none" class="val-weight"><%- prod.weight %></span>
                             <p>Categorie: <%- prod.category %></p>
-                            <div class="accordion" id="accordionExample-<%- prod.id %>">
+                            <div class="accordion mb-2" id="accordionExample-<%- prod.id %>">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne-<%- prod.id %>">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-<%- prod.id %>" aria-expanded="true" aria-controls="collapseOne-<%- prod.id %>">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-<%- prod.id %>" aria-expanded="false" aria-controls="collapseOne-<%- prod.id %>">
                                             Descriere
                                         </button>
                                     </h2>

@@ -58,10 +58,12 @@ ul.menu > li {
 }
 ul.menu > li:hover {
   height: auto;
+  transform: none;
 }
 ul.menu li > ul {
   position: relative;
   z-index: 2;
+  transform: none;
 }
 ul.menu ul li {
   width: 100vw;

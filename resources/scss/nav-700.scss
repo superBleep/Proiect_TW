@@ -51,12 +51,14 @@ ul.menu {
 
         &:hover {
             height: auto;
+            transform: none;
         }
     }
 
     li>ul {
         position: relative;
         z-index: 2;
+        transform: none;
     }
 
     ul li {

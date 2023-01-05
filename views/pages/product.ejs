@@ -12,18 +12,81 @@
         <%- include("../fragments/header.ejs") %>
 
         <main>
-            <section>
-                <h2><%- locals.prod.name %></h2>
-                <p><%- locals.prod.description %></p>
+            <h2 id="product-name"><%- locals.prod.name %></h2>
+            <p id="product-desc"><%- locals.prod.description %></p>
+            <section id="product-table">
                 <img src="<%- locals.prod.img_path %>">
-                <p><%- locals.prod.category %></p>
-                <p><%- locals.prod.exp_type %></p>
-                <p><%- locals.prod.price %> RON</p>
-                <p><%- locals.prod.weight %></p>
-                <p><%- locals.prod.add_date %></p>
-                <p><%- locals.prod.color %></p>
-                <p><%- locals.prod.prod_details %></p>
-                <p><%- locals.prod.voucher %></p>
+
+                <table>
+                    <tr>
+                        <td>Categorie</td>
+                        <td><%- locals.prod.category %></td>
+                    </tr>
+                    <tr>
+                        <td>Tip expediere</td>
+                        <td><%- locals.prod.exp_type %></td>
+                    </tr>
+                    <tr>
+                        <td>Preț</td>
+                        <td><%- locals.prod.price %> RON</td>
+                    </tr>
+                    <tr>
+                        <td>Greutate</td>
+                        <td><%- locals.prod.weight %> g</td>
+                    </tr>
+                    <tr>
+                        <td>Data adăugării</td>
+                        <td>
+                            <time datetime = <%- locals.prod.add_date %>>
+                                <%  let d = new Date(locals.prod.add_date)
+                                    let months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+                                    let days = ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+                                    let full_date = d.getDate() + "/" + months[d.getMonth()] + "/" + d.getFullYear() + " (" + days[d.getDay()] + ")"
+                                %>
+                                <span class="val-date"><%- full_date %></span>
+                            </time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Culoare</td>
+                        <td><%- locals.prod.color %></td>
+                    </tr>
+                    <tr>
+                        <td>Detalii</td>
+                        <td>
+                            <% 
+                                switch (prod.category) { 
+                                case 'Albume': %>
+                                    An lansare: <%- locals.prod.prod_details[0] %> <br>
+                                    Format: <%- locals.prod.prod_details[1] %> <br>
+                                    Gen: <%- locals.prod.prod_details[2] %> <br>
+                                <% break; 
+                                case 'Merchandise': %>
+                                    Gen: <%- locals.prod.prod_details[0] %> <br>
+                                    Mărime: <%- locals.prod.prod_details[1] %> <br>
+                                    Material: <%- locals.prod.prod_details[2] %> <br>
+                                <% break;
+                                case 'Device-uri': %>
+                                    Conectivitate: <%- locals.prod.prod_details[0] %> <br>
+                                    Tip: <%- locals.prod.prod_details[1] %> <br>
+                                    Microfon: <%- locals.prod.prod_details[2] %> <br>
+                                <% break; %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Voucher aplicabil</td>
+                        <td>
+                            <span class="val-vouch">
+                            <% if (locals.prod.voucher) { %>
+                                Da
+                            <% } else { %>
+                                Nu
+                            <% } %>
+                            </span>  
+                        </td>
+                    </tr>
+                </table>
             </section>
         </main>
 

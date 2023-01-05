@@ -4,14 +4,14 @@
 }
 
 .collapsePicker {
-  left: -10.5em !important;
+  left: -11em !important;
   transition: left 0.5s linear;
 }
 
 #theme-picker {
   position: fixed;
   bottom: 1.7em;
-  left: -10.5em;
+  left: -11em;
   z-index: 99;
 }
 #theme-picker ul {

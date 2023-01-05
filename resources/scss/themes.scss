@@ -9,6 +9,215 @@
     width: 0;
 }
 
+
+body.light {
+    background-color: $color-1;
+    color: $color-2;
+    
+    a {
+        color: $color-4;
+
+        &:hover {
+            color: $color-6;
+        }
+    }
+
+    p, td, th, figcaption, address, i, s, em, strong, h1, h2, h3, h4, h5{
+        &::selection {
+            background-color: $color-2;
+            color: $color-3;
+            text-shadow: -1px -2px 1px $color-5;
+        }
+    }
+
+    #grid {
+        > * {
+            border: 5px dotted $color-3;
+        }
+    }
+
+    #faq {
+        summary {
+            border: 2px solid $color-3;
+            background-color: $color-5;
+        }
+    }
+    
+    #vids {
+        iframe {
+            border: 5px inset $color-3;
+        }
+    }
+    
+    .tablink {
+        color: $color-2;
+        background-color: $color-5;
+
+        border-left: 7px solid $color-3;
+        border-top: 2.5px solid $color-3;
+        border-bottom: 2.5px solid $color-3;
+
+        transition: color $timing*5 ease-in-out;
+        transition: background-color $timing*5 ease-in-out;
+
+        &:hover {
+            color: $color-5;
+            background-color: $color-3;
+        }
+    }
+
+    #filter-error {
+        color: $filter-error;
+    }
+
+    #prods-grid {
+        article {
+            border: 5px dotted $color-3;
+        }
+
+        #prod-grid {
+            img {
+                border: 5px inset $color-3;
+            }
+
+            table {
+                border: 5px inset $color-3;
+            }
+
+            tr {
+                td {
+                    border-bottom: 5px inset $color-3;
+
+                    &:nth-child(2) {
+                        border-left: 5px inset $color-3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav.light {
+    ul.menu {
+        >li {
+            border: $border-width solid $color-3;
+            background-color: $color-5;
+        }
+    
+        ul {
+            background-color: $color-5;
+    
+            li {
+                border: $border-width solid $color-3;
+    
+                a {
+                    &::before {
+                        background: linear-gradient(90deg, $color-1 0%, $color-5 100%);  
+                    }
+    
+                    &::after {
+                        background: linear-gradient(270deg, $color-1 0%, $color-5 100%);  
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $color-2;
+        }
+    }
+}
+
+#tabel_oferte.light {
+    border: 5px inset $color-3;
+
+    tbody {
+        >tr {
+            outline: rgba($color-3, 0);
+
+            &:first-child td {
+                border-top: 1px solid $color-3;
+            }
+        
+            &:nth-child(even) td {
+                border-bottom: 1px solid $color-3;
+            }
+        
+            &:nth-child(odd) td {
+                border-bottom: 1px solid $color-4;
+            }
+
+            &:hover {
+                &>td {
+                    border: 0;
+                }
+
+                outline: 5px inset rgba($color-3, 0.7);
+            }
+        }
+    }
+}
+
+#link-top.light {
+    border-color: $color-4;
+
+    &:hover {
+        >#triangle {
+            border-bottom-color: $color-2;
+        }
+    }
+
+    >#triangle {
+        border-bottom-color: $color-4;
+        border-bottom: 1rem solid $color-4;
+    }
+}
+
+#theme-picker.light {
+    ul {
+        border: 2px solid $color-3;
+        background: $color-5;
+
+        >li {
+            border: 2px solid $color-3;
+
+            &:first-child {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#product-table.light {
+    img {
+        border: 5px inset $color-3;
+    }
+
+    table {
+        border: 5px inset $color-3;
+
+        tr {
+            td {
+                border-bottom: 5px inset $color-3;
+
+                &:nth-child(2) {
+                    border-left: 5px inset $color-3;
+                }
+            }
+        }
+    }
+}
+
+#banner.light {
+    color: $color-3;
+    background: $color-2;
+    border: 4px inset $color-3;
+
+    animation-name: banner_animation_light;
+}
+
+
+
 body.dark {
     background-color: $color-1-dark;
     color: $color-2-dark;
@@ -187,6 +396,35 @@ nav.dark {
     }
 }
 
+#product-table.dark {
+    img {
+        border: 5px inset $color-3-dark;
+    }
+
+    table {
+        border: 5px inset $color-3-dark;
+
+        tr {
+            td {
+                border-bottom: 5px inset $color-3-dark;
+
+                &:nth-child(2) {
+                    border-left: 5px inset $color-3-dark;
+                }
+            }
+        }
+    }
+}
+
+#banner.dark {
+    color: $color-3-dark;
+    background: $color-2-dark;
+    border: 4px inset $color-3-dark;
+
+    animation-name: banner_animation_dark;
+}
+
+
 
 body.pastel {
     background-color: $color-1-pastel;
@@ -364,6 +602,34 @@ nav.pastel {
             }
         }
     }
+}
+
+#product-table.pastel {
+    img {
+        border: 5px inset $color-3-pastel;
+    }
+
+    table {
+        border: 5px inset $color-3-pastel;
+
+        tr {
+            td {
+                border-bottom: 5px inset $color-3-pastel;
+
+                &:nth-child(2) {
+                    border-left: 5px inset $color-3-pastel;
+                }
+            }
+        }
+    }
+}
+
+#banner.pastel {
+    color: $color-3-pastel;
+    background: $color-2-pastel;
+    border: 4px inset $color-3-pastel;
+
+    animation-name: banner_animation_pastel;
 }
 
 
@@ -546,6 +812,34 @@ nav.fire {
     }
 }
 
+#product-table.fire {
+    img {
+        border: 5px inset $color-3-fire;
+    }
+
+    table {
+        border: 5px inset $color-3-fire;
+
+        tr {
+            td {
+                border-bottom: 5px inset $color-3-fire;
+
+                &:nth-child(2) {
+                    border-left: 5px inset $color-3-fire;
+                }
+            }
+        }
+    }
+}
+
+#banner.fire {
+    color: $color-3-fire;
+    background: $color-2-fire;
+    border: 4px inset $color-3-fire;
+
+    animation-name: banner_animation_fire;
+}
+
 
 
 body.metal {
@@ -724,4 +1018,32 @@ nav.metal {
             }
         }
     }
+}
+
+#product-table.metal {
+    img {
+        border: 5px inset $color-3-metal;
+    }
+
+    table {
+        border: 5px inset $color-3-metal;
+
+        tr {
+            td {
+                border-bottom: 5px inset $color-3-metal;
+
+                &:nth-child(2) {
+                    border-left: 5px inset $color-3-metal;
+                }
+            }
+        }
+    }
+}
+
+#banner.metal {
+    color: $color-3-metal;
+    background: $color-2-metal;
+    border: 4px inset $color-3-metal;
+
+    animation-name: banner_animation_metal;
 }

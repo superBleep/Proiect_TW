@@ -6,16 +6,17 @@
   text-align: center;
   padding: 1em;
   z-index: 99;
+  color: #675EDB;
   background: #DBCD7F;
   border: 4px inset #675EDB;
-  animation-name: banner_animation;
+  animation-name: banner_animation_light;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
 
-@keyframes banner_animation {
+@keyframes banner_animation_light {
   0% {
     transform: translateX(-100vw);
     background: #DBCD7F;
@@ -29,6 +30,70 @@
     transform: translateX(0);
     background: #DBCD7F;
     border: 4px inset #675EDB;
+  }
+}
+@keyframes banner_animation_dark {
+  0% {
+    transform: translateX(-100vw);
+    background: #a78144;
+    border: 4px inset #2E2210;
+  }
+  50% {
+    background: #2E2210;
+    border: 4px inset #a78144;
+  }
+  100% {
+    transform: translateX(0);
+    background: #a78144;
+    border: 4px inset #2E2210;
+  }
+}
+@keyframes banner_animation_pastel {
+  0% {
+    transform: translateX(-100vw);
+    background: #A38752;
+    border: 4px inset #416CA3;
+  }
+  50% {
+    background: #416CA3;
+    border: 4px inset #A38752;
+  }
+  100% {
+    transform: translateX(0);
+    background: #A38752;
+    border: 4px inset #416CA3;
+  }
+}
+@keyframes banner_animation_fire {
+  0% {
+    transform: translateX(-100vw);
+    background: #F5B21B;
+    border: 4px inset #5C4F33;
+  }
+  50% {
+    background: #5C4F33;
+    border: 4px inset #F5B21B;
+  }
+  100% {
+    transform: translateX(0);
+    background: #F5B21B;
+    border: 4px inset #5C4F33;
+  }
+}
+@keyframes banner_animation_metal {
+  0% {
+    transform: translateX(-100vw);
+    background: #792020;
+    border: 4px inset #490349;
+  }
+  50% {
+    background: #490349;
+    border: 4px inset #792020;
+  }
+  100% {
+    transform: translateX(0);
+    background: #792020;
+    border: 4px inset #490349;
   }
 }
 @media screen and (max-width: 1300px) {
