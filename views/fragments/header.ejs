@@ -4,6 +4,23 @@
         AllMuzica 
         <span class="fa-solid fa-compact-disc"></span>
     </h1>
+
+    <% if(!locals.utilizator) { %>
+        <form id="login_form"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
+            <p>
+                <label>
+                    Username: <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
+                </label>
+            </p>
+            <p>
+                <label>
+                    Parola: <input id="parl" type="password" required name="password" value="">
+                </label>
+            </p>
+            <p><input type="submit" value="Logare"></p>
+            <p id="eroareLogin"><%- locals.eroareLogin %></p>
+        </form>
+    <% } %>
 </header>
 
 <nav>
@@ -59,7 +76,15 @@
     
             </ul>
         </li>
-        <li><a href="inregistrare">Inregistrare</a></li>
+        
+        <li><a href="/signup">Inregistrare</a></li>
+        <% if(locals.utilizator) { %>
+            <li><div>Logat: <%- locals.utilizator.username%></div>
+                <ul>
+                    <li><a href="/logout">Delogare</a></li>
+                </ul>
+            </li>
+        <% } %>
     </ul>
 </nav>
 

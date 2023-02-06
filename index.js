@@ -3,27 +3,13 @@ const fs = require("fs");
 const sharp = require("sharp");
 const sass = require("sass");
 const formidable = require("formidable");
-const {Client} = require("pg");
-const {Utilizator} = require("./modules/utilizator.js");
-const {AccesBD} = require("./modules/accesbd.js");
+const {User} = require("./modules/user.js");
+const {dbAccess} = require("./modules/dbaccess.js");
 const session = require(`express-session`);
+const crypto = require("crypto");
 
-/* var client = new Client({
-    database: "allmuzica",
-    user: "client_allmuzica",
-    password: "#281products",
-    host: "localhost",
-    port: 5432
-});
-client.connect();*/
-var instantaBD = AccesBD.getInstanta({init: "local"});
-var client = instantaBD.getClient();
-
-/*instantaBD.select({campuri: ["name", "price"], tabel: ["products"]}, function(err, rez) {
-    if(err)
-        console.log(err);
-    console.log(rez);
-})*/
+var dbInstance = dbAccess.getInstance({init: "local"});
+var client = dbInstance.getClient();
 
 app = express();
 
@@ -38,7 +24,6 @@ console.log("Path: " + __dirname);
 app.use("/resources", express.static(__dirname + "/resources"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
-
 globalObj = {
     scss_files: null,
     images: null,
@@ -48,12 +33,11 @@ globalObj = {
     prod_categs: null
 }
 
-var vedeToataLumea = "ceva!";
 app.use("/*", function(req, res, next) {
-    res.locals.vede = vedeToataLumea;
     res.locals.utilizator = req.session.utilizator;
     res.locals.galery_path = globalObj.galery_path
     res.locals.prod_categs = globalObj.prod_categs
+    res.locals.images = globalObj.images
 
     next();
 })
@@ -188,76 +172,78 @@ app.get("/*.ejs", function(req, res) {
     renderError(res, 403);
 });
 
-app.post("/inregistrare", function(req, res) {
-    var username;
-    console.log("ceva");
-    var formular = new formidable.IncomingForm();
-    formular.parse(req, function(err, campuriText, campuriFisier ) { //4
-        console.log(campuriText);
- 
-        var eroare="";
- 
-        var utilizNou = new Utilizator();
-        try{
-            utilizNou.setareNume = campuriText.nume;
-            utilizNou.setareUsernume = campuriText.username;
-            utilizNou.email = campuriText.email;
-            utilizNou.prenume = campuriText.prenume;
-            utilizNou.culoare_chat = campuriText.culoare_chat;
-            utilizNou.parola = campuriText.parola;
+app.post("/signup", function(req, res) {
+    var form = new formidable.IncomingForm();
 
-            utilizNou.salvareUtilizator();
-        } catch(e) {eroare += e.message; console.log(123, eroare)}
+    form.parse(req, async function(err, textFields, fileFields) {
+        try {
+            var newUser = new User({username: textFields.username, surname: textFields.surname, name: textFields.name, email: textFields.email, password: textFields.pass, chat_color: textFields.chat_color});
 
-        if(!eroare){
-            res.render("pages/inregistrare", {raspuns: "Inregistrare cu succes!", prod_categs: globalObj.prod_categs})
+            if(textFields.date_of_birth != '') {
+                newUser.date_of_birth = textFields.date_of_birth;
+            }
+            if(textFields.phone != '') {
+                newUser.phone = textFields.phone;
+            }
+
+            let userPromise = await User.getUserByUsernameAsync(textFields.username);
+            if(userPromise != null) {
+                throw new Error("User-ul exista deja!");
+            }
+
+            if (fileFields.profile_img) {
+                var old_path = fileFields.profile_img.filepath;
+                var new_path = __dirname + "/resources/img/users/" + textFields.username + "." + fileFields.profile_img.originalFilename.split(".")[1].toLowerCase();
+                var img_data = fs.readFileSync(old_path);
+                
+                fs.writeFile(new_path, img_data, function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+
+                newUser.profile_img = "/resources/img/users/" + textFields.username + "." + fileFields.profile_img.originalFilename.split(".")[1].toLowerCase();
+            }
+
+            newUser.saveUser();
+
+            res.render("pages/signup", {raspuns: "Inregistrare cu succes!", prod_categs: globalObj.prod_categs})
+        } catch(e) {
+            console.log("Signup form: " + e.message)
+            res.render("pages/signup", {err: "Eroare: " + e.message, prod_categs: globalObj.prod_categs});
         }
-        else
-            res.render("pages/inregistrare", {err: "Eroare: "+eroare, prod_categs: globalObj.prod_categs});
-    });
-    formular.on("field", function(nume,val) {  //1
-   
-        console.log(`--- ${nume}=${val}`);
-       
-        if(nume == "username")
-            username = val;
-    })
-    formular.on("fileBegin", function(nume,fisier) { //2
-        console.log("fileBegin");
-       
-        console.log(nume,fisier);
-        //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
- 
-    })    
-    formular.on("file", function(nume,fisier) {//3
-        console.log("file");
-        console.log(nume,fisier);
     });
 });
 
-app.get("/cod/:username/:token", function(req, res) {
-    console.log(req.params);
+app.get("/cod_mail/:token1-:token2/:username", function(req, res) {
     try {
-        Utilizator.getUtilizDupaUsername(req.params.username, {res: res, token: req.params.token}, function(u, obparam) {
-            AccesBD.getInstanta().update({
-                tabel: "utilizatori", 
-                campuri: ["confirmat_mail"], 
-                valori: ["true"], 
-                comditiiAnd: [`'cod=${obparam.token}'`]},
-                function (err, rezUpdate) {
-                    if (err || rezUpdate.rowCount == 0) {
-                        console.log("Cod:", err);
+        User.getUserByUsername(req.params.username, {res: res, token: req.params.token1}, function(u, obparam) {
+            dbAccess.getInstance().update({
+                table: "users", 
+                fields: ["confirmed"], 
+                values: ["TRUE"],
+                andConds: [`token='${obparam.token}'`]},
+                function (err, updateRes) {
+                    if (err || updateRes.rowCount == 0) {
+                        console.log("Code error: ", err);
                         renderError(res, 3);
                     }
                     else {
-                        res.render("pages/confirmare.ejs", {prod_categs: globalObj.prod_categs});
+                        res.render("pages/confirmed.ejs", {prod_categs: globalObj.prod_categs});
                     }
                 })
         })
     } catch (e) {
-        console.log("index:", e)
+        console.log("Index error:", e)
         renderError(res, 1);
     }
+})
+
+app.get("/logout", function(req, res){
+    req.session.destroy();
+
+    res.locals.utilizator = null;
+    res.render("pages/index");
 })
 
 app.get("/*", function(req, res) {
@@ -277,34 +263,34 @@ app.get("/*", function(req, res) {
 });
 
 app.post("/login", function(req, res) {
-    var username;
-    console.log("ceva");
-    var formular = new formidable.IncomingForm()
-    formular.parse(req, function(err, campuriText, campurtiFisier) {
-        Utilizator.getUtilizDupaUsername (campuriText.username, {
+    var form = new formidable.IncomingForm()
+
+    form.parse(req, function(err, textFields, fileFields) {
+        User.getUserByUsername(textFields.username, {
             req: req,
             res: res,
-            parola: campuriText.parola
-        }, function(u, obparam) {
-            let parolaCriptata = Utilizator.criptareParola(obparam.parola);
-            console.log(obparam.parola, parolaCriptata)
-            if (u.parola == parolaCriptata) {
+            password: textFields.password
+        }, function(u, obparam) {            
+            if(u.confirmed == false) {
+                obparam.res.render("pages/index", {eroareLogin: "Ultiziatorul nu este confirmat!"});
+                return
+            }
+
+            let encryptedLoginPass = crypto.scryptSync(
+                obparam.password,
+                u.saltstring,
+                User.codeLength
+            ).toString("hex");
+            if (encryptedLoginPass == u.password) {
                 obparam.req.session.utilizator = u;
                 obparam.res.redirect("/index");
-                // obparam.res.render("/login");
             }
             else {
-                obparam.res.render("pages/index", {eroareLogin: "Date de logare incorecte!"})
+                obparam.res.render("pages/index", {eroareLogin: "Date de logare incorecte!"});
             }
         })
     })
 })
-
-app.get("/logout", function(req, res){
-    req.session.destroy();
-    res.locals.utilizator=null;
-    res.render("pagini/logout");
-});
 
 app.listen(8080);
 console.log("Server started\n----------------");

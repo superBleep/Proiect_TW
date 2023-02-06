@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="AllMuzica - Înregistrare utilizatori.">
+        <meta name="keywords" content="magazein, AllMuzica, inregistrare, utilizatori">
+        <title>AllMuzica - înregistrare </title>
+        
+        <%- include("../fragments/head") %>
+        <script type="text/javascript" src=/resources/js/signup.js></script>
+    </head>
+
+    <body>
+        <%- include("../fragments/header") %>
+
+        <main>
+            <div class="afisaj">
+                <h1>Inregistrare utilizator</h1>
+
+                <% if(!locals.raspuns) { %>    
+                    <%-include("../fragments/form", {action: "/signup"}) %>
+                <% } %>
+                <% if(locals.raspuns) { %>
+                    <%- locals.raspuns+"<br/>"%>
+                <% } %>
+                <% if(locals.err) { %>
+                    <%- locals.err %>
+                <% } %>
+            </div>
+        </main>
+            
+        <%- include("../fragments/footer") %>
+    </body>
+</html>

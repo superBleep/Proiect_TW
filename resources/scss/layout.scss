@@ -42,6 +42,32 @@ header, footer {
     text-align: center;
 }
 
+header {
+    height: 7.5em;
+    margin-bottom: 2em;
+
+    h1 {
+        position: relative;
+        top: 1em;
+    }
+
+    #login_form  {
+        display: inline-block;
+        position: absolute;
+        top: 1em;
+        left: 3em;
+        text-align: left;
+
+        label {
+            padding-right: 0.5em;
+        }
+
+        input:not([type="submit"]) {
+            float: right;
+        }
+    }
+}
+
 #grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -85,6 +111,15 @@ header, footer {
 
 #stats {
     grid-area: f-stats;
+
+    figure {
+        margin: 0;
+        padding: 0;
+
+        img {
+            border: 5px solid black;
+        }
+    }
 }
 
 #data {
@@ -116,6 +151,17 @@ header, footer {
     }
 }
 
+@media screen and (max-width: 862px) {
+    header {
+        margin-bottom: 3em;
+
+        h1 {
+            position: absolute;
+            right: 1em;
+        }
+    }
+}
+
 @media screen and (max-width: 700px) {
     body {
         font-size: 80%;
@@ -134,5 +180,18 @@ header, footer {
                             "f-stats"
                             "f-data"
                             "f-other";
+    }
+
+    header {
+        height: unset;
+    
+        h1 {
+            position: static;
+            float: unset;
+        }
+
+        #login_form {
+            position: static;
+        }
     }
 }

@@ -2,33 +2,13 @@
 <html lang="ro">
     <head>
         <%- include("../fragments/head.ejs") %>
-
+            
         <title>AllMuzica - magazin online de muzică</title>
         <meta name="keywords" content="muzică, audio, magazin, România, merchandise, artiști">
         <meta name="description" content="AllMuzica este magazinul unde găsești tot ce înseamnă muzică, de la albumele artiștilor tăi preferați, până la îmbrăcăminte reprezentativă sau device-uri de redare audio de ultimă generație!">
     </head>
-
     <body>
         <%- include("../fragments/header.ejs") %>
-
-        <% if(!locals.utilizator) { %>
-            <form id="form_inreg"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
-                <p>
-                    <label>
-                        Username: <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Parola: <input id="parl" type="password" required  name="parola" value="">
-                    </label>
-                </p>
-                <p><input type="submit" value="Logare"></p>
-            </form>
-            <% } else {%>
-               <%- locals.eroareLogin %>
-            <% }  %>
-
 
         <main>
             <div id="grid">
@@ -236,6 +216,12 @@
                 <section id="stats">
                     <h2>Date despre utilizatori</h2>
                     <p>IP-ul tău (știm, e un pic creepy): <i><%- locals.ip%></i></p>
+                    <% if(locals.utilizator) { %> 
+                        <figure>
+                            <img src="<%- locals.utilizator.profile_img %>" alt="Imaginea ta de profil" width="100" height="100">
+                            <figcaption>Imaginea ta de profil</figcaption>
+                        </figure>
+                    <% } %> 
                 </section>
 
                 <section id="data">

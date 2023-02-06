@@ -747,6 +747,28 @@ header, footer {
   text-align: center;
 }
 
+header {
+  height: 7.5em;
+  margin-bottom: 2em;
+}
+header h1 {
+  position: relative;
+  top: 1em;
+}
+header #login_form {
+  display: inline-block;
+  position: absolute;
+  top: 1em;
+  left: 3em;
+  text-align: left;
+}
+header #login_form label {
+  padding-right: 0.5em;
+}
+header #login_form input:not([type=submit]) {
+  float: right;
+}
+
 #grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -785,6 +807,13 @@ header, footer {
 #stats {
   grid-area: f-stats;
 }
+#stats figure {
+  margin: 0;
+  padding: 0;
+}
+#stats figure img {
+  border: 5px solid black;
+}
 
 #data {
   grid-area: f-data;
@@ -809,6 +838,15 @@ header, footer {
     grid-template-areas: "f-desc f-desc f-desc" "z-oferte z-oferte f-calendar" "f-anunturi f-anunturi f-anunturi" "f-users f-stats f-data" "f-other f-other f-other";
   }
 }
+@media screen and (max-width: 862px) {
+  header {
+    margin-bottom: 3em;
+  }
+  header h1 {
+    position: absolute;
+    right: 1em;
+  }
+}
 @media screen and (max-width: 700px) {
   body {
     font-size: 80%;
@@ -819,5 +857,15 @@ header, footer {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "f-desc" "z-oferte" "f-calendar" "f-anunturi" "f-users" "f-stats" "f-data" "f-other";
+  }
+  header {
+    height: unset;
+  }
+  header h1 {
+    position: static;
+    float: unset;
+  }
+  header #login_form {
+    position: static;
   }
 }

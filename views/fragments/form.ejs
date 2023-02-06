@@ -1,0 +1,43 @@
+<form id="form_inreg"  method="post" class="date" action="<%= locals.action %>" enctype="multipart/form-data">
+    <p><label>
+        Nume: <input type="text" name="surname" id="inp-surname" value="" pattern="^[A-Z][a-z]+$" required>
+    </label></p>
+    <p><label>
+        Prenume: <input type="text" name="name" id="inp-name" value="" pattern="^[A-Z][a-z]+$" required>
+    </label></p>
+    <p><label>
+        Username: <input type="text" name="username" id="inp-username" value="user<%= Math.floor(Math.random()*100000) %>" pattern="[A-Za-z0-9]+" required>
+    </label></p>
+    <p><label>
+        Parola: <input type="password" name="pass" id="inp-pass" value="" required>
+    </label></p>
+    <p id="p-retyle"><label>
+        Reintroduceți parola: <input type="password" name="r-pass" id="inp-r-pass" value="" required>
+    </label></p>
+    <p><label>
+        E-mail: <input type="text" name="email" id="inp-email" value="allmuzicatw@gmail.com" size="50" pattern="[A-Za-z0-9]+@[A-Za-z]+.[a-z]+" required>
+    </label></p>
+    <p><label>
+        Data nașterii: <input type="date" name="date_of_birth" id="inp-date_of_birth">
+    </label></p>
+    <p><label>
+        Culoare text chat: <select name="chat_color" id="inp-chat_color">
+            <option value="black" selected>Negru</option>
+            <option value="green">Verde</option>
+            <option value="blue">Albastru</option>
+            <option value="blue">Roșu</option>
+            <option value="purple">Mov</option>
+        </select>
+    </label></p>
+    <p><label>
+        Telefon: <input type="tel" name="phone" id="inp-phone" value="" pattern="\+?0[0-9]{9,}">
+    </label></p>
+    <p><label>
+        Imagine profil: <input type="file" name="profile_img" id="inp-profile_img">
+    </label></p>
+
+    <p>		
+        <input type="submit" value="Trimite">
+        <input type="reset" value="Resetează">
+    </p>
+</form>
