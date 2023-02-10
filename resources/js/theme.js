@@ -1,9 +1,9 @@
 var theme_colors = {
     // Pt. cusotmizarea Bootstrap-ului
     // light, dark, pastel, fire, metal
-    primary: ["#6F418F", "#2E2210", "#416CA3", "#5C4F33", "#490349"],
-    secondary: ["#DB74BD", "#2B2E0B", "#90BAF0", "#5a948c", "#2a42ad"],
-    text: ["#DBCD7F", "#a78144", "#A38752", "#F5B21B", "#792020"]
+    primary: ["#dbb6f1", "#070718", "#F0CF91", "#f7af75", "black"],
+    secondary: ["#DB74BD", "#201e1d", "#90BAF0", "#4bc5b5", "#303033"],
+    text: ["#3c0e61", "#e2a747", "#493d26", "#534115", "#db1515"]
 }
 
 // Pt. customizarea Bootstrap-ului
@@ -142,7 +142,6 @@ function setThemes(themes, themes2id) {
 
 window.addEventListener("DOMContentLoaded", function() {
     if(localStorage.getItem("btns_pressed")) {
-        console.log(localStorage.getItem("btns_pressed"))
         var pressed = localStorage.getItem("btns_pressed").split(",");
         document.querySelectorAll(".accordion-button").forEach(function(e, idx) {
             if (eval(pressed[idx]) && e.classList.contains("collapsed")) {

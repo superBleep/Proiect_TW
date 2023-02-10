@@ -8,7 +8,7 @@
 
 #filter-error {
   display: none;
-  color: yellow;
+  color: rgb(255, 0, 0);
 }
 
 #prods-grid {

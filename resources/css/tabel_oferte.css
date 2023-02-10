@@ -26,7 +26,7 @@
   border-bottom: 1px solid #675EDB;
 }
 #tabel_oferte tbody > tr:nth-child(odd) td {
-  border-bottom: 1px solid #5ac048;
+  border-bottom: 1px solid #11610e;
 }
 #tabel_oferte tbody > tr:hover {
   outline: 5px inset rgba(103, 94, 219, 0.7);

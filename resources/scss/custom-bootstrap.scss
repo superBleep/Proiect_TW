@@ -61,3 +61,22 @@ nav > label {
         display: block;
     }
 }
+
+#login_form  {
+    top: 2em !important;
+
+    label {
+        padding-right: 0.5em;
+    }
+
+    input {
+        margin: revert;
+        font-size: revert;
+        font-family: revert;
+        line-height: revert;
+
+        &:not([type="submit"]) {
+            float: unset !important;
+        }
+    }
+}

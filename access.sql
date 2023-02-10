@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS access (
+	id SERIAL PRIMARY KEY,
+	ip VARCHAR(100) NOT NULL,
+	user_id INT NULL REFERENCES users(id),
+	page VARCHAR(500) NOT NULL,
+	access_date TIMESTAMP DEFAULT current_timestamp
+);
+
+GRANT ALL PRIVILEGES ON DATABASE allmuzica TO client_allmuzica;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO client_allmuzica;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO client_allmuzica;

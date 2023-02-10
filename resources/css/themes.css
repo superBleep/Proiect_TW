@@ -3,22 +3,22 @@
   bottom: 0.9em;
   left: 1em;
   cursor: pointer;
-  color: #5ac048;
+  color: #11610e;
   width: 0;
 }
 
 body.light {
-  background-color: #6f418b;
-  color: #DBCD7F;
+  background-color: #dbb6f1;
+  color: #3c0e61;
 }
 body.light a {
-  color: #5ac048;
+  color: #11610e;
 }
 body.light a:hover {
-  color: #a8e635;
+  color: #771c1c;
 }
 body.light p::selection, body.light td::selection, body.light th::selection, body.light figcaption::selection, body.light address::selection, body.light i::selection, body.light s::selection, body.light em::selection, body.light strong::selection, body.light h1::selection, body.light h2::selection, body.light h3::selection, body.light h4::selection, body.light h5::selection {
-  background-color: #DBCD7F;
+  background-color: #3c0e61;
   color: #675EDB;
   text-shadow: -1px -2px 1px #DB74BD;
 }
@@ -33,7 +33,7 @@ body.light #vids iframe {
   border: 5px inset #675EDB;
 }
 body.light .tablink {
-  color: #DBCD7F;
+  color: #3c0e61;
   background-color: #DB74BD;
   border-left: 7px solid #675EDB;
   border-top: 2.5px solid #675EDB;
@@ -46,7 +46,7 @@ body.light .tablink:hover {
   background-color: #675EDB;
 }
 body.light #filter-error {
-  color: yellow;
+  color: rgb(255, 0, 0);
 }
 body.light #prods-grid article {
   border: 5px dotted #675EDB;
@@ -75,13 +75,13 @@ nav.light ul.menu ul li {
   border: 2px solid #675EDB;
 }
 nav.light ul.menu ul li a::before {
-  background: linear-gradient(90deg, #6f418b 0%, #DB74BD 100%);
+  background: linear-gradient(90deg, #dbb6f1 0%, #DB74BD 100%);
 }
 nav.light ul.menu ul li a::after {
-  background: linear-gradient(270deg, #6f418b 0%, #DB74BD 100%);
+  background: linear-gradient(270deg, #dbb6f1 0%, #DB74BD 100%);
 }
 nav.light ul.menu a {
-  color: #DBCD7F;
+  color: #3c0e61;
 }
 
 #tabel_oferte.light {
@@ -97,7 +97,7 @@ nav.light ul.menu a {
   border-bottom: 1px solid #675EDB;
 }
 #tabel_oferte.light tbody > tr:nth-child(odd) td {
-  border-bottom: 1px solid #5ac048;
+  border-bottom: 1px solid #11610e;
 }
 #tabel_oferte.light tbody > tr:hover {
   outline: 5px inset rgba(103, 94, 219, 0.7);
@@ -107,14 +107,14 @@ nav.light ul.menu a {
 }
 
 #link-top.light {
-  border-color: #5ac048;
+  border-color: #11610e;
 }
 #link-top.light:hover > #triangle {
-  border-bottom-color: #DBCD7F;
+  border-bottom-color: #3c0e61;
 }
 #link-top.light > #triangle {
-  border-bottom-color: #5ac048;
-  border-bottom: 1rem solid #5ac048;
+  border-bottom-color: #11610e;
+  border-bottom: 1rem solid #11610e;
 }
 
 #theme-picker.light ul {
@@ -143,218 +143,218 @@ nav.light ul.menu a {
 
 #banner.light {
   color: #675EDB;
-  background: #DBCD7F;
+  background: #3c0e61;
   border: 4px inset #675EDB;
   animation-name: banner_animation_light;
 }
 
 body.dark {
-  background-color: #0E0E2E;
-  color: #a78144;
+  background-color: #070718;
+  color: #e2a747;
 }
 body.dark a {
-  color: #747A18;
+  color: #91991f;
 }
 body.dark a:hover {
-  color: #A9B324;
+  color: #cbd62b;
 }
 body.dark p::selection, body.dark td::selection, body.dark th::selection, body.dark figcaption::selection, body.dark address::selection, body.dark i::selection, body.dark s::selection, body.dark em::selection, body.dark strong::selection, body.dark h1::selection, body.dark h2::selection, body.dark h3::selection, body.dark h4::selection, body.dark h5::selection {
-  background-color: #a78144;
-  color: #2E2210;
-  text-shadow: -1px -2px 1px #2B2E0B;
+  background-color: #e2a747;
+  color: #b85d09;
+  text-shadow: -1px -2px 1px #201e1d;
 }
 body.dark #grid > * {
-  border: 5px dotted #2E2210;
+  border: 5px dotted #b85d09;
 }
 body.dark #faq summary {
-  border: 2px solid #2E2210;
-  background-color: #2B2E0B;
+  border: 2px solid #b85d09;
+  background-color: #201e1d;
 }
 body.dark #vids iframe {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 body.dark .tablink {
-  color: #a78144;
-  background-color: #2B2E0B;
-  border-left: 7px solid #2E2210;
-  border-top: 2.5px solid #2E2210;
-  border-bottom: 2.5px solid #2E2210;
+  color: #e2a747;
+  background-color: #201e1d;
+  border-left: 7px solid #b85d09;
+  border-top: 2.5px solid #b85d09;
+  border-bottom: 2.5px solid #b85d09;
   transition: color 1s ease-in-out;
   transition: background-color 1s ease-in-out;
 }
 body.dark .tablink:hover {
-  color: #2B2E0B;
-  background-color: #2E2210;
+  color: #201e1d;
+  background-color: #b85d09;
 }
 body.dark #filter-error {
-  color: orange;
+  color: rgb(255, 0, 0);
 }
 body.dark #prods-grid article {
-  border: 5px dotted #2E2210;
+  border: 5px dotted #b85d09;
 }
 body.dark #prods-grid #prod-grid img {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 body.dark #prods-grid #prod-grid table {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 body.dark #prods-grid #prod-grid tr td {
-  border-bottom: 5px inset #2E2210;
+  border-bottom: 5px inset #b85d09;
 }
 body.dark #prods-grid #prod-grid tr td:nth-child(2) {
-  border-left: 5px inset #2E2210;
+  border-left: 5px inset #b85d09;
 }
 
 nav.dark ul.menu > li {
-  border: 2px solid #2E2210;
-  background-color: #2B2E0B;
+  border: 2px solid #b85d09;
+  background-color: #201e1d;
 }
 nav.dark ul.menu ul {
-  background-color: #2B2E0B;
+  background-color: #201e1d;
 }
 nav.dark ul.menu ul li {
-  border: 2px solid #2E2210;
+  border: 2px solid #b85d09;
 }
 nav.dark ul.menu ul li a::before {
-  background: linear-gradient(90deg, #0E0E2E 0%, #2B2E0B 100%);
+  background: linear-gradient(90deg, #070718 0%, #201e1d 100%);
 }
 nav.dark ul.menu ul li a::after {
-  background: linear-gradient(270deg, #0E0E2E 0%, #2B2E0B 100%);
+  background: linear-gradient(270deg, #070718 0%, #201e1d 100%);
 }
 nav.dark ul.menu a {
-  color: #a78144;
+  color: #e2a747;
 }
 
 #tabel_oferte.dark {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 #tabel_oferte.dark tbody > tr {
-  outline: rgba(46, 34, 16, 0);
+  outline: rgba(184, 93, 9, 0);
 }
 #tabel_oferte.dark tbody > tr:first-child td {
-  border-top: 1px solid #2E2210;
+  border-top: 1px solid #b85d09;
 }
 #tabel_oferte.dark tbody > tr:nth-child(even) td {
-  border-bottom: 1px solid #2E2210;
+  border-bottom: 1px solid #b85d09;
 }
 #tabel_oferte.dark tbody > tr:nth-child(odd) td {
-  border-bottom: 1px solid #747A18;
+  border-bottom: 1px solid #91991f;
 }
 #tabel_oferte.dark tbody > tr:hover {
-  outline: 5px inset rgba(46, 34, 16, 0.7);
+  outline: 5px inset rgba(184, 93, 9, 0.7);
 }
 #tabel_oferte.dark tbody > tr:hover > td {
   border: 0;
 }
 
 #link-top.dark {
-  border-color: #747A18;
+  border-color: #91991f;
 }
 #link-top.dark:hover > #triangle {
-  border-bottom-color: #a78144;
+  border-bottom-color: #e2a747;
 }
 #link-top.dark > #triangle {
-  border-bottom-color: #747A18;
-  border-bottom: 1rem solid #747A18;
+  border-bottom-color: #91991f;
+  border-bottom: 1rem solid #91991f;
 }
 
 #theme-picker.dark ul {
-  border: 2px solid #2E2210;
-  background: #2B2E0B;
+  border: 2px solid #b85d09;
+  background: #201e1d;
 }
 #theme-picker.dark ul > li {
-  border: 2px solid #2E2210;
+  border: 2px solid #b85d09;
 }
 #theme-picker.dark ul > li:first-child {
   opacity: 1;
 }
 
 #product-table.dark img {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 #product-table.dark table {
-  border: 5px inset #2E2210;
+  border: 5px inset #b85d09;
 }
 #product-table.dark table tr td {
-  border-bottom: 5px inset #2E2210;
+  border-bottom: 5px inset #b85d09;
 }
 #product-table.dark table tr td:nth-child(2) {
-  border-left: 5px inset #2E2210;
+  border-left: 5px inset #b85d09;
 }
 
 #banner.dark {
-  color: #2E2210;
-  background: #a78144;
-  border: 4px inset #2E2210;
+  color: #b85d09;
+  background: #e2a747;
+  border: 4px inset #b85d09;
   animation-name: banner_animation_dark;
 }
 
 body.pastel {
   background-color: #F0CF91;
-  color: #A38752;
+  color: #493d26;
 }
 body.pastel a {
-  color: #ebffb3;
+  color: #606e3a;
 }
 body.pastel a:hover {
-  color: #416CA3;
+  color: #4975af;
 }
 body.pastel p::selection, body.pastel td::selection, body.pastel th::selection, body.pastel figcaption::selection, body.pastel address::selection, body.pastel i::selection, body.pastel s::selection, body.pastel em::selection, body.pastel strong::selection, body.pastel h1::selection, body.pastel h2::selection, body.pastel h3::selection, body.pastel h4::selection, body.pastel h5::selection {
-  background-color: #A38752;
-  color: #416CA3;
+  background-color: #493d26;
+  color: #4975af;
   text-shadow: -1px -2px 1px #90BAF0;
 }
 body.pastel #grid > * {
-  border: 5px dotted #416CA3;
+  border: 5px dotted #4975af;
 }
 body.pastel #faq summary {
-  border: 2px solid #416CA3;
+  border: 2px solid #4975af;
   background-color: #90BAF0;
 }
 body.pastel #vids iframe {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 body.pastel .tablink {
-  color: #A38752;
+  color: #493d26;
   background-color: #90BAF0;
-  border-left: 7px solid #416CA3;
-  border-top: 2.5px solid #416CA3;
-  border-bottom: 2.5px solid #416CA3;
+  border-left: 7px solid #4975af;
+  border-top: 2.5px solid #4975af;
+  border-bottom: 2.5px solid #4975af;
   transition: color 1s ease-in-out;
   transition: background-color 1s ease-in-out;
 }
 body.pastel .tablink:hover {
   color: #90BAF0;
-  background-color: #416CA3;
+  background-color: #4975af;
 }
 body.pastel #filter-error {
-  color: navy;
+  color: rgb(255, 0, 0);
 }
 body.pastel #prods-grid article {
-  border: 5px dotted #416CA3;
+  border: 5px dotted #4975af;
 }
 body.pastel #prods-grid #prod-grid img {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 body.pastel #prods-grid #prod-grid table {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 body.pastel #prods-grid #prod-grid tr td {
-  border-bottom: 5px inset #416CA3;
+  border-bottom: 5px inset #4975af;
 }
 body.pastel #prods-grid #prod-grid tr td:nth-child(2) {
-  border-left: 5px inset #416CA3;
+  border-left: 5px inset #4975af;
 }
 
 nav.pastel ul.menu > li {
-  border: 2px solid #416CA3;
+  border: 2px solid #4975af;
   background-color: #90BAF0;
 }
 nav.pastel ul.menu ul {
   background-color: #90BAF0;
 }
 nav.pastel ul.menu ul li {
-  border: 2px solid #416CA3;
+  border: 2px solid #4975af;
 }
 nav.pastel ul.menu ul li a::before {
   background: linear-gradient(90deg, #F0CF91 0%, #90BAF0 100%);
@@ -363,217 +363,217 @@ nav.pastel ul.menu ul li a::after {
   background: linear-gradient(270deg, #F0CF91 0%, #90BAF0 100%);
 }
 nav.pastel ul.menu a {
-  color: #A38752;
+  color: #493d26;
 }
 
 #tabel_oferte.pastel {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 #tabel_oferte.pastel tbody > tr {
-  outline: rgba(65, 108, 163, 0);
+  outline: rgba(73, 117, 175, 0);
 }
 #tabel_oferte.pastel tbody > tr:first-child td {
-  border-top: 1px solid #416CA3;
+  border-top: 1px solid #4975af;
 }
 #tabel_oferte.pastel tbody > tr:nth-child(even) td {
-  border-bottom: 1px solid #416CA3;
+  border-bottom: 1px solid #4975af;
 }
 #tabel_oferte.pastel tbody > tr:nth-child(odd) td {
-  border-bottom: 1px solid #ebffb3;
+  border-bottom: 1px solid #606e3a;
 }
 #tabel_oferte.pastel tbody > tr:hover {
-  outline: 5px inset rgba(65, 108, 163, 0.7);
+  outline: 5px inset rgba(73, 117, 175, 0.7);
 }
 #tabel_oferte.pastel tbody > tr:hover > td {
   border: 0;
 }
 
 #link-top.pastel {
-  border-color: #ebffb3;
+  border-color: #606e3a;
 }
 #link-top.pastel:hover > #triangle {
-  border-bottom-color: #A38752;
+  border-bottom-color: #493d26;
 }
 #link-top.pastel > #triangle {
-  border-bottom-color: #ebffb3;
-  border-bottom: 1rem solid #ebffb3;
+  border-bottom-color: #606e3a;
+  border-bottom: 1rem solid #606e3a;
 }
 
 #theme-picker.pastel ul {
-  border: 2px solid #416CA3;
+  border: 2px solid #4975af;
   background: #90BAF0;
 }
 #theme-picker.pastel ul > li {
-  border: 2px solid #416CA3;
+  border: 2px solid #4975af;
 }
 #theme-picker.pastel ul > li:nth-child(2) {
   opacity: 1;
 }
 
 #product-table.pastel img {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 #product-table.pastel table {
-  border: 5px inset #416CA3;
+  border: 5px inset #4975af;
 }
 #product-table.pastel table tr td {
-  border-bottom: 5px inset #416CA3;
+  border-bottom: 5px inset #4975af;
 }
 #product-table.pastel table tr td:nth-child(2) {
-  border-left: 5px inset #416CA3;
+  border-left: 5px inset #4975af;
 }
 
 #banner.pastel {
-  color: #416CA3;
-  background: #A38752;
-  border: 4px inset #416CA3;
+  color: #4975af;
+  background: #493d26;
+  border: 4px inset #4975af;
   animation-name: banner_animation_pastel;
 }
 
 body.fire {
-  background-color: #C26D29;
-  color: #F5B21B;
+  background-color: #f7af75;
+  color: #534115;
 }
 body.fire a {
-  color: #1BF59C;
+  color: #1d6b4c;
 }
 body.fire a:hover {
-  color: #5C4F33;
+  color: #bd3d3d;
 }
 body.fire p::selection, body.fire td::selection, body.fire th::selection, body.fire figcaption::selection, body.fire address::selection, body.fire i::selection, body.fire s::selection, body.fire em::selection, body.fire strong::selection, body.fire h1::selection, body.fire h2::selection, body.fire h3::selection, body.fire h4::selection, body.fire h5::selection {
-  background-color: #F5B21B;
-  color: #5C4F33;
-  text-shadow: -1px -2px 1px #5a948c;
+  background-color: #534115;
+  color: #bd3d3d;
+  text-shadow: -1px -2px 1px #4bc5b5;
 }
 body.fire #grid > * {
-  border: 5px dotted #5C4F33;
+  border: 5px dotted #bd3d3d;
 }
 body.fire #faq summary {
-  border: 2px solid #5C4F33;
-  background-color: #5a948c;
+  border: 2px solid #bd3d3d;
+  background-color: #4bc5b5;
 }
 body.fire #vids iframe {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 body.fire .tablink {
-  color: #F5B21B;
-  background-color: #5a948c;
-  border-left: 7px solid #5C4F33;
-  border-top: 2.5px solid #5C4F33;
-  border-bottom: 2.5px solid #5C4F33;
+  color: #534115;
+  background-color: #4bc5b5;
+  border-left: 7px solid #bd3d3d;
+  border-top: 2.5px solid #bd3d3d;
+  border-bottom: 2.5px solid #bd3d3d;
   transition: color 1s ease-in-out;
   transition: background-color 1s ease-in-out;
 }
 body.fire .tablink:hover {
-  color: #5a948c;
-  background-color: #5C4F33;
+  color: #4bc5b5;
+  background-color: #bd3d3d;
 }
 body.fire #filter-error {
-  color: teal;
+  color: rgb(255, 0, 0);
 }
 body.fire #prods-grid article {
-  border: 5px dotted #5C4F33;
+  border: 5px dotted #bd3d3d;
 }
 body.fire #prods-grid #prod-grid img {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 body.fire #prods-grid #prod-grid table {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 body.fire #prods-grid #prod-grid tr td {
-  border-bottom: 5px inset #5C4F33;
+  border-bottom: 5px inset #bd3d3d;
 }
 body.fire #prods-grid #prod-grid tr td:nth-child(2) {
-  border-left: 5px inset #5C4F33;
+  border-left: 5px inset #bd3d3d;
 }
 
 nav.fire ul.menu > li {
-  border: 2px solid #5C4F33;
-  background-color: #5a948c;
+  border: 2px solid #bd3d3d;
+  background-color: #4bc5b5;
 }
 nav.fire ul.menu ul {
-  background-color: #5a948c;
+  background-color: #4bc5b5;
 }
 nav.fire ul.menu ul li {
-  border: 2px solid #5C4F33;
+  border: 2px solid #bd3d3d;
 }
 nav.fire ul.menu ul li a::before {
-  background: linear-gradient(90deg, #C26D29 0%, #5a948c 100%);
+  background: linear-gradient(90deg, #f7af75 0%, #4bc5b5 100%);
 }
 nav.fire ul.menu ul li a::after {
-  background: linear-gradient(270deg, #C26D29 0%, #5a948c 100%);
+  background: linear-gradient(270deg, #f7af75 0%, #4bc5b5 100%);
 }
 nav.fire ul.menu a {
-  color: #F5B21B;
+  color: #534115;
 }
 
 #tabel_oferte.fire {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 #tabel_oferte.fire tbody > tr {
-  outline: rgba(92, 79, 51, 0);
+  outline: rgba(189, 61, 61, 0);
 }
 #tabel_oferte.fire tbody > tr:first-child td {
-  border-top: 1px solid #5C4F33;
+  border-top: 1px solid #bd3d3d;
 }
 #tabel_oferte.fire tbody > tr:nth-child(even) td {
-  border-bottom: 1px solid #5C4F33;
+  border-bottom: 1px solid #bd3d3d;
 }
 #tabel_oferte.fire tbody > tr:nth-child(odd) td {
-  border-bottom: 1px solid #1BF59C;
+  border-bottom: 1px solid #1d6b4c;
 }
 #tabel_oferte.fire tbody > tr:hover {
-  outline: 5px inset rgba(92, 79, 51, 0.7);
+  outline: 5px inset rgba(189, 61, 61, 0.7);
 }
 #tabel_oferte.fire tbody > tr:hover > td {
   border: 0;
 }
 
 #link-top.fire {
-  border-color: #1BF59C;
+  border-color: #1d6b4c;
 }
 #link-top.fire:hover > #triangle {
-  border-bottom-color: #F5B21B;
+  border-bottom-color: #534115;
 }
 #link-top.fire > #triangle {
-  border-bottom-color: #1BF59C;
-  border-bottom: 1rem solid #1BF59C;
+  border-bottom-color: #1d6b4c;
+  border-bottom: 1rem solid #1d6b4c;
 }
 
 #theme-picker.fire ul {
-  border: 2px solid #5C4F33;
-  background: #5a948c;
+  border: 2px solid #bd3d3d;
+  background: #4bc5b5;
 }
 #theme-picker.fire ul > li {
-  border: 2px solid #5C4F33;
+  border: 2px solid #bd3d3d;
 }
 #theme-picker.fire ul > li:nth-child(3) {
   opacity: 1;
 }
 
 #product-table.fire img {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 #product-table.fire table {
-  border: 5px inset #5C4F33;
+  border: 5px inset #bd3d3d;
 }
 #product-table.fire table tr td {
-  border-bottom: 5px inset #5C4F33;
+  border-bottom: 5px inset #bd3d3d;
 }
 #product-table.fire table tr td:nth-child(2) {
-  border-left: 5px inset #5C4F33;
+  border-left: 5px inset #bd3d3d;
 }
 
 #banner.fire {
-  color: #5C4F33;
-  background: #F5B21B;
-  border: 4px inset #5C4F33;
+  color: #bd3d3d;
+  background: #534115;
+  border: 4px inset #bd3d3d;
   animation-name: banner_animation_fire;
 }
 
 body.metal {
   background-color: black;
-  color: #792020;
+  color: #db1515;
 }
 body.metal a {
   color: #c1c424;
@@ -582,23 +582,23 @@ body.metal a:hover {
   color: #2b4de2;
 }
 body.metal p::selection, body.metal td::selection, body.metal th::selection, body.metal figcaption::selection, body.metal address::selection, body.metal i::selection, body.metal s::selection, body.metal em::selection, body.metal strong::selection, body.metal h1::selection, body.metal h2::selection, body.metal h3::selection, body.metal h4::selection, body.metal h5::selection {
-  background-color: #792020;
+  background-color: #db1515;
   color: #490349;
-  text-shadow: -1px -2px 1px #2a42ad;
+  text-shadow: -1px -2px 1px #303033;
 }
 body.metal #grid > * {
   border: 5px dotted #490349;
 }
 body.metal #faq summary {
   border: 2px solid #490349;
-  background-color: #2a42ad;
+  background-color: #303033;
 }
 body.metal #vids iframe {
   border: 5px inset #490349;
 }
 body.metal .tablink {
-  color: #792020;
-  background-color: #2a42ad;
+  color: #db1515;
+  background-color: #303033;
   border-left: 7px solid #490349;
   border-top: 2.5px solid #490349;
   border-bottom: 2.5px solid #490349;
@@ -606,11 +606,11 @@ body.metal .tablink {
   transition: background-color 1s ease-in-out;
 }
 body.metal .tablink:hover {
-  color: #2a42ad;
+  color: #303033;
   background-color: #490349;
 }
 body.metal #filter-error {
-  color: #df8129;
+  color: rgb(255, 0, 0);
 }
 body.metal #prods-grid article {
   border: 5px dotted #490349;
@@ -630,22 +630,22 @@ body.metal #prods-grid #prod-grid tr td:nth-child(2) {
 
 nav.metal ul.menu > li {
   border: 2px solid #490349;
-  background-color: #2a42ad;
+  background-color: #303033;
 }
 nav.metal ul.menu ul {
-  background-color: #2a42ad;
+  background-color: #303033;
 }
 nav.metal ul.menu ul li {
   border: 2px solid #490349;
 }
 nav.metal ul.menu ul li a::before {
-  background: linear-gradient(90deg, black 0%, #2a42ad 100%);
+  background: linear-gradient(90deg, black 0%, #303033 100%);
 }
 nav.metal ul.menu ul li a::after {
-  background: linear-gradient(270deg, black 0%, #2a42ad 100%);
+  background: linear-gradient(270deg, black 0%, #303033 100%);
 }
 nav.metal ul.menu a {
-  color: #792020;
+  color: #db1515;
 }
 
 #tabel_oferte.metal {
@@ -674,7 +674,7 @@ nav.metal ul.menu a {
   border-color: #c1c424;
 }
 #link-top.metal:hover > #triangle {
-  border-bottom-color: #792020;
+  border-bottom-color: #db1515;
 }
 #link-top.metal > #triangle {
   border-bottom-color: #c1c424;
@@ -683,7 +683,7 @@ nav.metal ul.menu a {
 
 #theme-picker.metal ul {
   border: 2px solid #490349;
-  background: #2a42ad;
+  background: #303033;
 }
 #theme-picker.metal ul > li {
   border: 2px solid #490349;
@@ -707,7 +707,7 @@ nav.metal ul.menu a {
 
 #banner.metal {
   color: #490349;
-  background: #792020;
+  background: #db1515;
   border: 4px inset #490349;
   animation-name: banner_animation_metal;
 }

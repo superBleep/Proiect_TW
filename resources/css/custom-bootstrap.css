@@ -8142,3 +8142,18 @@ nav > label {
     display: block;
   }
 }
+#login_form {
+  top: 2em !important;
+}
+#login_form label {
+  padding-right: 0.5em;
+}
+#login_form input {
+  margin: revert;
+  font-size: revert;
+  font-family: revert;
+  line-height: revert;
+}
+#login_form input:not([type=submit]) {
+  float: unset !important;
+}

@@ -6,26 +6,50 @@
         <title>AllMuzica - înregistrare </title>
         
         <%- include("../fragments/head") %>
-        <script type="text/javascript" src=/resources/js/signup.js></script>
+
+        <style>
+            form {
+                display: inline-block;
+                text-align: left;
+            }
+
+            form label {
+                padding-right: 0.5em;
+            }
+
+            form input:not([type="submit"]), form select {
+                float: right;
+            }
+        </style>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                let p = document.getElementById("eroareSignup");
+                if(p) {
+                    setTimeout(function() {
+                        p.style.display = "none";
+                    }, 4000)
+                }
+            })
+        </script>
     </head>
 
     <body>
         <%- include("../fragments/header") %>
 
         <main>
-            <div class="afisaj">
-                <h1>Inregistrare utilizator</h1>
+            <h1>Inregistrare utilizator</h1>
 
-                <% if(!locals.raspuns) { %>    
-                    <%-include("../fragments/form", {action: "/signup"}) %>
-                <% } %>
-                <% if(locals.raspuns) { %>
-                    <%- locals.raspuns+"<br/>"%>
-                <% } %>
-                <% if(locals.err) { %>
-                    <%- locals.err %>
-                <% } %>
-            </div>
+            <% if(!locals.raspuns) { %>    
+                <%-include("../fragments/form", {action: "/signup"}) %>
+            <% } %>
+            <% if(locals.raspuns) { %>
+                <%- locals.raspuns + "<br/>"%>
+            <% } %>
+
+            <% if(locals.err) { %>
+                <p id="eroareSignup"><%- locals.err %></p>
+            <% } %>
         </main>
             
         <%- include("../fragments/footer") %>

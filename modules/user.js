@@ -35,12 +35,7 @@ class User {
             console.log(this.#eroare);
         }
 
-        if(date_of_birth != undefined) {
-            this.date_of_birth = `TO_DATE('${date_of_birth}', 'YYYY-MM-DD')`;
-        } else {
-            this.date_of_birth = date_of_birth;
-        }
-
+        this.date_of_birth = date_of_birth
         this.register_date = register_date;
         this.chat_color = chat_color;
         this.role = role;
@@ -88,7 +83,11 @@ class User {
      * @returns {Boolean}
      */
     checkPhone(phone) {
-        return email.match(new RegExp("\+?0[0-9]{9,}"));
+        if(phone) {
+            return phone.match(new RegExp("\\+?0[0-9]{9,}"));
+        }
+        else
+            return null
     }
 
     /**
@@ -101,7 +100,7 @@ class User {
         
         let values = [];
         for (const key in updateParams) {
-            values.push(`'${updateParams[key]}'`);
+            values.push(`${updateParams[key]}`);
         }
 
         dbAcc.update({
@@ -168,7 +167,7 @@ class User {
         let fieldsArr = ["username", "surname", "name", "email", "password", "register_date", "chat_color", "role", "token", "confirmed", "saltstring"]
 
         if(this.date_of_birth != undefined) {
-            valuesArr.push(`'${this.date_of_birth}'`);
+            valuesArr.push(`TO_DATE('${this.date_of_birth}', 'YYYY-MM-DD')`);
             fieldsArr.push("date_of_birth");
         }
         if(this.phone != undefined) {
@@ -190,8 +189,8 @@ class User {
             }
             user.emailSender("Salut, stimate " + user.surname, "Username-ul tău este " + user.username + "pe site-ul www.allmuzica.ro", `
             <h1>Hello!</h1>
-            <p style='color:purple'>
-                Username-ul tău este ${user.username} pe site-ul <a href='${user.domainName}' style='font-weight: bold; font-style: italic; text-decoration-line: underline;'>www.allmuzica.ro</a>.
+            <p>
+                Username-ul tău este ${user.username} pe site-ul <a href='http://${User.domainName}/index' style='font-weight: bold; font-style: italic; text-decoration-line: underline;'>www.allmuzica.ro</a>.
             </p> 
             <p>
                 <a href='http://${User.domainName}/cod_mail/${token}-${Date.now()}/${user.username.toUpperCase()}'>Click aici pentru confirmare</a>
@@ -281,6 +280,7 @@ class User {
      * @param {Function} callback - Functia de callback a interogarii 
      */
     static search(obParam, callback) {
+        let userList = [];
         let conds = [];
         let error = null;
         let dbAcc = dbAccess.getInstance(User.connectionType);
@@ -291,7 +291,7 @@ class User {
             }
         }
 
-        selectRes = dbAcc.select({
+        dbAcc.select({
             table: "users",
             fields: ["*"],
             andConds: conds
@@ -303,7 +303,11 @@ class User {
                 error = "User.search: users not found";
             }
 
-            callback(error, res.rows);
+            for(let user of res.rows) {
+                userList.push(new User(user));
+            }
+
+            callback(error, userList);
         })
     }
 
@@ -313,8 +317,8 @@ class User {
      * @returns {Object}
      */
     static async searchAsync(obparam) {
+        let userList = [];
         let conds = [];
-        let userList;
         let dbAcc = dbAccess.getInstance(User.connectionType);
 
         for (let prop in obparam) {
@@ -323,19 +327,15 @@ class User {
             }
         }
 
-        selectRes = dbAcc.select({
+        let selectRes = await dbAcc.selectAsync({
             table: "users",
             fields: ["*"],
             andConds: conds
-        }, function (err, res) {
-            if (err || res.rowCount == 0) {
-                console.error("search:", err);
-
-                throw new Error(err);
-            }
-
-            userList = res.rows;
         });
+
+        for(let user of selectRes.rows) {
+            userList.push(new User(user));
+        }
 
         return userList;
     }

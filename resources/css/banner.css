@@ -7,7 +7,7 @@
   padding: 1em;
   z-index: 99;
   color: #675EDB;
-  background: #DBCD7F;
+  background: #3c0e61;
   border: 4px inset #675EDB;
   animation-name: banner_animation_light;
   animation-duration: 5s;
@@ -19,80 +19,80 @@
 @keyframes banner_animation_light {
   0% {
     transform: translateX(-100vw);
-    background: #DBCD7F;
+    background: #3c0e61;
     border: 4px inset #675EDB;
   }
   50% {
     background: #675EDB;
-    border: 4px inset #DBCD7F;
+    border: 4px inset #3c0e61;
   }
   100% {
     transform: translateX(0);
-    background: #DBCD7F;
+    background: #3c0e61;
     border: 4px inset #675EDB;
   }
 }
 @keyframes banner_animation_dark {
   0% {
     transform: translateX(-100vw);
-    background: #a78144;
-    border: 4px inset #2E2210;
+    background: #e2a747;
+    border: 4px inset #b85d09;
   }
   50% {
-    background: #2E2210;
-    border: 4px inset #a78144;
+    background: #b85d09;
+    border: 4px inset #e2a747;
   }
   100% {
     transform: translateX(0);
-    background: #a78144;
-    border: 4px inset #2E2210;
+    background: #e2a747;
+    border: 4px inset #b85d09;
   }
 }
 @keyframes banner_animation_pastel {
   0% {
     transform: translateX(-100vw);
-    background: #A38752;
-    border: 4px inset #416CA3;
+    background: #493d26;
+    border: 4px inset #4975af;
   }
   50% {
-    background: #416CA3;
-    border: 4px inset #A38752;
+    background: #4975af;
+    border: 4px inset #493d26;
   }
   100% {
     transform: translateX(0);
-    background: #A38752;
-    border: 4px inset #416CA3;
+    background: #493d26;
+    border: 4px inset #4975af;
   }
 }
 @keyframes banner_animation_fire {
   0% {
     transform: translateX(-100vw);
-    background: #F5B21B;
-    border: 4px inset #5C4F33;
+    background: #534115;
+    border: 4px inset #bd3d3d;
   }
   50% {
-    background: #5C4F33;
-    border: 4px inset #F5B21B;
+    background: #bd3d3d;
+    border: 4px inset #534115;
   }
   100% {
     transform: translateX(0);
-    background: #F5B21B;
-    border: 4px inset #5C4F33;
+    background: #534115;
+    border: 4px inset #bd3d3d;
   }
 }
 @keyframes banner_animation_metal {
   0% {
     transform: translateX(-100vw);
-    background: #792020;
+    background: #db1515;
     border: 4px inset #490349;
   }
   50% {
     background: #490349;
-    border: 4px inset #792020;
+    border: 4px inset #db1515;
   }
   100% {
     transform: translateX(0);
-    background: #792020;
+    background: #db1515;
     border: 4px inset #490349;
   }
 }

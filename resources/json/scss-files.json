@@ -17,6 +17,7 @@
         "product",
         "themes",
         "theme-picker",
-        "banner"
+        "banner",
+        "profile"
     ]
 }

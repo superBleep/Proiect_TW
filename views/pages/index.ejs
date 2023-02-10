@@ -210,13 +210,22 @@
                 </section>
 
                 <section id="users">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus arcu odio, vestibulum tristique justo convallis tempor. Nam vitae mi dolor. Nulla facilisi. Nam a vehicula felis. Quisque nisl risus, semper sed pulvinar in, sodales ac sapien. Praesent non auctor justo, non varius nibh. Mauris eget neque at mi semper finibus sit amet non dui. Duis sed arcu urna. Sed vel lacus leo. Morbi magna arcu, tincidunt id lorem ut, placerat imperdiet risus. Morbi eleifend eu turpis gravida consectetur. Nunc dapibus ex eu lectus placerat tristique. Etiam accumsan, ligula vitae vulputate scelerisque, justo arcu aliquam orci, in consequat quam ex eget purus. Duis ut felis id felis posuere efficitur eget consequat dolor. Vestibulum sed lacus mi. Vestibulum feugiat rhoncus quam. </p>
+                    <h2>Useri online:</h2>
+                    <ol>
+                        <% if(locals.online_users) {
+                            for(let u of locals.online_users) { 
+                                if(u.access_date != null) { %>
+                                    <li style="color: <%-u.chat_color%>"><%-u.name%> <%-u.surname%> - <%-u.username%></li>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    </ol>
                 </section>
 
                 <section id="stats">
                     <h2>Date despre utilizatori</h2>
                     <p>IP-ul tău (știm, e un pic creepy): <i><%- locals.ip%></i></p>
-                    <% if(locals.utilizator) { %> 
+                    <% if(locals.utilizator && locals.utilizator.profile_img) { %> 
                         <figure>
                             <img src="<%- locals.utilizator.profile_img %>" alt="Imaginea ta de profil" width="100" height="100">
                             <figcaption>Imaginea ta de profil</figcaption>

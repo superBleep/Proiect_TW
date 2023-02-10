@@ -11,7 +11,7 @@
   border-left: 5px solid;
   border-right: 5px solid;
   border-radius: 35%;
-  border-color: #5ac048;
+  border-color: #11610e;
   opacity: 0.5;
 }
 #link-top:hover {
@@ -20,15 +20,15 @@
 }
 #link-top:hover > #triangle {
   transform: translateY(-30%);
-  border-bottom-color: #DBCD7F;
+  border-bottom-color: #3c0e61;
 }
 #link-top > #triangle {
   transform: translateY(0%);
-  border-bottom-color: #5ac048;
+  border-bottom-color: #11610e;
   transition: all 0.5s linear;
   display: inline-block;
   border-top: 0.4rem solid transparent;
-  border-bottom: 1rem solid #5ac048;
+  border-bottom: 1rem solid #11610e;
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
   vertical-align: top;

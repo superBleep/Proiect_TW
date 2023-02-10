@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <link rel="stylesheet" href="resources/css/custom-bootstrap.css" type="text/css">
+        <%- include("../fragments/head.ejs") %>
+
+        <title>Utilizatori</title>
+        <meta name="keywords" content="contact, adresă, telefon, discord">
+        <meta name="description" content="Pagina de administrare a utilizatorilor.">
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                let p = document.getElementById("statusUsers");
+                if(p != null) {
+                    setTimeout(function() {
+                        p.style.display = "none";
+                    }, 4000)
+                }
+            })
+        </script>
+    </head>
+
+    <body>
+        <%- include("../fragments/header.ejs") %>
+
+        <main>
+            <% if(locals.utilizator && locals.utilizator.role == "admin") { %>
+                <h2>Utilizatori</h2>
+
+                <table class="table table-sm table-dark table-bordered text-center">
+                    <thead class="text-uppercase text-white">
+                        <tr>
+                            <th><%- locals.columns[1] %></th>
+                            <th><%- locals.columns[2] %></th>
+                            <th><%- locals.columns[9] %></th>
+                            <th>Modifică rol</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% for(let user of locals.users) {
+                            if(user["id"] != locals.utilizator["id"]) { %>
+                                    <tr>
+                                        <td><%- user["username"] %></td>
+                                        <td><%- user["surname"] + " " + user["name"][0].toUpperCase() + "." %></td>
+                                        <td><%- user["role"]%></td>
+                                        <td><form method="post" action="/users">
+                                            <input hidden type="text" name="id-user" value="<%- user["id"] %>" readonly>
+                                            <input type="submit" value="Promovează/retrogradează">
+                                        </form></td>
+                                    </tr>
+                            <% } %>    
+                        <% } %> 
+                    </tbody>
+                </table>
+
+                <% if(locals.status) { %>
+                    <p id="statusUsers"><%- locals.status %></p>
+                <% } %>
+            <% } else { %>
+                <p>Pagina de utilizatori este destinată doar administratorilor!</p>
+            <% } %> 
+        </main>
+
+        <%- include("../fragments/footer.ejs")  %> 
+    </body>
+</html>

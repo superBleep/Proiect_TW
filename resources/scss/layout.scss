@@ -44,7 +44,6 @@ header, footer {
 
 header {
     height: 7.5em;
-    margin-bottom: 2em;
 
     h1 {
         position: relative;
@@ -148,17 +147,6 @@ header {
                             "f-anunturi f-anunturi f-anunturi"
                             "f-users f-stats f-data"
                             "f-other f-other f-other";
-    }
-}
-
-@media screen and (max-width: 862px) {
-    header {
-        margin-bottom: 3em;
-
-        h1 {
-            position: absolute;
-            right: 1em;
-        }
     }
 }
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragments/head.ejs");  %> 
+
+        <meta name="description" content="Pagina de ștergere a contului utilizatorului">
+        <meta name="keywords" content="ștergere, utilizator">
+        <title>Ștergerea contului</title>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                let p = document.getElementById("eroareStergere");
+                if(p) {
+                    setTimeout(function() {
+                        p.style.display = "none";
+                    }, 4000)
+                }
+            })
+        </script>
+    </head>
+    
+    <body>
+        <%- include("../fragments/header.ejs");  %> 
+
+        <main>
+            <% if(locals.utilizator) { %>
+                <h2>Ștergerea contului</h2>
+                <p><strong>ATENȚIE:</strong> contul șters nu mai poate fi recuperat ulterior!</p>
+                <p>Pentru a-ți putea șterge contul, introdu parola:</p>
+                <form method="post" action="/deleteuser">
+                    <label for="inp-pass">Parola: </label>
+                    <input type="password" name="password" id="inp-pass" value="" required>
+                    <input type="submit" value="Șterge">
+                </form>
+
+                <% if(locals.err) { %>
+                    <p id="eroareStergere"><%- locals.err %></p>
+                <% } %>
+            <% } else { %>
+                <p>Nu există niciun utilizator logat! (și tu nu ar trebui să fi aici...)</p>
+            <% } %>
+        </main>
+        
+        <%- include("../fragments/footer.ejs");  %> 
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<title>Profil</title>
+		<%- include("../fragments/head") %>
+        
+		<% if(locals.utilizator) { %>
+			<script>
+				window.addEventListener("DOMContentLoaded", function() {
+					var opts = document.getElementById("inp-chat_color").options
+					for (let opt of opts)
+						if (opt.value == "<%- locals.utilizator.chat_color %>")
+							opt.selected = true;
+
+					const regex = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
+					var regexRes = "<%- locals.utilizator.date_of_birth %>".match(regex)
+					document.getElementById("inp-date_of_birth").value = regexRes[0];
+				});
+			</script>
+		<% } %>
+	</head>
+	<body>
+		<%- include("../fragments/header") %>
+
+		<main id="userprofile">
+			<h2>Profilul utilizatorului</h2>
+
+			<% if(!locals.resp) { %> 
+				<% if(locals.utilizator) { %>
+					<div id="big_profile_flex">
+						<form id="modify-form" method="post" action="<%- locals.action %>" enctype="multipart/form-data">
+							<p><label>
+								Nume: <input type="text" name="surname" id="inp-surname" value="<%- locals.utilizator.surname %>" pattern="^[A-Z][a-z]+$">
+							</label></p>
+							<p><label>
+								Prenume: <input type="text" name="name" id="inp-name" value="<%- locals.utilizator.name%>" pattern="^[A-Z][a-z]+$">
+							</label></p>
+							<p><label>
+								Username: <input type="text" name="username" id="inp-username" value="<%- locals.utilizator.username %>" pattern="[A-Za-z0-9]+" readonly>
+							</label></p>
+							<p><label>
+								Parola: <input type="password" name="new-pass" id="inp-new-pass" value="">
+							</label></p>
+							<p id="p-retyle"><label>
+								Reintrodu parola: <input type="password" name="r-new-pass" id="inp-r-new-pass" value="">
+							</label></p>
+							<p><label>
+								E-mail: <input type="text" name="email" id="inp-email" value="<%- locals.utilizator.email %>" size="50" pattern="[A-Za-z0-9]+@[A-Za-z]+.[a-z]+">
+							</label></p>
+							<p><label>
+								Data nașterii: <input type="date" name="date_of_birth" id="inp-date_of_birth">
+							</label></p>
+							<p id="testing"></p>
+							<p><label>
+								Culoare text chat: <select name="chat_color" id="inp-chat_color">
+									<option value="black">Negru</option>
+									<option value="green">Verde</option>
+									<option value="blue">Albastru</option>
+									<option value="blue">Roșu</option>
+									<option value="purple">Mov</option>
+								</select>
+							</label></p>
+							<p><label>
+								Telefon: <input type="tel" name="phone" id="inp-phone" value="<%- locals.utilizator.phone %>" pattern="\+?0[0-9]{9,}">
+							</label></p>
+							<p><label>
+								Imagine profil: <input type="file" name="profile_img" id="inp-profile_img">
+							</label></p>
+	
+							<p>
+								<input type="submit" value="Trimite">
+								<input type="reset" value="Resetează">
+							</p>
+	
+							<hr>
+
+							<p>Introdu parola pentru a salva modificările:</p>
+							<p>(parola veche în cazul că ai schimbat-o)</p>
+							<p><label>
+								Parola: <input type="password" name="password" id="inp-pass" value="" required>
+							</label></p>
+						</form>
+	
+						<div id="profile_flex">
+							<div>
+								<% if(locals.utilizator.profile_img) { %>
+									<img src="<%- locals.utilizator.profile_img %>" alt="Imagine profil" width="200", height="200">
+								<% } else { %>
+									<p>Fără imagine :(</p>
+								<% } %>
+							</div>
+							<div>
+								<p>Nume: <%- locals.utilizator.surname %></p>
+								<p>Prenume: <%- locals.utilizator.name %></p>
+								<p>Username: <%- locals.utilizator.username %></p>
+								<p>E-mail: <%- locals.utilizator.email %></p>
+							</div>
+							<div>
+								<%
+									let d = new Date(locals.utilizator.date_of_birth)
+									let months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+									let days = ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+									let full_date = d.getDate() + "/" + months[d.getMonth()] + "/" + d.getFullYear() + " (" + days[d.getDay()] + ")"
+								%>
+								<p>Data nașterii: <%- full_date %></p>
+								<p>Culoare text chat: <span><%- locals.utilizator.chat_color %></span></p>
+								<p>Telefon: <%- locals.utilizator.phone %></p>
+							</div>
+						</div>
+					</div>
+				<% } else { %>
+					<p>Nu există niciun utilizator logat! (și tu nu ar trebui să fi aici...)</p>
+				<% } %>
+			<% } else { %>
+				<%- locals.resp + "<br/>" %>
+			<% } %>
+
+			<% if(locals.err) { %>
+				<%- locals.err %>
+			<% } %>
+		</main>
+		
+		<%- include("../fragments/footer") %>
+	</body>
+</html>
