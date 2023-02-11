@@ -9,6 +9,7 @@
  * @property {Symbol} insertProduct - Dreptul de a insera un produs in tabel
  * @property {Symbol} deleteProducts - Dreptul de a sterge produse din tabel
  * @property {Symbol} viewGraphs - Dreptul de a vizualiza graficele
+ * @property {Symbol} modifyStock - Dreptul de a modifica stocul produselor
  */
 const Privileges = {
     viewUsers: Symbol("viewUsers"),
@@ -17,7 +18,8 @@ const Privileges = {
     buyProducts: Symbol("buyProducts"),
     insertProduct: Symbol("insertProducts"),
     deleteProducts: Symbol("deleteProducts"),
-    viewGraphs: Symbol("viewGraphs")
+    viewGraphs: Symbol("viewGraphs"),
+    modifyStock: Symbol("modifyStock")
 }
 
 module.exports = Privileges;

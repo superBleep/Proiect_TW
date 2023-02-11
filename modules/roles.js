@@ -82,11 +82,11 @@ class AdminRole extends Role {
     }
 
     /**
-     * Returneaza privilegiul asociat clasei
-     * In cazul clasei AdminRole - toate privilegiile
-     * @returns {Boolean} true
+     * Administratorii au toate privilegiile
+     * @param {string} privilege - privilegiul de verificat 
+     * @returns {Boolean} True
      */
-    hasPrivilege() {
+    hasPrivilege(privilege) {
         return true;
     }
 }
@@ -110,8 +110,6 @@ class ModRole extends Role {
             Privileges.viewUsers,
             Privileges.updateUsers,
             Privileges.deleteUsers,
-            Privileges.insertProduct,
-            Privileges.deleteProducts,
             Privileges.viewGraphs
         ]
     }
@@ -137,6 +135,5 @@ class RoleFactory {
 }
 
 module.exports = {
-    RoleFactory: RoleFactory,
-    AdminRole: AdminRole
+    RoleFactory: RoleFactory
 }

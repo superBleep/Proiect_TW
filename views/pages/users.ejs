@@ -24,7 +24,7 @@
         <%- include("../fragments/header.ejs") %>
 
         <main>
-            <% if(locals.utilizator && locals.utilizator.role == "admin") { %>
+            <% if(locals.utilizator && locals.obutilizator.hasPrivilege(Privileges.updateUsers)) { %>
                 <h2>Utilizatori</h2>
 
                 <table class="table table-sm table-dark table-bordered text-center">

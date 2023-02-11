@@ -7,11 +7,18 @@ const {User} = require("./modules/user.js");
 const {dbAccess} = require("./modules/dbaccess.js");
 const session = require(`express-session`);
 const crypto = require("crypto");
+const QRCode = require("qrcode");
+const Privileges = require("./modules/privileges.js");
+const puppeteer = require("puppeteer");
+const mongodb = require("mongodb");
+const ejs = require("ejs");
 
 var dbInstance = dbAccess.getInstance({init: "local"});
 var client = dbInstance.getClient();
 
 app = express();
+
+app.use(["/cart_products", "/buy"], express.json({limit: "2mb"}));
 
 app.use(session({
     secret: 'abcdef',
@@ -31,7 +38,11 @@ globalObj = {
     CC_BY: null,
     errors: null,
     prod_categs: null,
-    online_users: null
+    online_users: null,
+    protocol: "http",
+    domain: "localhost:8080",
+    mongoClient: mongodb.MongoClient,
+    dbMongo: null,
 }
 
 function generateSCSS() {
@@ -119,7 +130,7 @@ function getIp(req) {
     }
 }
 
-function deleteAccess(){
+function deleteAccess() {
     dbInstance.delete({
         table: "access",
         andConds: ["now() - access_date >= interval '1 day'"]
@@ -132,15 +143,62 @@ function deleteAccess(){
 deleteAccess();
 setInterval(deleteAccess, 60*60*1000);
 
+function generateQR() {
+    qr_path = "./resources/img/qrcode";
+    if(fs.existsSync(qr_path)) {
+        fs.rmSync(qr_path, {force: true, recursive: true});
+    }
+    fs.mkdirSync(qr_path);
+    
+    client.query("SELECT id FROM products", function(err, rez) {
+        for(let prod of rez.rows) {
+            let prod_path = globalObj.protocol + globalObj.domain + "/product/" + prod.id;
+            QRCode.toFile(qr_path + "/" + prod.id + ".png", prod_path);
+        }
+    });
+}
+generateQR();
+
+async function generatePdf(filename, html, callback) {
+    const chrome = await puppeteer.launch();
+    const document = await chrome.newPage();
+
+    await document.setContent(html, {waitUntil: ["domcontentloaded", "load", "networkidle0"]});
+    await document.pdf({
+        path: filename,
+        format: "A4"
+    });
+
+    await chrome.close();
+
+    if(callback) {
+        callback(filename);
+    }
+}
+
+
+globalObj.mongoClient.connect("mongodb://0.0.0.0:27017", function(err, database) {
+    if(err) {
+        console.log(err);
+    } else {
+        globalObj.dbMongo = database.db("allmuzica");
+    }
+});
+
 app.use("/*", function(req, res, next) {
     res.locals.utilizator = req.session.utilizator;
-    res.locals.galery_path = globalObj.galery_path
-    res.locals.prod_categs = globalObj.prod_categs
-    res.locals.images = globalObj.images
-    res.locals.online_users = globalObj.online_users
+    res.locals.obutilizator = new User(req.session.utilizator);
+    res.locals.galery_path = globalObj.galery_path;
+    res.locals.prod_categs = globalObj.prod_categs;
+    res.locals.images = globalObj.images;
+    res.locals.online_users = globalObj.online_users;
+    res.locals.Privileges = Privileges;
+    res.locals.mongoResults = globalObj.mongoResults;
 
     next();
 })
+
+
 
 app.all("/*", function(req, res, next) {
     let id_user = req.session.utilizator ? req.session.utilizator.id : null;
@@ -199,13 +257,21 @@ app.get("/contact", function(req, res) {
 app.get("/products", function(req, res) {
     distinctVals = {
         colors: null,
-        dates: null
+        dates: null,
+        exp_types: null,
+        columns: null
     }
     client.query("SELECT DISTINCT TO_CHAR(add_date, 'fmDD/TMMonth/YYYY') AS date FROM products", function(err, dates) {
         distinctVals.dates = dates.rows.map(function(e) {e = e.date; return e})
     })
     client.query("SELECT DISTINCT color FROM products", function(err, colors) {
         distinctVals.colors = colors.rows.map(function(e) {e = e.color; return e})
+    })
+    client.query("SELECT DISTINCT exp_type FROM products", function(err, types) {
+        distinctVals.exp_types = types.rows.map(function(e) {e = e.exp_type; return e});
+    })
+    client.query("SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'products'", function(err, columns) {
+        distinctVals.columns = columns.rows.map(function(e) {e = e.column_name; return e});
     })
     
     queryAdd = ""
@@ -238,6 +304,94 @@ app.get("/product/:id", function(req, res) {
             res.render("pages/product", {prod: rez.rows[0]});
         }
     });
+});
+app.post("/cart_products", function(req, res) {
+    if(req.body.ids_prod.length != 0) {
+        console.log(req.body.ids_prod)
+        dbInstance.select({
+            table: "products",
+            fields: ["id", "name", "price", "description", "exp_type", "color", "stoc"],
+            andConds: [`id IN (${req.body.ids_prod})`]
+        }, function(err, rez) {
+            if(err) {
+                res.send([]);
+            } else {
+                res.send(rez.rows);
+            }
+        });
+    }
+});
+app.post("/buy", function(req, res) {
+    if(req.session.utilizator) {
+        let u = new User(req.session.utilizator);
+
+        if(u.hasPrivilege(Privileges.buyProducts)) {
+            dbInstance.select({
+                table: "products",
+                fields: ["*"],
+                andConds: [`id IN (${req.body.ids_prod})`]
+            }, function(err, rez) {
+                if(!err && rez.rowCount > 0) {
+                    let bill_html = ejs.render(fs.readFileSync("views/pages/bill.ejs").toString("utf-8"), {
+                        protocol: globalObj.protocol,
+                        domain: globalObj.domain,
+                        products: rez.rows,
+                        utilizator: req.session.utilizator,
+                        prod_quants: req.body.prod_quants,
+                        ids_prod: req.body.ids_prod
+                    });
+    
+                    let timestamp = (new Date()).getTime();
+                    let filename = __dirname + `/temp/bill-${timestamp}.pdf`;
+    
+                    generatePdf(filename, bill_html, function(filename) {
+                        let textMsg = `Dragă ${req.session.utilizator.name}, ai mai jos factura produselor cumpărate.`
+                        let htmlMsg = `
+                            <h1>Dragă ${req.session.utilizator.name},</h1>
+                            <p>Ai mai jos factura produselor cumpărate de pe site-ul nostru.</p>
+                            <br><p>Echipa AllMuzica.</p>
+                            <a href="http://${User.domainName}/index">www.allmuzica.ro</a>`;
+                        
+                        u.emailSender("Factura produselor", textMsg, htmlMsg, [{
+                            filename: `facutura-${timestamp}.pdf`,
+                            content: fs.readFileSync(filename)
+                        }]);
+    
+                        res.send("Achiziție reușită!");
+                    });
+    
+                    let bill_products = {};
+                    for(let prod of rez.rows) {
+                        bill_products[`prod${prod.id}`] = {
+                            name: prod.name,
+                            price: prod.price,
+                            quantity: req.body.prod_quants[req.body.ids_prod.indexOf(prod.id.toString())]
+                        }
+                    }
+
+                    let billJson = {
+                        date: new Date(),
+                        surname: req.session.utilizator.surname,
+                        name: req.session.utilizator.name,
+                        username: req.session.utilizator.username,
+                        products: bill_products
+                    }
+    
+                    if(globalObj.dbMongo) {
+                        globalObj.dbMongo.collection("bills").insertOne(billJson, function(err, mongoRes) {
+                            if(err) {
+                                console.log(err);
+                            } else {
+                                console.log("mongoDb: inserted bill");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    } else {
+        res.send("Doar utilizatorii logați pot cumpăra produse!");
+    }
 });
 
 app.get("/*.ejs", function(req, res) {
@@ -483,13 +637,13 @@ app.post("/users", function(req, res) {
         let u = (await User.searchAsync({id: `${textFields["id-user"]}`}))[0];
         let mess = "", mess_title = "", rol = "";
 
-        if(u["role"] == "common") {
+        if(u["role"]["code"] == "common") {
             u.update({role: "admin"});
             mess = "promovat";
             mess_title = "Promovare";
             rol = "admin";
         }
-        else if(u["role"] == "admin") {
+        else if(u["role"]["code"] == "admin") {
             u.update({role: "common"});
             mess = "retrogradat";
             mess_title = "Retrogradare";
@@ -536,6 +690,10 @@ app.post("/deleteuser", function(req, res) {
                     <a href="http://${User.domainName}/index">www.allmuzica.ro</a>`
                 );
 
+                dbInstance.delete({
+                    table: "access",
+                    andConds: [`user_id=${u.id}`]
+                });
                 u.delete();
                 req.session.destroy();
                 res.locals.utilizator = null;
@@ -546,6 +704,31 @@ app.post("/deleteuser", function(req, res) {
             }
         } catch(e) {
             res.render("pages/deleteuser", {err: "Eroare: " + e.message});
+        }
+    });
+})
+
+app.get("/admin_bills", function(req, res) {
+    globalObj.dbMongo.collection("bills").find({}).toArray(function(err, findRes) {
+        if(err) {
+            console.log(err);
+        } else {
+            findRes.sort(function(a, b) {
+                if(a.date.getTime() < b.date.getTime()) {
+                    return -1;
+                } else if (a.date.getTime() == b.date.getTime()) {
+                    let comp = a.surname.localeCompare(b.surname);
+                    if(comp != 0) {
+                        return comp;
+                    } else {
+                        return a.name.localeCompare(b.name);
+                    }
+                }
+
+                return 1;
+            });
+
+            res.render("pages/admin_bills", {mongoResults: findRes})
         }
     });
 })

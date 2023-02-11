@@ -42,10 +42,10 @@
                 <li><a href="/index#desc">Descriere</a></li>
                 <li><a href="/index#oferte">Oferte</a></li>
                 <li><a href="/index#calendar">Calendar</a></li>
-                <li><a href="/index#anunturi">Anunturi</a></li>
+                <li><a href="/index#anunturi">Anunțuri</a></li>
                 <li><a href="/index#users">Utilizatori online</a></li>
-                <li><a href="/index#stats">Statistici site</a></li>
-                <li><a href="/index#data">Date despre site</a></li>
+                <li><a href="/index#stats">Datele utilizatorilor</a></li>
+                <li><a href="/index#data">Recorduri magazin</a></li>
                 <li><a href="/index#other">Altele</a></li>
             </ul>
         </li>
@@ -77,10 +77,12 @@
                 </ul>
             </li>
         <% } %>
-        <% if(locals.utilizator && locals.utilizator.role == "admin") { %>
+        <% if(locals.utilizator && locals.obutilizator.hasPrivilege(Privileges.updateUsers)) { %>
             <li><a href="/users"><div>Utilizatori</div></a></li>
-            <li><a href="/prodadmin"><div>Administrare</div></a></li>    
+            <li><a href="/admin_bills"><div>Facturi</div></a></li>
         <% } %>
+
+        <li><a href="/virtual_cart">Coș virtual</a></li>
     </ul>
 </nav>
 

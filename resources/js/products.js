@@ -64,9 +64,11 @@ function verifyInputs(inputs) {
         errFlag = true;
         errArray = errArray.concat(["nume"]);
         document.getElementById("inp-name").parentNode.style.color = fErrcolor;
+        document.getElementById("inp-name").classList.add("is-invalid");
     }
     else {
         document.getElementById("inp-name").parentNode.style.color = "inherit";
+        document.getElementById("inp-name").classList.remove("is-invalid");
     }
 
     var date_pattern = /\d{1,2}\/\w+\/\d\d\d\d/
@@ -251,6 +253,7 @@ function resetInputs() {
 
     document.getElementById("filter-error").style.display = "none";
     document.getElementById("inp-name").parentNode.style.color = "inherit";
+    document.getElementById("inp-name").classList.remove("is-invalid");
     document.getElementById("inp-date").parentNode.style.color = "inherit";
     document.getElementById("inp-exp-node").style.color = "inherit";
     document.getElementById("inp-weight").parentNode.style.color = "inherit";
@@ -329,7 +332,75 @@ function getSum() {
     }, 2000)
 }
 
+
+function getVirtualCart() {
+    let prod_ids = localStorage.getItem("virtual_cart");
+    let prod_quants = localStorage.getItem("v_cart_quants"); 
+
+    prod_ids = prod_ids ? prod_ids.split(",") : [];
+    prod_quants = prod_quants ? prod_quants.split(",") : [];
+
+    let i = 0
+    for(let id of prod_ids) {
+        let ch = document.querySelector(`[value='${id}'].c_select`);
+        let quant = document.querySelector(`[id='quant${id}'].c_quantity`);
+
+        if(ch) {
+            ch.checked = true;
+            quant.value = prod_quants[i];
+        } else {
+            console.log("Virtual cart id not found: ", id);
+        }
+
+        i++;
+    }
+}
+
+function putVirtualCart() {
+    let checkboxes = document.getElementsByClassName("c_select");
+    
+    for(let ch of checkboxes) {
+        ch.onchange = function() {
+            let prod_ids = localStorage.getItem("virtual_cart");
+            let prod_quants = localStorage.getItem("v_cart_quants");
+
+            prod_ids = prod_ids ? prod_ids.split(",") : [];
+            prod_quants = prod_quants ? prod_quants.split(",") : [];
+
+            let quant = document.getElementById("quant" + this.value);
+            let stock = document.getElementById("stoc" + this.value);
+            if(quant && !quant.value.match("^[1-9][0-9]*$")) {
+                quant.value = "";
+                quant.placeholder = "Introdu nr. întreg!";
+            }
+            console.log(quant.value, "?", stock.value, Number(quant.value) > Number(stock.value))
+            if(quant && Number(quant.value) > Number(stock.value)) {
+                quant.value = "";
+                quant.placeholder = "Nr. prea mare!";
+            }
+            
+            if(this.checked && quant.value.match("^[1-9][0-9]*$")) {
+                prod_ids.push(this.value);
+                prod_quants.push(quant.value);
+            } else {
+                let pos = prod_ids.indexOf(this.value);
+
+                if(pos != -1) {
+                    prod_ids.splice(pos, 1);
+                    prod_quants.splice(pos, 1);
+                }
+            }
+
+            localStorage.setItem("virtual_cart", prod_ids.join(","));
+            localStorage.setItem("v_cart_quants", prod_quants.join(","));
+        }
+    }
+}
+
 window.addEventListener("DOMContentLoaded", function() {
+    getVirtualCart();
+    putVirtualCart();
+
     getPrices();
 
     document.getElementById("filter").addEventListener("click", filter);

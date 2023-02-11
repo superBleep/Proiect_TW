@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragments/head.ejs");  %> 
+
+        <title>Facturile utilizatorilor</title>
+        <meta name="description" content="Facturile cumpărăturilor utilizatorilor">
+        <meta name="keywords" content="factura, facturi, utilizatori">
+
+        <style>
+            time[datetime*=Dec], time[datetime*=Ian], time[datetime*=Feb] {
+                color: rgb(40, 40, 204);
+            }
+            time[datetime*=Mar], time[datetime*=Apr], time[datetime*=Mai] {
+                color: rgb(98, 235, 19);
+            }
+            time[datetime*=Iun], time[datetime*=Iul], time[datetime*=Aug] {
+                color: rgb(235, 136, 23);
+            }
+            time[datetime*=Sep], time[datetime*=Oct], time[datetime*=Noi] {
+                color: rgb(230, 39, 96);
+            }
+        </style>
+    </head>
+    
+    <body>
+        <%- include("../fragments/header.ejs");  %> 
+
+        <main>
+            <h2>Facturile utilizatorilor</h2>
+            <% for(let bill of locals.mongoResults) { %>
+                <details>
+                    <%  let d = new Date(bill.date)
+                        let months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+                        let days = ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+                        let full_date = d.getDate() + "/" + months[d.getMonth()] + "/" + d.getFullYear() + " (" + days[d.getDay()] + ")"
+                    %>
+                    <summary><%- bill.surname %> <%- bill.name %> - <time datetime="<%- bill.date %>"><%- full_date %></time></summary>
+                    <%  let i = 1;
+                        for(let product in bill.products) { %>
+                            <h3>Produsul <%- i %></h3>
+                            <p>Nume: <%- bill.products[product]["name"] %></p>
+                            <p>Preț: <%- bill.products[product]["price"] %></p>
+                            <p>Cantitate: <%- bill.products[product]["quantity"] %></p>
+                            <% i++ %>
+                        <% } %>
+                </details>
+            <% } %>
+        </main>
+        
+        <%- include("../fragments/footer.ejs");  %> 
+    </body>
+</html>

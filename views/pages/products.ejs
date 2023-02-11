@@ -19,11 +19,15 @@
             <section id="filters">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-4 col-xl-3 text-center">
-                        <label>Nume: <input type="text" id="inp-name" placeholder="Numele produsului..."></label>
+                        <% 
+                                let nameStr = locals.distinctVals["columns"][8];
+                                nameStr = nameStr[0].toUpperCase() + nameStr.substring(1);
+                         %>
+                        <label><%- nameStr %>: <input type="text" id="inp-name" class="form-control bg-white text-dark" placeholder="Numele produsului..."></label>
                     </div>
                     <div class="col-md-4 col-xl-2 text-center">
                         <label>Data adăugării:
-                            <input class="w-75" list="datalist" id="inp-date" placeholder="zi/Luna/an">
+                            <input class="w-75" list="datalist" id="inp-date" placeholder="zi/luna/an">
                             <datalist id="datalist">
                                 <% for (let data of locals.distinctVals["dates"]) { %>
                                     <option value="<%-data%>"><%-data%></option>
@@ -47,26 +51,27 @@
                     </div>
                     <div class="col-md-4 col-xl-3 text-center">
                         <div class="form-floating">
+                            <% 
+                                let descrStr = locals.distinctVals["columns"][9];
+                                descrStr = descrStr[0].toUpperCase() + descrStr.substring(1);
+                            %>
                             <textarea id="inp-descr" class="form-control bg-white w-75 text-dark" placeholder="Introdu (o parte din) descrierea produsului..."></textarea>
-                            <label for="inp-desc">Descriere: </label>
+                            <label for="inp-desc"><%- descrStr %>:</label>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-4 col-xl-3 text-center">
                         <div id="inp-exp-node">Tip expediere:
-                            <p><label>Orice tip
-                                <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio">
+                            <p><label>
+                                <input id="inp-r1" name="inp-exp" value="Orice" unchecked type="radio"> Orice tip
                             </label></p>
-                            <p><label>Prin curier
-                                <input id="inp-r2" name="inp-exp" value="Curier" unchecked type="radio">
-                            </label></p>
-                            <p><label>Prin poștă
-                                <input id="inp-r3" name="inp-exp" value="Poștă" unchecked type="radio">
-                            </label></p>
-                            <p><label>De la centrul de distribuție
-                                <input id="inp-r4" name="inp-exp" value="De la centrul de distribuție" unchecked type="radio">
-                            </label></p>
+                            <%  var i = 1;
+                                for(let type of locals.distinctVals["exp_types"]) { %>
+                                <p><label>
+                                    <input id="inp-r<%-i%>" name="inp-exp" value="<%-type%>" unchecked type="radio"> <%- type %>
+                                </label></p>
+                            <% } %>
                         </div>
                     </div>
                     <div class="col-md-4 col-xl-2 text-center">
@@ -129,6 +134,18 @@
                             <h3><a href="/product/<%- prod.id %>">
                                 <span class="val-name"><%- prod.name %></span>
                             </a></h3>
+                            <% if(prod.stoc != 0) { %>
+                                <label class="cart-select">
+                                    Selectează: <input type="checkbox" class="c_select" value="<%- prod.id %>" autocomplete="off">
+                                </label>
+                                <label class="quantity">
+                                    Cantitate: <input id="quant<%-prod.id%>" type="text" class="c_quantity" pattern="^[1-9][0-9]*$">    
+                                </label>
+                            <% } else { %>
+                                <label class="cart-select">
+                                    Selectează: <input type="checkbox" value="<%- prod.id %>" autocomplete="off" disabled>
+                                </label>
+                            <% } %>
                             <div id="prod-grid">
                                 <img src= <%- prod.img_path %>>
                                 <table>
@@ -187,6 +204,15 @@
                                             <% } %>
                                             </span>  
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stoc</td>
+                                        <input hidden id="stoc<%-prod.id%>" type="text" value="<%-prod.stoc%>">
+                                        <% if(prod.stoc != 0) { %>
+                                            <td><%- prod.stoc %> buc.</td>
+                                        <% } else { %>
+                                            <td style="color: red; font-weight: bolder;">Stoc epuizat!</td>
+                                        <% } %>
                                     </tr>
                                 </table>
                             </div>

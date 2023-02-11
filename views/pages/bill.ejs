@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Factură</title>
+		<style>
+			body {
+				counter-reset: cnt;
+			}
+			#tabl {
+				border-collapse: collapse;
+			}
+			tr:not(.head) {
+				counter-increment: cnt;
+
+			}
+
+			#tabl td, #tabl th{
+				border: 1px solid black;
+			}
+
+			.count::before {
+				content: counter(cnt)
+			}
+
+			p {
+				color:grey
+			}
+
+			td {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Factură AllMuzica</h1>
+		<p>Dragă <%-locals.utilizator.surname %> <%-locals.utilizator.name %>, ai aici lista de produse achiziționate.</p> 
+		<p>Data cumpărării: 
+			<%  let d = new Date();
+				let months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+				let days = ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+				let full_date = d.getDate() + "/" + months[d.getMonth()] + "/" + d.getFullYear() + " (" + days[d.getDay()] + ")"
+			%>
+		<%- full_date %></p>
+		<div id="container-tabel">
+			<table id="tabl">
+				<thead>
+					<tr class="head">
+						<th>Nr. crt.</th>
+						<th>Produs</th>
+						<th>Preț</th>
+						<th>Cantitate</th>
+						<th>Tip expediere</th>
+						<th>Culoare</th>
+						<th>Imaginea produsului</th>
+						<th>QR</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% 
+					    var s = 0;
+                        for (let prod of locals.products) {
+                            s += parseFloat(prod.price) * locals.prod_quants[ids_prod.indexOf(prod.id.toString())]; %>
+                            <tr>
+								<td class="count"></td>
+                                <td><%- prod.name %></td>
+                                <td><%- prod.price %> RON</td>
+								<td><%- locals.prod_quants[ids_prod.indexOf(prod.id.toString())] %></td>
+								<td><%- prod.exp_type %></td>
+								<td><%- prod.color %></td>
+								<td><img src="<%- locals.protocol %>://<%- locals.domain %><%- prod.img_path %>" width="100" height="100"></td>
+                                <td><img src="<%- locals.protocol %>://<%- locals.domain %>/resources/img/qrcode/<%- prod.id %>.png"></td>
+                            </tr>
+                        <% } %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">Total: <%- s %> RON</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</body>
+</html>

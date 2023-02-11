@@ -1,4 +1,5 @@
 const {dbAccess} = require('./dbaccess.js');
+const {RoleFactory} = require("./roles.js");
 const nodemailer = require("nodemailer");
 const {generateToken} = require("./passtokens.js");
 const crypto = require("crypto");
@@ -38,7 +39,11 @@ class User {
         this.date_of_birth = date_of_birth
         this.register_date = register_date;
         this.chat_color = chat_color;
-        this.role = role;
+        if(typeof(role) == "string") {
+            this.role = RoleFactory.createRole(role);
+        } else {
+            this.role = RoleFactory.createRole(role["code"]);
+        }
         this.profile_img = profile_img;
         this.token = token;
         this.confirmed = confirmed;
@@ -163,7 +168,7 @@ class User {
         let user = this;
         let dbAcc = dbAccess.getInstance(User.connectionType);
 
-        let valuesArr = [`'${this.username}'`, `'${this.surname}'`, `'${this.name}'`, `'${this.email}'`, `'${encryptedPass}'`, 'CURRENT_DATE', `'${this.chat_color}'`, `'${this.role}'`, `'${token}'`, `'${this.confirmed}'`, `'${this.saltstring}'`]
+        let valuesArr = [`'${this.username}'`, `'${this.surname}'`, `'${this.name}'`, `'${this.email}'`, `'${encryptedPass}'`, 'CURRENT_DATE', `'${this.chat_color}'`, `'${this.role["code"]}'`, `'${token}'`, `'${this.confirmed}'`, `'${this.saltstring}'`]
         let fieldsArr = ["username", "surname", "name", "email", "password", "register_date", "chat_color", "role", "token", "confirmed", "saltstring"]
 
         if(this.date_of_birth != undefined) {
@@ -342,11 +347,11 @@ class User {
 
     /**
      * Verifica daca utilizatorul are dreptul dat ca parametru
-     * @param {String} right - Dreptul dupa care se face verificarea
+     * @param {String} prvilege - Dreptul dupa care se face verificarea
      * @returns {Boolean}
      */
-    hasRight(right) {
-        return this.right == right;
+    hasPrivilege(prvilege) {
+        return this.role.hasPrivilege(prvilege);
     }
 }
 

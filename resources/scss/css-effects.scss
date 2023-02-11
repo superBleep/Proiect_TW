@@ -48,6 +48,14 @@ $timing: 0.5s;
     }
 }
 
+.duotone-img-2 {
+    background-image: url("../../resources/img/index/jukebox_med.jpg");
+}
+
+.duotone-img-3 {
+    background-image: url("../../resources/img/index/poster.jpg");
+}
+
 // efect reflexie text
 .reflex-text-shadow {
 	position: relative;
@@ -85,5 +93,5 @@ main {
     object-fit: cover;
     top: 0;
     left: 0;
-    filter: brightness(50%);
+    filter: brightness(50%) contrast(0.2);
 }
